@@ -1,0 +1,1072 @@
+:root
+  // 整個動畫播放次數：無限次（infinite）、1 次(1)
+  --play-number: 1
+  --play-number-drop: 1
+  --play-number-rotate: 1
+  // 整個動畫播放狀態： 播放（running）、暫停（paused）
+  --play-state: paused
+  --play-state-drop: paused
+  --play-state-rotate: paused
+  // 整個動畫時間
+  --play-duration: 1800ms
+  --play-duration-drop: 3000ms
+  --play-duration-rotate: 1800ms
+  // 動畫暫停：播放狀態為（paused），動畫名字不要設清掉（unset）
+  // animation-play-state: paused
+  // animation-name: unset
+  
+  // 動畫播放：播放狀態為（running），動畫名字用 JS 還原成原本的
+  // animation-play-state: running
+
+//- 掉出來的扭蛋 ------------------------------------------------------------
+#e0dj51prVt428_to
+  animation: e0dj51prVt428_to__to var(--play-duration-drop) linear var(--play-number-drop) normal forwards
+  animation-play-state: var(--play-state-drop)
+  
+@keyframes e0dj51prVt428_to__to
+  0%
+    offset-distance: 0%
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+  16.666667%
+    offset-distance: 0%
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+  36.666667%
+    offset-distance: 100%
+  100%
+    offset-distance: 100%
+
+#XXX_to
+  animation: XXX_to var(--play-duration-drop) linear var(--play-number-drop) normal forwards
+  animation-play-state: var(--play-state-drop)
+  display: none
+@keyframes XXX_to
+  0%
+    transform: translate(443.029083px, 628.903834px)
+  10%
+    transform: translate(443.029083px, 628.903834px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+  38%
+    transform: translate(443.029083px, 1008.799545px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+  48%
+    transform: translate(443.029083px, 980.799545px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+  57%
+    transform: translate(443.029083px, 1008.799545px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+  100%
+    transform: translate(443.029083px, 1008.799545px)
+
+
+@media screen and (max-width: 900px)
+  #e0dj51prVt428_to
+    display: none
+  #XXX_to
+    display: block
+
+
+
+#e0dj51prVt428_tr, #XXX_tr
+  animation: e0dj51prVt428_tr__tr var(--play-duration-drop) linear var(--play-number-drop) normal forwards
+  animation-play-state: var(--play-state-drop)
+  
+@keyframes e0dj51prVt428_tr__tr
+  0%
+    transform: rotate(190deg)
+
+  0.333333%
+    transform: rotate(190deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  40%
+    transform: rotate(1.425777deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  50%
+    transform: rotate(17.446595deg)
+
+  62%
+    transform: rotate(10.666181deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  75.666667%
+    transform: rotate(14.894499deg)
+
+  100%
+    transform: rotate(14.894499deg)
+
+#e0dj51prVt428_ts, #XXX_ts
+  animation: e0dj51prVt428_ts__ts var(--play-duration-drop) linear var(--play-number-drop) normal forwards
+  animation-play-state: var(--play-state-drop)
+  
+@keyframes e0dj51prVt428_ts__ts
+  0%
+    transform: scale(0.623166, 0.623166)
+
+  5.333333%
+    transform: scale(0.623166, 0.623166)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  16.666667%
+    transform: scale(1.210556, 1.210556)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  50%
+    transform: scale(1.172477, 1.172477)
+
+  65.333333%
+    transform: scale(1.172477, 1.172477)
+
+  100%
+    transform: scale(1.172477, 1.172477)
+
+
+#e0dj51prVt428, #XXX
+  animation: e0dj51prVt428_c_o var(--play-duration-drop) linear var(--play-number-drop) normal forwards
+  animation-play-state: var(--play-state-drop)
+  
+@keyframes e0dj51prVt428_c_o
+  0%
+    opacity: 0
+
+  3.333333%
+    opacity: 0
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  10%
+    opacity: 1
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  75%
+    opacity: 1
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  83.333333%
+    opacity: 0
+
+  100%
+    opacity: 0
+
+/* --------------------------------------------------------------------
+// 後面的扭蛋
+#e0dj51prVt431_to
+  animation: e0dj51prVt431_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt431_to__to
+  0%
+    transform: translate(260.217438px, 347.316422px)
+
+  20%
+    transform: translate(260.217438px, 347.316422px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  46%
+    transform: translate(253.807385px, 354.416535px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  56%
+    transform: translate(260.217438px, 347.316422px)
+
+  100%
+    transform: translate(260.217438px, 347.316422px)
+
+#e0dj51prVt432_to
+  animation: e0dj51prVt432_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt432_to__to
+  0%
+    transform: translate(399.075688px, 372.407262px)
+
+  16%
+    transform: translate(399.075688px, 372.407262px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  30%
+    transform: translate(383.217669px, 388.279781px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  40%
+    transform: translate(384.788949px, 377.675097px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  46%
+    transform: translate(399.075688px, 372.407262px)
+
+  100%
+    transform: translate(399.075688px, 372.407262px)
+
+#e0dj51prVt433_to
+  animation: e0dj51prVt433_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt433_to__to
+  0%
+    transform: translate(131.216187px, 419.318176px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  6%
+    transform: translate(131.056893px, 423.402742px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  16%
+    transform: translate(135.175878px, 422.383304px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  30%
+    transform: translate(131.216187px, 419.318176px)
+
+  100%
+    transform: translate(131.216187px, 419.318176px)
+
+#e0dj51prVt434_to
+  animation: e0dj51prVt434_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt434_to__to
+  0%
+    transform: translate(506.218063px, 350.315506px)
+
+  3%
+    transform: translate(506.218063px, 350.315506px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  16%
+    transform: translate(508.446034px, 354.421686px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  36%
+    transform: translate(506.218063px, 350.315506px)
+
+  100%
+    transform: translate(506.218063px, 350.315506px)
+
+/* --------------------------------------------------------------------
+
+#e0dj51prVt435_to
+  animation: e0dj51prVt435_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt435_to__to
+  0%
+    transform: translate(653.216156px, 390.318253px)
+
+  20%
+    transform: translate(653.216156px, 390.318253px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  33.333333%
+    transform: translate(649.489126px, 395.679651px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  53.333333%
+    transform: translate(653.216156px, 390.318253px)
+
+  100%
+    transform: translate(653.216156px, 390.318253px)
+
+#e0dj51prVt438_tr
+  animation: e0dj51prVt438_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt438_tr__tr
+  0%
+    transform: translate(217.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(217.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(217.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(217.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt439_tr
+  animation: e0dj51prVt439_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt439_tr__tr
+  0%
+    transform: translate(215.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(215.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(215.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(215.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt440_tr
+  animation: e0dj51prVt440_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt440_tr__tr
+  0%
+    transform: translate(213.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(213.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(213.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(213.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt441_tr
+  animation: e0dj51prVt441_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt441_tr__tr
+  0%
+    transform: translate(211.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(211.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(211.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(211.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt442_tr
+  animation: e0dj51prVt442_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt442_tr__tr
+  0%
+    transform: translate(209.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(209.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(209.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(209.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt443_tr
+  animation: e0dj51prVt443_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt443_tr__tr
+  0%
+    transform: translate(207.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(207.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(207.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(207.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt444_tr
+  animation: e0dj51prVt444_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt444_tr__tr
+  0%
+    transform: translate(205.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(205.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(205.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(205.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt445_tr
+  animation: e0dj51prVt445_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt445_tr__tr
+  0%
+    transform: translate(203.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(203.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(203.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(203.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt446_tr
+  animation: e0dj51prVt446_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt446_tr__tr
+  0%
+    transform: translate(201.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(201.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(201.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(201.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt447_tr
+  animation: e0dj51prVt447_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt447_tr__tr
+  0%
+    transform: translate(199.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(199.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(199.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(199.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt448_tr
+  animation: e0dj51prVt448_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt448_tr__tr
+  0%
+    transform: translate(197.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(197.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(197.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(197.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt449_tr
+  animation: e0dj51prVt449_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt449_tr__tr
+  0%
+    transform: translate(195.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(195.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(195.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(195.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt450_tr
+  animation: e0dj51prVt450_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt450_tr__tr
+  0%
+    transform: translate(193.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(193.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(193.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(193.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt451_tr
+  animation: e0dj51prVt451_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt451_tr__tr
+  0%
+    transform: translate(191.44842px, 658.410034px) rotate(0deg)
+
+  60%
+    transform: translate(191.44842px, 658.410034px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(191.44842px, 658.410034px) rotate(180deg)
+
+  100%
+    transform: translate(191.44842px, 658.410034px) rotate(180deg)
+
+#e0dj51prVt452_tr
+  animation: e0dj51prVt452_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt452_tr__tr
+  0%
+    transform: translate(190.480004px, 658.409973px) rotate(0deg)
+
+  60%
+    transform: translate(190.480004px, 658.409973px) rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  80%
+    transform: translate(190.480004px, 658.409973px) rotate(180deg)
+
+  100%
+    transform: translate(190.480004px, 658.409973px) rotate(180deg)
+
+/* ------------------------------------------------------
+
+#e0dj51prVt455_to
+  animation: e0dj51prVt455_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt455_to__to
+  0%
+    transform: translate(373.622478px, 400.964547px)
+
+  16.666667%
+    transform: translate(373.622478px, 400.964547px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  46.666667%
+    transform: translate(373.622478px, 284.894913px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  66.666667%
+    transform: translate(373.622478px, 400.964547px)
+
+  100%
+    transform: translate(373.622478px, 400.964547px)
+
+#e0dj51prVt455_tr
+  animation: e0dj51prVt455_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt455_tr__tr
+  0%
+    transform: rotate(-181.452866deg)
+
+  10%
+    transform: rotate(-181.452866deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  60%
+    transform: rotate(178.547134deg)
+
+  100%
+    transform: rotate(178.547134deg)
+
+#e0dj51prVt458_to
+  animation: e0dj51prVt458_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt458_to__to
+  0%
+    transform: translate(180.966931px, 396.673584px)
+
+  16.666667%
+    transform: translate(180.966931px, 396.673584px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  26.666667%
+    transform: translate(186.453537px, 406.661492px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  40%
+    transform: translate(177.079468px, 393.404866px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  50%
+    transform: translate(180.966931px, 396.673584px)
+
+  100%
+    transform: translate(180.966931px, 396.673584px)
+
+#e0dj51prVt458_tr
+  animation: e0dj51prVt458_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt458_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  10%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  26.666667%
+    transform: rotate(10.410165deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  50%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt461_to
+  animation: e0dj51prVt461_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt461_to__to
+  0%
+    transform: translate(141.981667px, 482.672684px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  16.666667%
+    transform: translate(138.48px, 479.400347px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  33.333333%
+    transform: translate(141.981667px, 482.672684px)
+
+  100%
+    transform: translate(141.981667px, 482.672684px)
+
+#e0dj51prVt461_tr
+  animation: e0dj51prVt461_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt461_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  10%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  30%
+    transform: rotate(-10.20552deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  46.666667%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt464_to
+  animation: e0dj51prVt464_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt464_to__to
+  0%
+    transform: translate(277.980438px, 409.664642px)
+
+  16.666667%
+    transform: translate(277.980438px, 409.664642px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  26.666667%
+    transform: translate(275.220489px, 418.573086px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  40%
+    transform: translate(279.650471px, 405.858842px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  46.666667%
+    transform: translate(277.980438px, 409.664642px)
+
+  100%
+    transform: translate(277.980438px, 409.664642px)
+
+#e0dj51prVt464_tr
+  animation: e0dj51prVt464_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt464_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  10%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  33.333333%
+    transform: rotate(-5.355439deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  50%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt467_to
+  animation: e0dj51prVt467_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt467_to__to
+  0%
+    transform: translate(332.97815px, 482.658722px)
+
+  10%
+    transform: translate(332.97815px, 482.658722px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  30%
+    transform: translate(326.550476px, 477.181545px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  40%
+    transform: translate(332.97815px, 482.658722px)
+
+  100%
+    transform: translate(332.97815px, 482.658722px)
+
+#e0dj51prVt467_tr
+  animation: e0dj51prVt467_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt467_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  6.666667%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  20%
+    transform: rotate(9.356541deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  36.666667%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt470_to
+  animation: e0dj51prVt470_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt470_to__to
+  0%
+    transform: translate(570.992554px, 379.665009px)
+
+  20%
+    transform: translate(570.992554px, 379.665009px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  33.333333%
+    transform: translate(577.481892px, 384.51723px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  40%
+    transform: translate(569.197417px, 394.393313px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  56.666667%
+    transform: translate(570.992554px, 379.665009px)
+
+  100%
+    transform: translate(570.992554px, 379.665009px)
+
+#e0dj51prVt470_tr
+  animation: e0dj51prVt470_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt470_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  30%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  43.333333%
+    transform: rotate(13.053142deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  66.666667%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt473_to
+  animation: e0dj51prVt473_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt473_to__to
+  0%
+    transform: translate(480.974762px, 405.664139px)
+
+  13.333333%
+    transform: translate(480.974762px, 405.664139px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  23.333333%
+    transform: translate(476.157036px, 411.436736px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  40%
+    transform: translate(480.974762px, 405.664139px)
+
+  100%
+    transform: translate(480.974762px, 405.664139px)
+
+#e0dj51prVt473_tr
+  animation: e0dj51prVt473_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt473_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  26.666667%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  43.333333%
+    transform: rotate(-10.700625deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  53.333333%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt476_to
+  animation: e0dj51prVt476_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt476_to__to
+  0%
+    transform: translate(625.974793px, 467.677628px)
+
+  30%
+    transform: translate(625.974793px, 467.677628px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  50%
+    transform: translate(616.4px, 472.662926px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  56.666667%
+    transform: translate(625.974793px, 467.677628px)
+
+  100%
+    transform: translate(625.974793px, 467.677628px)
+
+#e0dj51prVt476_tr
+  animation: e0dj51prVt476_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt476_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  33.333333%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  43.333333%
+    transform: rotate(-13.670195deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  60%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt479_to
+  animation: e0dj51prVt479_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt479_to__to
+  0%
+    transform: translate(527.973084px, 482.665024px)
+
+  10%
+    transform: translate(527.973084px, 482.665024px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  20%
+    transform: translate(527.973085px, 481.604262px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  43.333333%
+    transform: translate(527.973084px, 482.665024px)
+
+  100%
+    transform: translate(527.973084px, 482.665024px)
+
+#e0dj51prVt479_tr
+  animation: e0dj51prVt479_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt479_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  13.333333%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  30%
+    transform: rotate(-9.60647deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  46.666667%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt482_to
+  animation: e0dj51prVt482_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt482_to__to
+  0%
+    transform: translate(527.973084px, 482.665024px)
+
+  10%
+    transform: translate(527.973084px, 482.665024px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  20%
+    transform: translate(527.973085px, 481.604262px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  43.333333%
+    transform: translate(527.973084px, 482.665024px)
+
+  100%
+    transform: translate(527.973084px, 482.665024px)
+
+#e0dj51prVt482_tr
+  animation: e0dj51prVt482_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt482_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  13.333333%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  30%
+    transform: rotate(-9.60647deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  46.666667%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt485_to
+  animation: e0dj51prVt485_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt485_to__to
+  0%
+    transform: translate(426.972717px, 482.663727px)
+
+  20%
+    transform: translate(426.972717px, 482.663727px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  36.666667%
+    transform: translate(419.255976px, 480.732857px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  53.333333%
+    transform: translate(426.972717px, 482.663727px)
+
+  100%
+    transform: translate(426.972717px, 482.663727px)
+
+#e0dj51prVt485_tr
+  animation: e0dj51prVt485_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt485_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  16.666667%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  40%
+    transform: rotate(-8.549503deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  50%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
+
+#e0dj51prVt488_to
+  animation: e0dj51prVt488_to__to var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt488_to__to
+  0%
+    transform: translate(229.998314px, 485.659577px)
+
+  10%
+    transform: translate(229.998314px, 485.659577px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  20%
+    transform: translate(236.341691px, 485.537018px)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  43.333333%
+    transform: translate(229.998314px, 485.659577px)
+
+  100%
+    transform: translate(229.998314px, 485.659577px)
+
+#e0dj51prVt488_tr
+  animation: e0dj51prVt488_tr__tr var(--play-duration) linear var(--play-number) normal forwards
+  animation-play-state: var(--play-state)
+  
+@keyframes e0dj51prVt488_tr__tr
+  0%
+    transform: rotate(0deg)
+
+  6.666667%
+    transform: rotate(0deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  30%
+    transform: rotate(7.747466deg)
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+
+  40%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(0deg)
