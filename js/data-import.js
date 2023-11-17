@@ -1,10 +1,10 @@
 // 網址分析
-function analyzeUrl(){
+function analyzeUrl() {
   var webUrl = location.search
   var webUrlData = {
-    "csv":"",
-    "google":"",
-    "title":"",
+    "csv": "",
+    "google": "",
+    "title": "",
   }
 
   // 網址文字分段
@@ -12,47 +12,49 @@ function analyzeUrl(){
   webUrl = webUrl.split("&"); // 分段
 
   // 將文字丟入 webUrlData 物件中
-  for(i=0; i < webUrl.length; i++){
+  for (i = 0; i < webUrl.length; i++) {
     // 單純 CSV 網址
     c = webUrl[i].indexOf("csv=")
-    if( c != -1 ){
+    if (c != -1) {
       $(".hint-text .text").text("讀取中...");
-      webUrlData.csv = webUrl[i].replace("csv=","");
+      webUrlData.csv = webUrl[i].replace("csv=", "");
       $(".import-url").val(webUrlData.csv);
       csvUrl = $(".import-url").val();
       $.ajax({
         url: csvUrl,
         success: function (data) {
           importSuccess(data);
-          $(".btn-import, .btn-instruction, .btn-about, .btn-share").css("opacity","0");
+          $(".btn-import, .btn-instruction, .btn-about, .btn-share").css("opacity", "0");
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {undefined
+        error: function () {
+          undefined
           importError();
         },
       });
     }
     // GOOGLE CSV 網址
     g = webUrl[i].indexOf("google=")
-    if( g != -1 ){
+    if (g != -1) {
       $(".hint-text .text").text("讀取中...");
-      webUrlData.google = webUrl[i].replace("google=","");
-      $(".import-url").val("https://docs.google.com/spreadsheets/d/e/"+webUrlData.google+"/pub?output=csv");
+      webUrlData.google = webUrl[i].replace("google=", "");
+      $(".import-url").val("https://docs.google.com/spreadsheets/d/e/" + webUrlData.google + "/pub?output=csv");
       csvUrl = $(".import-url").val();
       $.ajax({
         url: csvUrl,
         success: function (data) {
           importSuccess(data);
-          $(".btn-import, .btn-instruction, .btn-about, .btn-share").css("opacity","0");
+          $(".btn-import, .btn-instruction, .btn-about, .btn-share").css("opacity", "0");
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {undefined
+        error: function () {
+          undefined
           importError();
         },
       });
     }
     // 標題
     t = webUrl[i].indexOf("title=")
-    if( t != -1 ){
-      webUrlData.title = decodeURI( webUrl[i].replace("title=",""));
+    if (t != -1) {
+      webUrlData.title = decodeURI(webUrl[i].replace("title=", ""));
     }
 
   }
@@ -67,23 +69,24 @@ analyzeUrl();
 var csvUrl;  // CSV 連結
 var csvList; // 放 CSV 資料的陣列
 // 匯入 CSV
-function importCsv(){
-  $(".import-btn").click(function() {
+function importCsv() {
+  $(".import-btn").click(function () {
     $(this).text("載入中");
     csvUrl = $(".import-url").val();
-    if( csvUrl=="" ){
+    if (csvUrl == "") {
       $(".import-url").addClass("warning");
       $(".warning-text").text("此欄位不可空白。");
-      $(".warning-text").css("display","block");
+      $(".warning-text").css("display", "block");
     }
-    else{
+    else {
       $.ajax({
         url: csvUrl,
         success: function (data) {
           importSuccess(data);
           closeMenu();
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {undefined
+        error: function () {
+          undefined
           importError();
         },
       });
@@ -91,7 +94,7 @@ function importCsv(){
   });
 }
 // 載入成功
-function importSuccess(data){
+function importSuccess(data) {
   // 讀取 csv 資料
   csvList = $.csv.toArrays(data + "\n");
   console.log(csvList);
@@ -100,51 +103,48 @@ function importSuccess(data){
   $('#import-modal').modal('hide');
   $(".import-url").removeClass("warning");
   $(".warning-text").text("");
-  $(".warning-text").css("display","none");
-  $(".btn-about").css("display","flex");
+  $(".warning-text").css("display", "none");
+  $(".btn-about").css("display", "flex");
   $(".import-btn").text("確認");
-  
+
   // 產生分享連結
   exportUrl();
 
 }
 // 載入失敗
-function importError(){
+function importError() {
   importState = 0;
   $(".import-url").addClass("warning");
   $(".hint-text .text").text("載入錯誤");
   $(".warning-text").text("網址載入錯誤。");
-  $(".warning-text").css("display","block");
+  $(".warning-text").css("display", "block");
 }
 importCsv();
 //---------------------------------------------------------------------
 // 產生分享連結
-function exportUrl(){
+function exportUrl() {
   port = ""
-  if(location.port != ""){
-    port = ":"+location.port
+  if (location.port != "") {
+    port = ":" + location.port
   }
 
-  if(csvUrl.indexOf("https://docs.google.com/spreadsheets/d/e/") != -1 ){
+  if (csvUrl.indexOf("https://docs.google.com/spreadsheets/d/e/") != -1) {
     // 將 google csv 去頭去尾
-    x = csvUrl.replace("https://docs.google.com/spreadsheets/d/e/","");
+    x = csvUrl.replace("https://docs.google.com/spreadsheets/d/e/", "");
     x = x.split("/")[0];
 
-    $(".share-url").val("https://"+location.hostname + port +location.pathname + "?google=" + x);
-  }else{
-    $(".share-url").val("https://"+location.hostname + port +location.pathname + "?csv=" + csvUrl);
+    $(".share-url").val("https://" + location.hostname + port + location.pathname + "?google=" + x);
+  } else {
+    $(".share-url").val("https://" + location.hostname + port + location.pathname + "?csv=" + csvUrl);
   }
 
 }
 
-
-
-
-
 //---------------------------------------------------------------------
-function showImportModal(){
-  $(".gashapon-main").click(function() {
-    if( csvUrl == undefined){
+function showImportModal() {
+  // 沒有匯入檔案時會開啟匯入視窗
+  $(".full-screen-click-area").click(function () {
+    if (csvUrl == undefined || importState == 0) {
       $('#import-modal').modal('show');
     }
   });
@@ -156,15 +156,15 @@ showImportModal();
 //---------------------------------------------------------------------
 // 複製網址
 const btnCopy = document.querySelector('.share-url-copy');
-btnCopy.addEventListener('click', function() {
+btnCopy.addEventListener('click', function () {
   const inputText = document.querySelector('.share-url');
-  
+
   // pc
   inputText.select();
   // ios
   x = $(".share-url").val().length
-  inputText.setSelectionRange(0, x); 
-  
+  inputText.setSelectionRange(0, x);
+
   document.execCommand('copy');
 });
 

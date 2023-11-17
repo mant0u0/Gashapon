@@ -1,14 +1,14 @@
-@font-face 
+@font-face
   font-family: FakePearl-Regular
   src: url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2) format("woff2"),url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff) format("woff")
 @import "_gashapon"
 @import "_modal"
 @import "_function-menu"
 
-$color_yellow : #fdd98d
-$color_orange : #FFC68A
-$color_brown : #7d5348
-$color_brown2 : #bfaba5
+$color_yellow: #fdd98d
+$color_orange: #FFC68A
+$color_brown: #7d5348
+$color_brown2: #bfaba5
 
 html, body
   width: 100%
@@ -21,21 +21,29 @@ html, body
   background: radial-gradient($color_orange 25%, $color_yellow 10%)
   background-size: 15px 15px
   -webkit-animation: bscale 100s infinite linear
-          animation: bscale 100s infinite linear 
+  animation: bscale 100s infinite linear
 @-webkit-keyframes bscale
   0%
-    background-position: 0px 0px
+  background-position: 0px 0px
   100%
-    background-position: 100% 100%
+  background-position: 100% 100%
 
 @media screen and (max-width: 992px)
   html, body
     font-size: 9px
 @media screen and (max-width: 576px)
   html, body
-    font-size: 8px 
+    font-size: 8px
 
-
+//- 全螢幕點擊區（未匯入檔案時的點擊區域）
+.full-screen-click-area
+  position: absolute
+  top: 0
+  left: 0
+  background: transparent
+  width: 100vw
+  height: 100vh
+  z-index: 10
 
 //- 提示文字
 .hint-text
@@ -74,7 +82,7 @@ html, body
     justify-content: center
     align-items: center
   .energy
-    z-index: 1 
+    z-index: 1
     width: 100%
     height: 100%
     background: #633b4b
@@ -115,7 +123,6 @@ html, body
   transition: 0s
   pointer-events: none
 
-
 //- 轉蛋機 SVG
 .gashapon
   // border: 1px solid #000
@@ -152,7 +159,6 @@ html, body
     transform: scale(100%,100%)
   100%
     transform: scale(100%,100%)
-
 
 @media screen and (max-height: 600px)
   .gashapon

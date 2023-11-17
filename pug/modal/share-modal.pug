@@ -1,0 +1,16 @@
+//- 分享
+.modal.fade#share-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h5.modal-title 分享連結
+        //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body-share
+        p 複製以下連結，可將已匯入資料的扭蛋機分享給朋友一起遊玩！
+        .input-btn-group
+          input.share-url(type="text" value="目前無資料匯入")
+          button.share-url-copy(type='button') 複製網址
+
+      .modal-footer-x
+        button.btn.modal-footer-btn.cancel-btn(type='button' data-bs-dismiss="modal") 關閉
+
