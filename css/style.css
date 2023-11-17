@@ -2914,10 +2914,12 @@
 .modal .modal-dialog .modal-body p, .modal .modal-dialog .modal-body-import p, .modal .modal-dialog .modal-body-about p, .modal .modal-dialog .modal-body-instruction p, .modal .modal-dialog .modal-body-share p {
   word-break: break-all;
 }
-.modal .modal-dialog .modal-body img.result, .modal .modal-dialog .modal-body-import img.result, .modal .modal-dialog .modal-body-about img.result, .modal .modal-dialog .modal-body-instruction img.result, .modal .modal-dialog .modal-body-share img.result {
+.modal .modal-dialog .modal-body img.result-img, .modal .modal-dialog .modal-body-import img.result-img, .modal .modal-dialog .modal-body-about img.result-img, .modal .modal-dialog .modal-body-instruction img.result-img, .modal .modal-dialog .modal-body-share img.result-img {
   border-radius: 10px;
   width: 100%;
   background: rgba(99, 59, 75, 0.1450980392);
+  margin-bottom: 8px;
+  -webkit-user-drag: none;
 }
 .modal .modal-dialog .modal-body-import, .modal .modal-dialog .modal-body-share {
   display: -webkit-box;
@@ -3357,6 +3359,22 @@ html, body {
     font-size: 8px;
   }
 }
+* {
+  cursor: none !important;
+}
+
+.curzr {
+  -webkit-transition: 0.1s !important;
+  transition: 0.1s !important;
+  pointer-events: none;
+}
+.curzr .outer {
+  fill: #fcf0f0;
+}
+.curzr .inner {
+  fill: #633b4b;
+}
+
 .full-screen-click-area {
   position: absolute;
   top: 0;
@@ -3467,6 +3485,7 @@ html, body {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding: 10px;
+  pointer-events: none;
 }
 .gashapon svg {
   height: 50%;

@@ -149,6 +149,9 @@ function getTriggerHeight() {
 // 游標按下
 function mouseDown(e) {
 
+  // 游標變色
+  $(".curzr .outer").css("fill", "#f6c0bb");
+
   // 視窗狀況是否有被開啟   
   if (modalState == 0 && importState == 1) {
 
@@ -229,6 +232,10 @@ function mouseMove(e) {
 
 // 游標放開   
 function mouseUp(e) {
+
+  // 游標變回原色
+  $(".curzr .outer").css("fill", "");
+
   // $(".hint-text .text").text("游標放開");
   $(".energy-bar").css("transition", "1s");
   $(".energy-bar").css("transform", "scaleY(0)");
@@ -275,6 +282,7 @@ function mouseUp(e) {
 }
 
 // ------------------------------------------------------------- //
+// 顯示視窗
 function showModal() {
   setTimeout(function () {
     printResultText();
@@ -285,38 +293,57 @@ function showModal() {
     });
   }, 3 * 1000);
 }
+
+
+// 列印結果
 function printResultText() {
-  $(".modal-body").html("");
-  r = getRandom(csvList.length - 1);
-  resultImg = 0;
-  for (i = 0; i < csvList[0].length; i++) {
-    resultTitle = csvList[0][i];
-    resultContent = csvList[r][i];
-    if (resultTitle != undefined || resultContent != undefined) {
-      console.log(resultTitle);
-      console.log(resultContent);
-      if (resultTitle == "地址") {
-        $(".modal-body").append("<p>" + resultTitle + "：" + "<a href='https://www.google.com/maps/place/" + resultContent + "' target='_blank'>" + resultContent + "</a></p>")
+
+  $(".modal-body").html(""); // 內容清空
+  r = getRandom(csvObjectArray.length - 1); //取得亂數
+
+  csvObjectKey = csvList[0]                 // 取得物件標題
+  csvObjectKeyLength = csvObjectKey.length    // 取得物件標題數量
+
+  for (i = 0; i < csvObjectKeyLength; i++) {
+    itemTitle = csvObjectKey[i] // 標題 ( 作為 csvObjectArray[r] 的 Key )
+    itemInfo = csvObjectArray[r][itemTitle] // 內容 ( 取第 r 個元素標題為 itemTitle 的項目  )
+
+    if (itemTitle == "地址") {
+      $(".modal-body").append("<p>" + itemTitle + "：" + "<a href='https://www.google.com/maps/place/" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
+    }
+
+    else if (itemTitle == "圖片") {
+      resultImg = 1;
+      $(".modal-body").append("<img src='" + itemInfo + "' class='result-img'>")
+    }
+
+    else {
+
+      // 內容為連結
+      if (isURL(itemInfo)) {
+        $(".modal-body").append("<p>" + itemTitle + "：" + "<a href='" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
       }
-      else if (resultTitle == "圖片") {
-        resultImg = 1;
-        // $(".modal-body").append("<img src='"+resultContent+"' class='result'>")
-      }
+
+      // 一般文字
       else {
-        $(".modal-body").append("<p>" + resultTitle + "：" + resultContent + "</p>")
+        $(".modal-body").append("<p>" + itemTitle + "：" + itemInfo + "</p>")
       }
 
     }
-  }
-  if (resultImg == 1) {
-    $(".modal-body").append("<img src='" + resultContent + "' class='result'>")
-    resultImg = 0;
+
   }
 
 
 }
+// --------------
+// 判斷字串為連結
+function isURL(str) {
+  // 定義一個正則表達式來匹配合法的URL格式
+  const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
-
+  // 使用正則表達式的 test 方法來檢查字串是否符合格式
+  return urlRegex.test(str);
+}
 
 // --------------
 // 亂數（1~x）的隨機整數

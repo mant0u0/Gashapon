@@ -68,6 +68,8 @@ analyzeUrl();
 //---------------------------------------------------------------------
 var csvUrl;  // CSV 連結
 var csvList; // 放 CSV 資料的陣列
+var csvObjectArray; // 放 CSV 資料的物件
+
 // 匯入 CSV
 function importCsv() {
   $(".import-btn").click(function () {
@@ -97,7 +99,11 @@ function importCsv() {
 function importSuccess(data) {
   // 讀取 csv 資料
   csvList = $.csv.toArrays(data + "\n");
-  console.log(csvList);
+  csvObjectArray = convertListToObjectArray(csvList)
+
+  // console.log(csvList);
+  // console.log(convertListToObjectArray(csvList)[1]["食物"]);
+
   importState = 1;
   $(".hint-text .text").text("匯入成功");
   $('#import-modal').modal('hide');
@@ -120,6 +126,28 @@ function importError() {
   $(".warning-text").css("display", "block");
 }
 importCsv();
+
+
+//---------------------------------------------------------------------
+
+// 列表轉換
+function convertListToObjectArray(list) {
+  // 獲取標題行
+  const headers = list[0];
+
+  // 創建物件陣列，跳過標題行
+  const result = list.slice(1).map(item => {
+    const obj = {};
+    // 對每一項目進行迴圈，將標題與值對應起來
+    headers.forEach((header, index) => {
+      obj[header] = item[index];
+    });
+    return obj;
+  });
+
+  return result;
+}
+
 //---------------------------------------------------------------------
 // 產生分享連結
 function exportUrl() {

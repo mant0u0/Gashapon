@@ -32,7 +32,7 @@
       display: flex
       justify-content: space-between
       align-items: center
-      padding: 20px 35px 
+      padding: 20px 35px
       border-radius: 10px 10px 0 0
       h5
         font-size: 2.5rem
@@ -51,12 +51,13 @@
       position: relative
       p
         word-break: break-all
-      img.result
+      img.result-img
         border-radius: 10px
         width: 100%
-        // min-height: auto
-        // max-height: 300px
         background: #633b4b25
+        margin-bottom: 8px
+        -webkit-user-drag: none
+
     .modal-body-import, .modal-body-share
       display: flex
       flex-direction: column
@@ -101,7 +102,7 @@
           transition: 0.5s
           &:hover
             background: #c5413d
-            
+
         input[type="text"]
           width: 100%
     .modal-body-about
@@ -162,7 +163,6 @@
           border-radius: 10px
           margin-top: 10px
           margin-bottom: 20px
-          
 
         p
           padding: 0
@@ -175,9 +175,6 @@
           font-size: 2.0rem
           font-family: FakePearl-Regular
           font-weight: 900
-
-
-
 
     .modal-footer-x
       border: none
@@ -219,7 +216,6 @@
         &:focus
           background: #fcdddc
 
-
   h5, .modal-body
     font-family: FakePearl-Regular
     font-weight: 700
@@ -227,8 +223,7 @@
   .modal
     .modal-dialog
       .modal-header
-        padding: 20px 
+        padding: 20px
       .modal-body, .modal-body-import, .modal-body-about, .btn.btn-instruction
-        padding: 20px 
+        padding: 20px
         padding-bottom: 45px
-
