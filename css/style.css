@@ -2,6 +2,14 @@
   font-family: FakePearl-Regular;
   src: url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2) format("woff2"), url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff) format("woff");
 }
+.maR-4 {
+  margin-right: 4px;
+}
+
+.maR-8 {
+  margin-right: 8px;
+}
+
 :root {
   --play-number: 1;
   --play-number-drop: 1;

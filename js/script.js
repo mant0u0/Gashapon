@@ -12,7 +12,7 @@ var modalState = 0;
 
 var importState = 0;
 
-// 轉蛋機縮放值
+// 扭蛋機縮放值
 var gashaponScale_X = 0;
 var gashaponScale_Y = 0;
 
@@ -21,7 +21,7 @@ var windowsHeight = document.body.clientHeight;
 var triggerHeight = windowsHeight / 4;
 
 
-// 轉蛋機ID
+// 扭蛋機ID
 var itemId = [
   "#e0dj51prVt431_to", "#e0dj51prVt432_to", "#e0dj51prVt433_to", "#e0dj51prVt434_to",
   // ------------------------------------------------------------------------- //
@@ -51,7 +51,7 @@ var dropGashaponColor = [
 var modalBackground = [
   "#f7524b", "#a159d9", "#f5ad56", "#accf4e", "#6685e3"
 ]
-// 轉蛋機動畫
+// 扭蛋機動畫
 function gashaponAnimation(state) {
   if (state == "play") {
     // 播放動畫
@@ -86,7 +86,7 @@ function gashaponAnimation(state) {
   }
 }
 
-// 轉蛋機變形
+// 扭蛋機變形
 function gashaponScale(state) {
   // 「變形」與「變形時間」重置
   if (state == "reset") {
@@ -137,7 +137,7 @@ function getRandomGashapon() {
 }
 
 // ------------------------------------------------------------- //
-// 觸發高度（拖曳距離要達觸發高度，才會觸發轉蛋）
+// 觸發高度（拖曳距離要達觸發高度，才會觸發扭蛋）
 function getTriggerHeight() {
   windowsHeight = document.body.clientHeight;
   triggerHeight = windowsHeight / 4;
@@ -211,7 +211,7 @@ function mouseMove(e) {
       $(".energy-bar").css("transform", "scaleY(" + (mouseMove_Y) / (-1 * triggerHeight) + ")");
       $(".hint-text .energy").css("transform", "scaleX(" + (mouseMove_Y) / (-1 * triggerHeight) + ")");
       if (mouseMove_Y < -1 * triggerHeight) {
-        $(".hint-text .text").text("可放開轉蛋機");
+        $(".hint-text .text").text("可放開扭蛋機");
       }
     }
     // 向上
@@ -220,7 +220,7 @@ function mouseMove(e) {
       $(".energy-bar").css("transform", "scaleY(" + (mouseMove_Y) / triggerHeight + ")");
       $(".hint-text .energy").css("transform", "scaleX(" + (mouseMove_Y) / triggerHeight + ")");
       if (mouseMove_Y > triggerHeight) {
-        $(".hint-text .text").text("可放開轉蛋機");
+        $(".hint-text .text").text("可放開扭蛋機");
       }
     }
     else {
@@ -321,7 +321,16 @@ function printResultText() {
 
       // 內容為連結
       if (isURL(itemInfo)) {
-        $(".modal-body").append("<p>" + itemTitle + "：" + "<a href='" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
+        // 圖片連結
+        if (isImageURL(itemInfo)) {
+          $(".modal-body").append("<p>" + itemTitle + "</p>")
+          $(".modal-body").append("<img src='" + itemInfo + "' class='result-img'>")
+        }
+        // 文字連結
+        else {
+          $(".modal-body").append("<p>" + itemTitle + "：" + "<a href='" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
+        }
+
       }
 
       // 一般文字
@@ -343,6 +352,14 @@ function isURL(str) {
 
   // 使用正則表達式的 test 方法來檢查字串是否符合格式
   return urlRegex.test(str);
+}
+// 判斷字串為圖片連結
+function isImageURL(str) {
+  // 定義一個正則表達式來匹配合法的圖片URL格式
+  const imageRegex = /\.(jpeg|jpg|gif|png|wbep)$/i;
+
+  // 使用正則表達式的 test 方法來檢查字串是否符合格式
+  return imageRegex.test(str);
 }
 
 // --------------
