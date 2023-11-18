@@ -1,0 +1,15 @@
+{
+  "short_name": "扭蛋機",
+  "name": "扭蛋機",
+  "icons": [
+    {
+      "src": "../img/manifest.png",
+      "sizes": "192×192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "https://mant0u.one/web/Gashapon/html/",
+  "background_color": "#000",
+  "theme_color": "#ffcf83",
+  "display": "standalone"
+}
