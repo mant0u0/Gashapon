@@ -11,12 +11,16 @@ $color_orange: #FFC68A
 $color_brown: #7d5348
 $color_brown2: #bfaba5
 
+:root
+  --doc-height: 100%
+
 html, body
   width: 100%
   height: 100%
+  height: var(--doc-height)
   padding: 0
   margin: 0
-  overflow: hidden
+  overflow: hidden !important
   font-size: 10px
   background: -webkit-radial-gradient($color_orange 25%, $color_yellow 10%)
   background: radial-gradient($color_orange 25%, $color_yellow 10%)
@@ -49,7 +53,7 @@ html, body
 
 //- 全螢幕點擊區（未匯入檔案時的點擊區域）
 .full-screen-click-area
-  position: absolute
+  position: fixed
   top: 0
   left: 0
   background: transparent
@@ -100,7 +104,9 @@ html, body
     background: #633b4b
     position: absolute
     top: 0
-    left: 0
+    // left: 0
+    bottom: 0
+
     transform: scaleX(0)
     transform-origin: 0% 100%
 
