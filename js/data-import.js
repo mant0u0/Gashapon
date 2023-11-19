@@ -121,6 +121,7 @@ function importSuccess(data) {
 function importError() {
   importState = 0;
   $(".import-url").addClass("warning");
+  $(".import-btn").text("確認");
   $(".hint-text .text").text("載入錯誤");
   $(".warning-text").text("網址載入錯誤。");
   $(".warning-text").css("display", "block");
