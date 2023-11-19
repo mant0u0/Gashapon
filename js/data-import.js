@@ -73,7 +73,7 @@ var csvObjectArray; // 放 CSV 資料的物件
 // 匯入 CSV
 function importCsv() {
   $(".import-btn").click(function () {
-    $(this).text("載入中");
+    $(this).text("匯入中");
     csvUrl = $(".import-url").val();
     if (csvUrl == "") {
       $(".import-url").addClass("warning");
@@ -86,6 +86,7 @@ function importCsv() {
         success: function (data) {
           importSuccess(data);
           closeMenu();
+          modalState = 0;
         },
         error: function () {
           undefined
@@ -95,7 +96,7 @@ function importCsv() {
     }
   });
 }
-// 載入成功
+// 匯入成功
 function importSuccess(data) {
   // 讀取 csv 資料
   csvList = $.csv.toArrays(data + "\n");
@@ -112,19 +113,21 @@ function importSuccess(data) {
   $(".warning-text").css("display", "none");
   $(".btn-about").css("display", "flex");
   $(".import-btn").text("確認");
+  $(".no-data-text").hide();
 
   // 產生分享連結
   exportUrl();
 
 }
-// 載入失敗
+// 匯入失敗
 function importError() {
   importState = 0;
   $(".import-url").addClass("warning");
   $(".import-btn").text("確認");
-  $(".hint-text .text").text("載入錯誤");
-  $(".warning-text").text("網址載入錯誤。");
+  $(".hint-text .text").text("匯入錯誤");
+  $(".warning-text").text("網址匯入錯誤。");
   $(".warning-text").css("display", "block");
+  $(".no-data-text").show();
 }
 importCsv();
 
@@ -168,19 +171,6 @@ function exportUrl() {
   }
 
 }
-
-//---------------------------------------------------------------------
-function showImportModal() {
-  // 沒有匯入檔案時會開啟匯入視窗
-  $(".full-screen-click-area").click(function () {
-    if (csvUrl == undefined || importState == 0) {
-      $('#import-modal').modal('show');
-    }
-  });
-}
-showImportModal();
-
-
 
 //---------------------------------------------------------------------
 // 複製網址

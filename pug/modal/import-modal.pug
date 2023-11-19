@@ -6,7 +6,10 @@
         h5.modal-title 匯入連結
         //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body-import
-        p 輸入 csv 網址，可載入抽獎項目。
+        p.no-data-text
+          i.fas.fa-exclamation-circle.maR-8
+          | 扭蛋機目前沒有匯入抽獎項目～
+        p 輸入 CSV 網址，匯入抽獎項目。\( °ω° )/
         input.import-url(type="text" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv")
         .warning-text 此欄位不可空白。
 

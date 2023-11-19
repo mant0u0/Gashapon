@@ -153,7 +153,7 @@ function mouseDown(e) {
   $(".curzr .outer").css("fill", "#f6c0bb");
 
   // 視窗狀況是否有被開啟   
-  if (modalState == 0 && importState == 1) {
+  if (modalState == 0) {
 
     // 獲取觸發高度
     getTriggerHeight()
@@ -272,7 +272,7 @@ function mouseUp(e) {
         gashaponAnimation("drop");
       }, 1.25 * 1000);
       $(".hint-text .text").text("顯示結果");
-      showModal();
+      showResultModal();
     }
   }
 
@@ -282,15 +282,29 @@ function mouseUp(e) {
 }
 
 // ------------------------------------------------------------- //
-// 顯示視窗
-function showModal() {
+// 顯示結果視窗
+function showResultModal() {
   setTimeout(function () {
-    printResultText();
-    $('#result-modal').modal('show');
-    $(".result-btn").click(function () {
-      modalState = 0;
-      $(".hint-text .text").text("按住螢幕滑動");
-    });
+    // 判斷是否有資料匯入（無資料：開啟匯入視窗；有資料：顯示結果）
+    if (csvUrl == undefined || importState == 0) {
+      $('#import-modal').modal('show');
+      $("#import-modal .cancel-btn").click(function () {
+        modalState = 0;
+        if (importState == 0) {
+          $(".hint-text .text").text("資料尚未匯入");
+        } else {
+          $(".hint-text .text").text("按住螢幕滑動");
+        }
+      });
+    } else {
+      printResultText();
+      $('#result-modal').modal('show');
+      $(".result-btn").click(function () {
+        modalState = 0;
+        $(".hint-text .text").text("按住螢幕滑動");
+      });
+    }
+
   }, 3 * 1000);
 }
 
@@ -341,7 +355,6 @@ function printResultText() {
     }
 
   }
-
 
 }
 // --------------

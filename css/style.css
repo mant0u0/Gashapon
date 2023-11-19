@@ -2944,6 +2944,9 @@
   font-weight: 900;
   color: #633b4b;
 }
+.modal .modal-dialog .modal-body-import p.no-data-text, .modal .modal-dialog .modal-body-share p.no-data-text {
+  color: #f7524b;
+}
 .modal .modal-dialog .modal-body-import input[type=text], .modal .modal-dialog .modal-body-share input[type=text] {
   padding: 10px;
   border-radius: 15px;
