@@ -46,7 +46,10 @@
           <div class="modal-body-import">
             <p class="no-data-text"><i class="fas fa-exclamation-circle maR-8"></i>扭蛋機目前沒有匯入抽獎項目～</p>
             <p>輸入 CSV 網址，匯入抽獎項目。\( °ω° )/</p>
-            <input class="import-url" type="text" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv">
+            <label class="form">
+              <input class="import-url" id="importUrl" type="text" placeholder="請輸入 CSV 連結" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv">
+              <button class="form-clear-btn" onclick="document.getElementById('importUrl').value = '';"><i class="fas fa-times-circle"></i></button>
+            </label>
             <div class="warning-text">此欄位不可空白。</div>
           </div>
           <div class="modal-footer-x">
@@ -65,7 +68,7 @@
           <div class="modal-body-share">
             <p>複製以下連結，可將已匯入資料的扭蛋機分享給朋友一起遊玩！</p>
             <div class="input-btn-group">
-              <input class="share-url" type="text" value="目前無資料匯入">
+              <input class="form share-url" type="text" value="目前無資料匯入">
               <button class="share-url-copy" type="button">複製網址</button>
             </div>
           </div>
@@ -95,7 +98,7 @@
               <p><i class="fab fa-github maR-8"></i>Github：</p><a href="https://github.com/mant0u0" target="_blank">github.com/mant0u0</a>
             </div>
             <div class="item">
-              <p>版本：1.50</p>
+              <p>版本：1.51</p>
             </div>
           </div>
           <div class="modal-footer-x">

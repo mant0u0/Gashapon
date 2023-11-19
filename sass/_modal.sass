@@ -69,8 +69,7 @@
         color: #633b4b
       p.no-data-text
         color: #f7524b
-
-      input[type="text"]
+      input.form[type="text"]
         padding: 10px
         border-radius: 15px
         border: 5px solid #633b4b67
@@ -78,10 +77,46 @@
         font-family: FakePearl-Regular
         font-weight: 900
         color: #3d242e
-      input[type="text"].warning
+      input.form[type="text"].warning
         background: #f7514b27
         border-color: #f7524b
         color: #3e1411
+      label.form
+        padding: 0
+        border-radius: 15px
+        border: 5px solid #633b4b67
+        background: #fff
+        display: flex
+        justify-content: center
+        align-items: center
+        overflow: hidden
+        input[type="text"]
+          font-family: FakePearl-Regular
+          font-weight: 900
+          color: #3d242e
+          background: transparent
+          width: 100%
+          padding: 10px
+          padding-right: 0
+          border: none
+          outline: none
+        button.form-clear-btn
+          height: 100%
+          aspect-ratio: 1/1
+          padding: 10px 12px
+          border: none
+          background: transparent
+          color: #633b4b67
+          transition: .5s
+          &:hover
+            color: #633b4bde
+        &.warning
+          background: #f7514b27
+          border-color: #f7524b
+          color: #3e1411
+          input[type="text"]
+            color: #3e1411
+
       .warning-text
         font-size: 1.8rem
         color: #f7524b
@@ -105,8 +140,7 @@
           transition: 0.5s
           &:hover
             background: #c5413d
-
-        input[type="text"]
+        input[type="text"].form
           width: 100%
     .modal-body-about
       flex-direction: column

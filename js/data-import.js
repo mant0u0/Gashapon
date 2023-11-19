@@ -18,8 +18,8 @@ function analyzeUrl() {
     if (c != -1) {
       $(".hint-text .text").text("讀取中...");
       webUrlData.csv = webUrl[i].replace("csv=", "");
-      $(".import-url").val(webUrlData.csv);
-      csvUrl = $(".import-url").val();
+      $("#importUrl").val(webUrlData.csv);
+      csvUrl = $("#importUrl").val();
       $.ajax({
         url: csvUrl,
         success: function (data) {
@@ -37,8 +37,8 @@ function analyzeUrl() {
     if (g != -1) {
       $(".hint-text .text").text("讀取中...");
       webUrlData.google = webUrl[i].replace("google=", "");
-      $(".import-url").val("https://docs.google.com/spreadsheets/d/e/" + webUrlData.google + "/pub?output=csv");
-      csvUrl = $(".import-url").val();
+      $("#importUrl").val("https://docs.google.com/spreadsheets/d/e/" + webUrlData.google + "/pub?output=csv");
+      csvUrl = $("#importUrl").val();
       $.ajax({
         url: csvUrl,
         success: function (data) {
@@ -74,11 +74,12 @@ var csvObjectArray; // 放 CSV 資料的物件
 function importCsv() {
   $(".import-btn").click(function () {
     $(this).text("匯入中");
-    csvUrl = $(".import-url").val();
+    csvUrl = $("#importUrl").val();
     if (csvUrl == "") {
-      $(".import-url").addClass("warning");
+      $("#importUrl").parent().addClass("warning");
       $(".warning-text").text("此欄位不可空白。");
       $(".warning-text").css("display", "block");
+      $(this).text("確認");
     }
     else {
       $.ajax({
@@ -108,7 +109,7 @@ function importSuccess(data) {
   importState = 1;
   $(".hint-text .text").text("匯入成功");
   $('#import-modal').modal('hide');
-  $(".import-url").removeClass("warning");
+  $("#importUrl").parent().removeClass("warning");
   $(".warning-text").text("");
   $(".warning-text").css("display", "none");
   $(".btn-about").css("display", "flex");
@@ -122,7 +123,7 @@ function importSuccess(data) {
 // 匯入失敗
 function importError() {
   importState = 0;
-  $(".import-url").addClass("warning");
+  $("#importUrl").parent().addClass("warning");
   $(".import-btn").text("確認");
   $(".hint-text .text").text("匯入錯誤");
   $(".warning-text").text("網址匯入錯誤。");

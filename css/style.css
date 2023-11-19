@@ -2947,7 +2947,7 @@
 .modal .modal-dialog .modal-body-import p.no-data-text, .modal .modal-dialog .modal-body-share p.no-data-text {
   color: #f7524b;
 }
-.modal .modal-dialog .modal-body-import input[type=text], .modal .modal-dialog .modal-body-share input[type=text] {
+.modal .modal-dialog .modal-body-import input.form[type=text], .modal .modal-dialog .modal-body-share input.form[type=text] {
   padding: 10px;
   border-radius: 15px;
   border: 5px solid rgba(99, 59, 75, 0.4039215686);
@@ -2956,9 +2956,57 @@
   font-weight: 900;
   color: #3d242e;
 }
-.modal .modal-dialog .modal-body-import input[type=text].warning, .modal .modal-dialog .modal-body-share input[type=text].warning {
+.modal .modal-dialog .modal-body-import input.form[type=text].warning, .modal .modal-dialog .modal-body-share input.form[type=text].warning {
   background: rgba(247, 81, 75, 0.1529411765);
   border-color: #f7524b;
+  color: #3e1411;
+}
+.modal .modal-dialog .modal-body-import label.form, .modal .modal-dialog .modal-body-share label.form {
+  padding: 0;
+  border-radius: 15px;
+  border: 5px solid rgba(99, 59, 75, 0.4039215686);
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+.modal .modal-dialog .modal-body-import label.form input[type=text], .modal .modal-dialog .modal-body-share label.form input[type=text] {
+  font-family: FakePearl-Regular;
+  font-weight: 900;
+  color: #3d242e;
+  background: transparent;
+  width: 100%;
+  padding: 10px;
+  padding-right: 0;
+  border: none;
+  outline: none;
+}
+.modal .modal-dialog .modal-body-import label.form button.form-clear-btn, .modal .modal-dialog .modal-body-share label.form button.form-clear-btn {
+  height: 100%;
+  aspect-ratio: 1/1;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  color: rgba(99, 59, 75, 0.4039215686);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.modal .modal-dialog .modal-body-import label.form button.form-clear-btn:hover, .modal .modal-dialog .modal-body-share label.form button.form-clear-btn:hover {
+  color: rgba(99, 59, 75, 0.8705882353);
+}
+.modal .modal-dialog .modal-body-import label.form.warning, .modal .modal-dialog .modal-body-share label.form.warning {
+  background: rgba(247, 81, 75, 0.1529411765);
+  border-color: #f7524b;
+  color: #3e1411;
+}
+.modal .modal-dialog .modal-body-import label.form.warning input[type=text], .modal .modal-dialog .modal-body-share label.form.warning input[type=text] {
   color: #3e1411;
 }
 .modal .modal-dialog .modal-body-import .warning-text, .modal .modal-dialog .modal-body-share .warning-text {
@@ -2991,7 +3039,7 @@
 .modal .modal-dialog .modal-body-import .input-btn-group button:hover, .modal .modal-dialog .modal-body-share .input-btn-group button:hover {
   background: #c5413d;
 }
-.modal .modal-dialog .modal-body-import .input-btn-group input[type=text], .modal .modal-dialog .modal-body-share .input-btn-group input[type=text] {
+.modal .modal-dialog .modal-body-import .input-btn-group input[type=text].form, .modal .modal-dialog .modal-body-share .input-btn-group input[type=text].form {
   width: 100%;
 }
 .modal .modal-dialog .modal-body-about {
