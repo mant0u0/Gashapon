@@ -313,8 +313,10 @@ function showResultModal() {
 function printResultText() {
 
   $(".modal-body").html(""); // 內容清空
-  r = getRandom(csvObjectArray.length - 1); //取得亂數
+  r = getRandom(csvObjectArray.length) - 1; //取得亂數
 
+  console.log(csvObjectArray, r)
+  // https://docs.google.com/spreadsheets/d/e/2PACX-1vQtKXJIpW8ssDXSbrLea9HD4uO-fPCMy43jvfwQBAuvkxIi0IgsNTkVEYW7aMN2qNFmaBBrPKXzHEd7/pub?output=csv
   csvObjectKey = csvList[0]                 // 取得物件標題
   csvObjectKeyLength = csvObjectKey.length    // 取得物件標題數量
 
