@@ -29,6 +29,9 @@ html(lang='zh-TW')
     //- 匯入
     include modal/import-modal.pug
 
+    //- 檢視
+    include modal/display-modal.pug
+
     //- 分享
     include modal/share-modal.pug
 
@@ -52,16 +55,24 @@ html(lang='zh-TW')
         .btn.btn-menu
           p 選單
           i.fas.fa-angle-down.btn-menu-icon
-        .btn.btn-import(type='button' data-bs-toggle='modal' data-bs-target='#import-modal') 
+
+        .btn.btn-import(type='button' onclick='showModal("#import-modal")')
           p 匯入
           i.fas.fa-file-import
-        .btn.btn-share(type='button' data-bs-toggle='modal' data-bs-target='#share-modal') 
+        
+        .btn.btn-display(type='button' onclick='showModal("#display-modal")')
+          p 檢視
+          i.fas.fa-th-list
+
+        .btn.btn-share(type='button' onclick='showModal("#share-modal")') 
           p 分享
           i.fas.fa-share
-        .btn.btn-instruction(type='button' data-bs-toggle='modal' data-bs-target='#instruction-modal') 
+
+        .btn.btn-instruction(type='button' onclick='showModal("#instruction-modal")') 
           p 說明
           i.fas.fa-question-circle
-        .btn.btn-about(type='button' data-bs-toggle='modal' data-bs-target='#about-modal') 
+        
+        .btn.btn-about(type='button' onclick='showModal("#about-modal")') 
           p 關於
           i.fas.fa-info-circle
 
@@ -74,4 +85,4 @@ html(lang='zh-TW')
     script(src='../js/function-menu.js')
     script(src='../js/data-import.js')
     script(src='../js/script.js')
-    script(src='../js/curzr.js')
+    //- script(src='../js/curzr.js')

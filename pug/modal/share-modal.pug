@@ -1,5 +1,5 @@
 //- 分享
-.modal.fade#share-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true')
+.modal.fade#share-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' )
   .modal-dialog.modal-dialog-centered
     .modal-content
       .modal-header
@@ -12,5 +12,5 @@
           button.share-url-copy(type='button') 複製網址
 
       .modal-footer-x
-        button.btn.modal-footer-btn.cancel-btn(type='button' data-bs-dismiss="modal") 關閉
+        button.btn.modal-footer-btn.cancel-btn(type='button' onclick='closeModal()') 關閉
 

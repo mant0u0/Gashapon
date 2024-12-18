@@ -1,5 +1,5 @@
 //- 匯入
-.modal.fade#import-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true')
+.modal.fade#import-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' )
   .modal-dialog.modal-dialog-centered
     .modal-content
       .modal-header
@@ -20,4 +20,4 @@
 
       .modal-footer-x
         button.btn.modal-footer-btn.import-btn(type='button') 確認
-        button.btn.modal-footer-btn.cancel-btn(type='button' data-bs-dismiss="modal") 取消
+        button.btn.modal-footer-btn.cancel-btn(type='button' onclick='closeModal()') 取消

@@ -24,7 +24,7 @@
         <path class="inner" fill-rule="evenodd" clip-rule="evenodd" d="M14.1416 1.15747C13.005 1.91687 12.1155 2.99911 11.5848 4.26821L0.582388 29.8864L0.581346 29.8888C0.1223 30.9484 -0.069717 32.1066 0.0225225 33.2598C0.114832 34.4137 0.488939 35.5265 1.11126 36.4981C1.73359 37.4697 2.58466 38.2698 3.58807 38.8265C4.59149 39.3833 5.71585 39.6792 6.86023 39.6878L6.88946 39.6881L6.91866 39.6869C7.49914 39.664 8.07592 39.5828 8.64048 39.4445C8.89207 39.3905 9.13718 39.3092 9.37152 39.202L17.9583 35.3581L26.4175 39.3964C26.6456 39.5121 26.8862 39.6005 27.1344 39.6598C27.7388 39.8363 28.3596 39.9492 28.987 39.9964L29.0343 40L29.0817 40C30.2286 39.999 31.3574 39.7098 32.3666 39.1584C33.3758 38.6069 34.2337 37.8105 34.8634 36.8406C35.493 35.8707 35.8747 34.7578 35.974 33.6018C36.0733 32.4458 35.8872 31.2829 35.4324 30.2177L24.3295 4.32066C23.8052 3.0548 22.9268 1.97143 21.802 1.20383C20.6747 0.434512 19.3494 0.0160587 17.9897 0.000140043L17.9852 8.69517e-05L17.9806 6.68904e-05C16.6161 -0.00597004 15.2803 0.396748 14.1416 1.15747ZM29.9934 34.7095C29.728 34.8578 29.4321 34.9408 29.1296 34.9522C28.899 34.9278 28.6701 34.8884 28.4445 34.8343L19.4588 30.5419L19.4543 30.5398C18.9922 30.3236 18.4894 30.211 17.9803 30.2098C17.4866 30.2068 16.9983 30.3144 16.5506 30.5248L7.55077 34.5974C7.3429 34.6396 7.13295 34.6708 6.9218 34.6906C6.61835 34.6819 6.3209 34.6012 6.05362 34.4546C5.77178 34.3 5.5323 34.0771 5.35669 33.8057C5.18109 33.5344 5.07485 33.2231 5.04753 32.9C5.0202 32.5768 5.07264 32.2519 5.20014 31.9543L16.175 6.26402L16.1794 6.25321C16.3249 5.89467 16.573 5.58827 16.8917 5.37328C17.2078 5.16011 17.5791 5.04644 17.9588 5.04648C18.3316 5.05618 18.6937 5.1746 19.0016 5.38759C19.3122 5.60245 19.5542 5.90422 19.6979 6.25601L19.7021 6.26628L30.8161 32.1766L30.8204 32.1862C30.9537 32.4834 31.0115 32.8096 30.9884 33.1351C30.9654 33.4606 30.8623 33.7752 30.6885 34.0501C30.5148 34.3251 30.2758 34.5518 29.9934 34.7095Z" fill="#633B4B"></path>
       </svg>
     </div>
-    <div class="modal fade" id="result-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="result-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="import-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="import-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -54,12 +54,37 @@
           </div>
           <div class="modal-footer-x">
             <button class="btn modal-footer-btn import-btn" type="button">確認</button>
-            <button class="btn modal-footer-btn cancel-btn" type="button" data-bs-dismiss="modal">取消</button>
+            <button class="btn modal-footer-btn cancel-btn" type="button" onclick="closeModal()">取消</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal fade" id="share-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="display-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">檢視項目</h5>
+          </div>
+          <div class="modal-body-display">
+            <label class="repeat-draw">
+              <input id="repeat-draw" type="checkbox" name="" checked onclick="repeatDraw()">
+              <p>重複抽獎</p>
+            </label>
+            <ul class="gacha-list">
+              <li class="item">項目</li>
+            </ul>
+            <div class="list-no-data">
+              <div class="gacha-icon"></div>
+              <p>目前尚未匯入</p>
+            </div>
+          </div>
+          <div class="modal-footer-x">
+            <button class="btn modal-footer-btn cancel-btn" type="button" onclick="closeModal()">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="share-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -73,12 +98,12 @@
             </div>
           </div>
           <div class="modal-footer-x">
-            <button class="btn modal-footer-btn cancel-btn" type="button" data-bs-dismiss="modal">關閉</button>
+            <button class="btn modal-footer-btn cancel-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal fade" id="about-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="about-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -102,12 +127,12 @@
             </div>
           </div>
           <div class="modal-footer-x">
-            <button class="btn modal-footer-btn" type="button" data-bs-dismiss="modal">關閉</button>
+            <button class="btn modal-footer-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal fade" id="instruction-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="instruction-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -160,7 +185,7 @@
             </div>
           </div>
           <div class="modal-footer-x">
-            <button class="btn modal-footer-btn" type="button" data-bs-dismiss="modal">關閉</button>
+            <button class="btn modal-footer-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
         </div>
       </div>
@@ -175,16 +200,19 @@
         <div class="btn btn-menu">
           <p>選單</p><i class="fas fa-angle-down btn-menu-icon"></i>
         </div>
-        <div class="btn btn-import" type="button" data-bs-toggle="modal" data-bs-target="#import-modal"> 
+        <div class="btn btn-import" type="button" onclick="showModal(&quot;#import-modal&quot;)">
           <p>匯入</p><i class="fas fa-file-import"></i>
         </div>
-        <div class="btn btn-share" type="button" data-bs-toggle="modal" data-bs-target="#share-modal"> 
+        <div class="btn btn-display" type="button" onclick="showModal(&quot;#display-modal&quot;)">
+          <p>檢視</p><i class="fas fa-th-list"></i>
+        </div>
+        <div class="btn btn-share" type="button" onclick="showModal(&quot;#share-modal&quot;)"> 
           <p>分享</p><i class="fas fa-share"></i>
         </div>
-        <div class="btn btn-instruction" type="button" data-bs-toggle="modal" data-bs-target="#instruction-modal"> 
+        <div class="btn btn-instruction" type="button" onclick="showModal(&quot;#instruction-modal&quot;)"> 
           <p>說明</p><i class="fas fa-question-circle"></i>
         </div>
-        <div class="btn btn-about" type="button" data-bs-toggle="modal" data-bs-target="#about-modal"> 
+        <div class="btn btn-about" type="button" onclick="showModal(&quot;#about-modal&quot;)"> 
           <p>關於</p><i class="fas fa-info-circle"></i>
         </div>
       </div>
@@ -417,6 +445,5 @@
     <script src="../js/function-menu.js"></script>
     <script src="../js/data-import.js"></script>
     <script src="../js/script.js"></script>
-    <script src="../js/curzr.js"></script>
   </body>
 </html>

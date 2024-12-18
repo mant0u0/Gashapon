@@ -313,12 +313,34 @@ function showResultModal() {
 function printResultText() {
 
   $(".modal-body").html(""); // 內容清空
-  r = getRandom(csvObjectArray.length) - 1; //取得亂數
 
+  if (repeatDrawState == 1) { // 重複抽獎
+    console.log("重複抽獎")
+    r = getRandom(csvObjectArray.length) - 1; //取得亂數
+  }else if (repeatDrawState == 0) { // 不重複抽獎
+    console.log("不重複抽獎")
+    var allDrawn = true;
+    csvObjectArray.forEach(item => {
+      if (item["isDrawn"] == false) {
+        allDrawn = false;
+      }
+    });
+    if (allDrawn) {
+      console.log("全部都抽完")
+      return;
+    }
+    do {
+      r = getRandom(csvObjectArray.length) - 1; //取得亂數
+    } while (csvObjectArray[r]["isDrawn"] == true);
+  }
   console.log(csvObjectArray, r)
-  // https://docs.google.com/spreadsheets/d/e/2PACX-1vQtKXJIpW8ssDXSbrLea9HD4uO-fPCMy43jvfwQBAuvkxIi0IgsNTkVEYW7aMN2qNFmaBBrPKXzHEd7/pub?output=csv
+
+
+  csvObjectArray[r]["isDrawn"] = true; //更新項目抽獎狀態 true: 已抽獎, false: 未抽獎
+  printGachaList(); // 列印匯入扭蛋項目
+
   csvObjectKey = csvList[0]                 // 取得物件標題
-  csvObjectKeyLength = csvObjectKey.length    // 取得物件標題數量
+  csvObjectKeyLength = csvObjectKey.length  // 取得物件標題數量
 
   for (i = 0; i < csvObjectKeyLength; i++) {
     itemTitle = csvObjectKey[i] // 標題 ( 作為 csvObjectArray[r] 的 Key )
@@ -359,6 +381,21 @@ function printResultText() {
   }
 
 }
+
+
+// --------------
+// 顯示視窗
+function showModal(id) {
+  $(id).modal('show');
+  closeMenu();
+  modalState = 1;
+}
+// 關閉視窗
+function closeModal() {
+  $(".modal").modal('hide');
+  modalState = 0;
+}
+
 // --------------
 // 判斷字串為連結
 function isURL(str) {

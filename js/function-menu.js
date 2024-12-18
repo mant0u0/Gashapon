@@ -17,7 +17,7 @@ function closeMenu(){
     $(".menu-box").addClass("close");
     $(".menu-box").removeClass("open");
     setTimeout(function(){
-      $(".btn-import, .btn-instruction, .btn-about, .btn-share").css("opacity","0");
+      $(".btn-import, .btn-display, .btn-instruction, .btn-about, .btn-share").css("opacity","0");
       menuState = 0
     }, 0.5*1000 );
   }
@@ -32,7 +32,7 @@ function openMenu(){
     $(".menu-box").addClass("open");
     $(".menu-box").removeClass("close");
     setTimeout(function(){
-      $(".btn-import, .btn-instruction, .btn-about, .btn-share").css("opacity","1");
+      $(".btn-import, .btn-display, .btn-instruction, .btn-about, .btn-share").css("opacity","1");
       menuState = 1
     }, 0.5*1000 );
   }

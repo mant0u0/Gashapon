@@ -1,5 +1,5 @@
 //- 說明
-.modal.fade#instruction-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true')
+.modal.fade#instruction-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' )
   .modal-dialog.modal-lg.modal-dialog-centered
     .modal-content
       .modal-header
@@ -40,4 +40,4 @@
           img(src="../img/step05.gif", alt="")
 
       .modal-footer-x
-        button.btn.modal-footer-btn(type='button' data-bs-dismiss="modal") 關閉
+        button.btn.modal-footer-btn(type='button' onclick='closeModal()') 關閉

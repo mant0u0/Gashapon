@@ -1,0 +1,22 @@
+//- 檢視
+.modal.fade#display-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1')
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h5.modal-title 檢視項目
+        //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body-display
+        label.repeat-draw
+          input#repeat-draw(type="checkbox", name="", checked, onclick='repeatDraw()')
+          p 重複抽獎
+
+        ul.gacha-list
+          li.item 項目
+
+
+        .list-no-data
+          .gacha-icon
+          p 目前尚未匯入
+
+      .modal-footer-x
+        button.btn.modal-footer-btn.cancel-btn(type='button' onclick='closeModal()') 關閉
