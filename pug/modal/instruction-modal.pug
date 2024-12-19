@@ -4,7 +4,7 @@
     .modal-content
       .modal-header
         h5.modal-title 說明
-      .modal-body-instruction
+      .modal-body.modal-body-instruction
         .item
           p 這是一個抽獎專用的扭蛋機網站，可以使用自己的資料匯入這個網頁當中進行抽獎。
           p 本網站匯入的資料格式，已 CSV 檔為主。以下將會介紹如何使用 Google Excel 雲端表單，匯出 CSV 格式後再匯入此網站。
@@ -39,5 +39,5 @@
               p 將 CSV 網址複製下來貼進網站當中，就可以匯入扭蛋項目囉～
           img(src="../img/step05.gif", alt="")
 
-      .modal-footer-x
-        button.btn.modal-footer-btn(type='button' onclick='closeModal()') 關閉
+      .modal-footer
+        button.btn.modal-footer-btn.secondary-btn(type='button' onclick='closeModal()') 關閉

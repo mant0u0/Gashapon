@@ -5,7 +5,7 @@
       .modal-header
         h5.modal-title 檢視項目
         //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-      .modal-body-display
+      .modal-body.modal-body-display
         label.repeat-draw
           input#repeat-draw(type="checkbox", name="", checked, onclick='repeatDraw()')
           p 重複抽獎
@@ -19,6 +19,6 @@
             .gacha-icon
             p 目前尚未匯入，點擊匯入
 
-      .modal-footer-x
+      .modal-footer
         button.btn.modal-footer-btn#display-modal-reset(type='button' onclick='resetCsvObjectArray()' ) 重置
         button.btn.modal-footer-btn.secondary-btn(type='button' onclick='closeModal()') 關閉

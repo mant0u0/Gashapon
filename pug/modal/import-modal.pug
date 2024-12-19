@@ -5,7 +5,7 @@
       .modal-header
         h5.modal-title 匯入連結
         //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-      .modal-body-import
+      .modal-body.modal-body-import
         p.no-data-text
           i.fas.fa-exclamation-circle.maR-8
           | 扭蛋機目前沒有匯入抽獎項目～
@@ -18,6 +18,6 @@
         
         .warning-text 此欄位不可空白。
 
-      .modal-footer-x
+      .modal-footer
         button.btn.modal-footer-btn.import-btn(type='button') 確認
         button.btn.modal-footer-btn.secondary-btn#import-modal-cancel(type='button' onclick='closeModal()') 取消

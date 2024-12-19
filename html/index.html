@@ -39,7 +39,7 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer-x">
+          <div class="modal-footer">
             <button class="btn modal-footer-btn" type="button" onclick="showModal(&quot;#display-modal&quot;)">檢視</button>
             <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
@@ -52,7 +52,7 @@
           <div class="modal-header">
             <h5 class="modal-title">匯入連結</h5>
           </div>
-          <div class="modal-body-import">
+          <div class="modal-body modal-body-import">
             <p class="no-data-text"><i class="fas fa-exclamation-circle maR-8"></i>扭蛋機目前沒有匯入抽獎項目～</p>
             <p>輸入 CSV 網址，匯入抽獎項目。\( °ω° )/</p>
             <label class="form">
@@ -61,7 +61,7 @@
             </label>
             <div class="warning-text">此欄位不可空白。</div>
           </div>
-          <div class="modal-footer-x">
+          <div class="modal-footer">
             <button class="btn modal-footer-btn import-btn" type="button">確認</button>
             <button class="btn modal-footer-btn secondary-btn" id="import-modal-cancel" type="button" onclick="closeModal()">取消</button>
           </div>
@@ -74,7 +74,7 @@
           <div class="modal-header">
             <h5 class="modal-title">檢視項目</h5>
           </div>
-          <div class="modal-body-display">
+          <div class="modal-body modal-body-display">
             <label class="repeat-draw">
               <input id="repeat-draw" type="checkbox" name="" checked onclick="repeatDraw()">
               <p>重複抽獎</p>
@@ -89,7 +89,7 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer-x">
+          <div class="modal-footer">
             <button class="btn modal-footer-btn" id="display-modal-reset" type="button" onclick="resetCsvObjectArray()">重置</button>
             <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
@@ -102,14 +102,14 @@
           <div class="modal-header">
             <h5 class="modal-title">分享連結</h5>
           </div>
-          <div class="modal-body-share">
+          <div class="modal-body modal-body-share">
             <p>複製以下連結，可將已匯入資料的扭蛋機分享給朋友一起遊玩！</p>
             <div class="input-btn-group">
               <input class="form share-url" type="text" value="目前無資料匯入">
               <button class="share-url-copy" type="button">複製網址</button>
             </div>
           </div>
-          <div class="modal-footer-x">
+          <div class="modal-footer">
             <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
         </div>
@@ -121,7 +121,7 @@
           <div class="modal-header">
             <h5 class="modal-title">關於</h5>
           </div>
-          <div class="modal-body-about">
+          <div class="modal-body modal-body-about">
             <div class="item">
               <p>作者：饅頭 / Mant0u</p>
             </div>
@@ -138,8 +138,8 @@
               <p>版本：1.51</p>
             </div>
           </div>
-          <div class="modal-footer-x">
-            <button class="btn modal-footer-btn" type="button" onclick="closeModal()">關閉</button>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@
           <div class="modal-header">
             <h5 class="modal-title">說明</h5>
           </div>
-          <div class="modal-body-instruction">
+          <div class="modal-body modal-body-instruction">
             <div class="item">
               <p>這是一個抽獎專用的扭蛋機網站，可以使用自己的資料匯入這個網頁當中進行抽獎。</p>
               <p>本網站匯入的資料格式，已 CSV 檔為主。以下將會介紹如何使用 Google Excel 雲端表單，匯出 CSV 格式後再匯入此網站。</p>
@@ -196,8 +196,8 @@
               </div><img src="../img/step05.gif" alt="">
             </div>
           </div>
-          <div class="modal-footer-x">
-            <button class="btn modal-footer-btn" type="button" onclick="closeModal()">關閉</button>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
         </div>
       </div>
