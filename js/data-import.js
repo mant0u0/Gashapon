@@ -217,7 +217,7 @@ function printGachaList() {
     csvObjectArray.forEach(item => {
       const key = Object.keys(item)[0];
       const li = $("<li class='item' id='" + item["itemId"] + "'><p class='item-name'>" + item[key] + "</p><p class='item-count'>" + item["itemCount"] + "</p>"+"</li>");
-      if (item["itemIsDrawn"]) {
+      if (item["itemIsDrawn"] && repeatDrawState == 0) {
         li.addClass("is-drawn");
       }
       $("ul.gacha-list").append(li);
@@ -231,6 +231,7 @@ function printGachaList() {
 repeatDraw();
 // 重複抽獎選項
 function repeatDraw() {
+
   // 檢查 #repeat-draw 是否被勾選
   if ($("#repeat-draw").is(":checked")) {
     console.log("重複抽獎");
@@ -284,6 +285,10 @@ function setGachaListBtnClickEvent() {
 
 // 重置按鈕
 function resetCsvObjectArray() {
+
+  // 清除 active 樣式
+  $(".gacha-list .item").removeClass("active");
+  $(".gacha-list .item").removeClass("is-drawn");
 
   csvObjectArray.forEach(item => {
     item["itemIsDrawn"] = false;

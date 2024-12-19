@@ -2897,7 +2897,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 20px 35px;
+  padding: 16px 24px;
   border-radius: 10px 10px 0 0;
 }
 .modal .modal-dialog .modal-header h5 {
@@ -2913,7 +2913,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 20px 35px;
+  padding: 24px;
   padding-bottom: 50px;
   background: #fcf0f0;
   border-radius: 0 0 10px 10px;
@@ -3655,6 +3655,9 @@ ul.gacha-list li.item:nth-child(2n) {
 ul.gacha-list li.item:hover {
   background: #ffcfcf;
   opacity: 1;
+}
+ul.gacha-list li.item.active p {
+  color: #f7524b;
 }
 ul.gacha-list.no-repeat-draw-list li.item {
   cursor: pointer;

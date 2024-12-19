@@ -337,9 +337,16 @@ function printResultText() {
 
   // 計數器
   csvObjectArray[r]["itemCount"] = csvObjectArray[r]["itemCount"] + 1;
-  //更新項目抽獎狀態 true: 已抽獎, false: 未抽獎
-  csvObjectArray[r]["itemIsDrawn"] = true; 
+  if (repeatDrawState == 0) { // 不重複抽獎
+    //更新項目抽獎狀態 true: 已抽獎, false: 未抽獎
+    csvObjectArray[r]["itemIsDrawn"] = true; 
+  }
   printGachaList(); // 列印匯入扭蛋項目
+
+  // GachaListItem 新增 active  
+  $(".gacha-list .item").removeClass("active");
+  $(".gacha-list #" + csvObjectArray[r]["itemId"]).addClass("active");
+
 
   csvObjectKey = csvList[0]                 // 取得物件標題
   csvObjectKeyLength = csvObjectKey.length  // 取得物件標題數量

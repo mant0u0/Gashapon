@@ -119,11 +119,17 @@ ul.gacha-list{
     &:nth-child(2n){
       background: #fff4f4;
     }
-
     &:hover{
       background: #ffcfcf;
       opacity: 1;
     }
+    &.active{
+      p{
+        color: #f7524b;
+      }
+    }
+
+
   }
 
   // 不重複抽獎清單
