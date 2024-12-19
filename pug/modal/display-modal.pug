@@ -9,9 +9,16 @@
         label.repeat-draw
           input#repeat-draw(type="checkbox", name="", checked, onclick='repeatDraw()')
           p 重複抽獎
+        .display-list-group
+          .tab-list 
+            button.tab.active(data-tab-page-id="#gacha-list") 扭蛋清單
+            button.tab(data-tab-page-id="#history-list") 扭蛋紀錄
 
-        ul.gacha-list
-          li.item 項目
+          ul.gacha-list.tab-page.active#gacha-list
+            li.item 項目
+
+          ul.history-list.tab-page#history-list
+            li.item 暫無紀錄
 
 
         .modal-no-data
@@ -20,5 +27,5 @@
             p 目前尚未匯入，點擊匯入
 
       .modal-footer
-        button.btn.modal-footer-btn.secondary-btn#display-modal-reset(type='button' onclick='resetCsvObjectArray()' ) 重置
+        button.btn.modal-footer-btn.secondary-btn#display-modal-reset(type='button' onclick='showModal("#reset-modal")' ) 重置
         button.btn.modal-footer-btn(type='button' onclick='closeModal()') 確認

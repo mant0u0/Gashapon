@@ -69,6 +69,7 @@ analyzeUrl();
 var csvUrl;  // CSV 連結
 var csvList; // 放 CSV 資料的陣列
 var csvObjectArray; // 放 CSV 資料的物件
+var historyList=[]; // 歷史紀錄
 var repeatDrawState = 0; // 重複抽獎狀態 0:不重複抽獎 1:重複抽獎
 
 // 匯入 CSV
@@ -203,12 +204,12 @@ function printGachaList() {
 
   if (csvObjectArray == null) {
     $("ul.gacha-list").empty();
-    $("ul.gacha-list").hide();
+    $(".display-list-group").hide();
     $(".modal-body-display .modal-no-data").show();
     $("#display-modal-reset").hide();
   }
   else {
-    $("ul.gacha-list").show();
+    $(".display-list-group").show();
     $(".modal-body-display .modal-no-data").hide();
     $("#display-modal-reset").css("display", "flex");
     
@@ -226,6 +227,18 @@ function printGachaList() {
 
   // 設定 GachaList 按鈕
   setGachaListBtnClickEvent();
+}
+
+// 列印歷史紀錄
+function printHistoryList() {
+
+  $("ul.history-list").empty();
+
+  historyList.forEach((item, index) => {
+    const li = $("<li class='item'><p class='item-name'>" + (index+1) + ". " + item + "</p></li>");
+    $("ul.history-list").append(li);
+  });
+
 }
 
 repeatDraw();
@@ -296,5 +309,30 @@ function resetCsvObjectArray() {
   });
 
   printGachaList();
+  
+  historyList=[];
+  $(".history-list").empty();
+  $(".history-list").html("<li class='item'>暫無紀錄</li>");
+
+  showModal("#display-modal")
+}
+
+// 頁籤按鈕
+tabClickEvent();
+function tabClickEvent() {
+
+  $(".tab-list .tab").click(function () {
+    $(".tab").removeClass("active");
+    $(this).addClass("active");
+
+    const id = $(this).attr("data-tab-page-id");
+    $(".tab-page").removeClass("active");
+    $(id).addClass("active");
+
+
+  })
+
+  // $(".tab-page").removeClass("active");
+  // $(id).addClass("active");
 
 }

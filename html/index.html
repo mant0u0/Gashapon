@@ -79,9 +79,18 @@
               <input id="repeat-draw" type="checkbox" name="" checked onclick="repeatDraw()">
               <p>重複抽獎</p>
             </label>
-            <ul class="gacha-list">
-              <li class="item">項目</li>
-            </ul>
+            <div class="display-list-group">
+              <div class="tab-list"> 
+                <button class="tab active" data-tab-page-id="#gacha-list">扭蛋清單</button>
+                <button class="tab" data-tab-page-id="#history-list">扭蛋紀錄</button>
+              </div>
+              <ul class="gacha-list tab-page active" id="gacha-list">
+                <li class="item">項目</li>
+              </ul>
+              <ul class="history-list tab-page" id="history-list">
+                <li class="item">暫無紀錄</li>
+              </ul>
+            </div>
             <div class="modal-no-data">
               <div class="no-data-content" onclick="showModal(&quot;#import-modal&quot;)">
                 <div class="gacha-icon"></div>
@@ -90,7 +99,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn modal-footer-btn secondary-btn" id="display-modal-reset" type="button" onclick="resetCsvObjectArray()">重置</button>
+            <button class="btn modal-footer-btn secondary-btn" id="display-modal-reset" type="button" onclick="showModal(&quot;#reset-modal&quot;)">重置</button>
             <button class="btn modal-footer-btn" type="button" onclick="closeModal()">確認</button>
           </div>
         </div>
@@ -135,7 +144,7 @@
               <p><i class="fab fa-github maR-8"></i>Github：</p><a href="https://github.com/mant0u0" target="_blank">github.com/mant0u0</a>
             </div>
             <div class="item">
-              <p>版本：1.51</p>
+              <p>版本：2.0</p>
             </div>
           </div>
           <div class="modal-footer">
@@ -198,6 +207,22 @@
           </div>
           <div class="modal-footer">
             <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="reset-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">重置紀錄</h5>
+          </div>
+          <div class="modal-body modal-body-reset">
+            <p>確定要重置扭蛋紀錄？</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn" type="button" onclick="resetCsvObjectArray()">重置</button>
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="showModal(&quot;#display-modal&quot;)">取消</button>
           </div>
         </div>
       </div>

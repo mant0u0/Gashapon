@@ -275,12 +275,18 @@
       }
     }
     .modal-body-display{
+      // height:  70vh;
+      overflow-y: scroll;
       .modal-no-data{
         cursor: pointer;
         &:hover{
           background: #ffcfcf;
         }
       }
+      .display-list-group{
+        min-height: 600px;
+      }
+
     }
     .modal-footer {
       border: none;

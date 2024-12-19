@@ -91,7 +91,7 @@ label.repeat-draw{
 }
 
 // 清單
-ul.gacha-list{
+ul.gacha-list, ul.history-list{
   list-style: none;
   padding: 0;
   margin-bottom: 80px;
@@ -158,5 +158,46 @@ ul.gacha-list{
         transition: 0.5s;
       }
     }
+  }
+}
+
+// 頁籤按鈕
+.tab-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 8px;
+
+  button.tab {
+    background: transparent;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    color: #633b4b;
+    border: none;
+    cursor: pointer;
+    padding: 12px 8px;
+    font-size: 1.8rem;
+    font-family: FakePearl-Regular;
+    font-weight: 700;
+    transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background: #ffe0e0;
+    }
+    &.active {
+      background: #ff7171;
+      color: #fff;
+    }
+  }
+}
+// 頁籤內容
+.tab-page {
+  display: none;
+  &.active{
+    display: block;
   }
 }

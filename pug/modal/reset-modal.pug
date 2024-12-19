@@ -1,0 +1,13 @@
+//- 重置紀錄
+.modal.fade#reset-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' )
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h5.modal-title 重置紀錄
+        //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body.modal-body-reset
+        p 確定要重置扭蛋紀錄？
+
+      .modal-footer
+        button.btn.modal-footer-btn(type='button' onclick='resetCsvObjectArray()') 重置
+        button.btn.modal-footer-btn.secondary-btn(type='button' onclick='showModal("#display-modal")') 取消

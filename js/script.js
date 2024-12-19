@@ -343,6 +343,12 @@ function printResultText() {
   }
   printGachaList(); // 列印匯入扭蛋項目
 
+  
+  // 加入歷史紀錄：第 0 個 key
+  historyList.push(csvObjectArray[r][csvList[0][0]]);
+  printHistoryList();
+
+
   // GachaListItem 新增 active  
   $(".gacha-list .item").removeClass("active");
   $(".gacha-list #" + csvObjectArray[r]["itemId"]).addClass("active");
