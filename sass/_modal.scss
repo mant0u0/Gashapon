@@ -263,8 +263,16 @@
         width: 100%;
         height: 100%;
       }
-      .list-no-data{
+      .modal-no-data{
         display: none;
+      }
+    }
+    .modal-body-display{
+      .modal-no-data{
+        cursor: pointer;
+        &:hover{
+          background: #ffcfcf;
+        }
       }
     }
     .modal-footer-x {

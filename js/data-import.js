@@ -204,12 +204,14 @@ function printGachaList() {
   if (csvObjectArray == null) {
     $("ul.gacha-list").empty();
     $("ul.gacha-list").hide();
-    $(".modal-body-display .list-no-data").show();
+    $(".modal-body-display .modal-no-data").show();
+    $("#display-modal-reset").hide();
   }
   else {
     $("ul.gacha-list").show();
-    $(".modal-body-display .list-no-data").hide();
-
+    $(".modal-body-display .modal-no-data").hide();
+    $("#display-modal-reset").css("display", "flex");
+    
     console.log(csvObjectArray);
     $("ul.gacha-list").empty();
     csvObjectArray.forEach(item => {
@@ -277,5 +279,17 @@ function setGachaListBtnClickEvent() {
     }
   });
 
+
+}
+
+// 重置按鈕
+function resetCsvObjectArray() {
+
+  csvObjectArray.forEach(item => {
+    item["itemIsDrawn"] = false;
+    item["itemCount"] = 0;
+  });
+
+  printGachaList();
 
 }

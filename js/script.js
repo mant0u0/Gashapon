@@ -311,7 +311,7 @@ function printResultText() {
   resultContent = $(".modal-body .result-content");
 
   resultContent.html(""); // 內容清空
-  $(".modal-body-result .list-no-data").hide();
+  $(".modal-body-result .modal-no-data").hide();
 
   if (repeatDrawState == 1) { // 重複抽獎
     console.log("重複抽獎")
@@ -326,7 +326,7 @@ function printResultText() {
     });
     if (allDrawn) {
       console.log("全部都抽完")
-      $(".modal-body-result .list-no-data").show();
+      $(".modal-body-result .modal-no-data").show();
       return;
     }
     do {

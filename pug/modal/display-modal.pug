@@ -14,9 +14,11 @@
           li.item 項目
 
 
-        .list-no-data
-          .gacha-icon
-          p 目前尚未匯入
+        .modal-no-data
+          .no-data-content(onclick='showModal("#import-modal")')
+            .gacha-icon
+            p 目前尚未匯入，點擊匯入
 
       .modal-footer-x
+        button.btn.modal-footer-btn#display-modal-reset(type='button' onclick='resetCsvObjectArray()' ) 重置
         button.btn.modal-footer-btn.secondary-btn(type='button' onclick='closeModal()') 關閉
