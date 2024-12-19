@@ -30,9 +30,16 @@
           <div class="modal-header">
             <h5 class="modal-title">扭蛋結果</h5>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body modal-body-result">
+            <div class="result-content"></div>
+            <div class="list-no-data">
+              <div class="gacha-icon"></div>
+              <p>已經沒有扭蛋了！</p>
+            </div>
+          </div>
           <div class="modal-footer-x">
-            <button class="btn modal-footer-btn result-btn" type="button" data-bs-dismiss="modal">確認</button>
+            <button class="btn modal-footer-btn" type="button" onclick="showModal(&quot;#display-modal&quot;)">檢視</button>
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
         </div>
       </div>
@@ -54,7 +61,7 @@
           </div>
           <div class="modal-footer-x">
             <button class="btn modal-footer-btn import-btn" type="button">確認</button>
-            <button class="btn modal-footer-btn cancel-btn" type="button" onclick="closeModal()">取消</button>
+            <button class="btn modal-footer-btn secondary-btn" id="import-modal-cancel" type="button" onclick="closeModal()">取消</button>
           </div>
         </div>
       </div>
@@ -79,7 +86,7 @@
             </div>
           </div>
           <div class="modal-footer-x">
-            <button class="btn modal-footer-btn cancel-btn" type="button" onclick="closeModal()">關閉</button>
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
         </div>
       </div>
@@ -98,7 +105,7 @@
             </div>
           </div>
           <div class="modal-footer-x">
-            <button class="btn modal-footer-btn cancel-btn" type="button" onclick="closeModal()">關閉</button>
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
           </div>
         </div>
       </div>

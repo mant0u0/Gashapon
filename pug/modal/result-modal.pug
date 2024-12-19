@@ -5,7 +5,15 @@
       .modal-header
         h5.modal-title 扭蛋結果
         //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-      .modal-body
-        | ...
+      .modal-body.modal-body-result
+        .result-content
+
+        .list-no-data
+          .gacha-icon
+          p 已經沒有扭蛋了！
+
+
+
       .modal-footer-x
-        button.btn.modal-footer-btn.result-btn(type='button' data-bs-dismiss="modal") 確認
+        button.btn.modal-footer-btn(type='button' onclick='showModal("#display-modal")') 檢視
+        button.btn.modal-footer-btn.secondary-btn(type='button' onclick='closeModal()') 關閉

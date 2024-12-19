@@ -288,7 +288,7 @@ function showResultModal() {
     // 判斷是否有資料匯入（無資料：開啟匯入視窗；有資料：顯示結果）
     if (csvUrl == undefined || importState == 0) {
       $('#import-modal').modal('show');
-      $("#import-modal .cancel-btn").click(function () {
+      $("#import-modal-cancel").click(function () {
         modalState = 0;
         if (importState == 0) {
           $(".hint-text .text").text("資料尚未匯入");
@@ -299,10 +299,6 @@ function showResultModal() {
     } else {
       printResultText();
       $('#result-modal').modal('show');
-      $(".result-btn").click(function () {
-        modalState = 0;
-        $(".hint-text .text").text("按住螢幕滑動");
-      });
     }
 
   }, 3 * 1000);
@@ -312,7 +308,10 @@ function showResultModal() {
 // 列印結果
 function printResultText() {
 
-  $(".modal-body").html(""); // 內容清空
+  resultContent = $(".modal-body .result-content");
+
+  resultContent.html(""); // 內容清空
+  $(".modal-body-result .list-no-data").hide();
 
   if (repeatDrawState == 1) { // 重複抽獎
     console.log("重複抽獎")
@@ -321,22 +320,25 @@ function printResultText() {
     console.log("不重複抽獎")
     var allDrawn = true;
     csvObjectArray.forEach(item => {
-      if (item["isDrawn"] == false) {
+      if (item["itemIsDrawn"] == false) {
         allDrawn = false;
       }
     });
     if (allDrawn) {
       console.log("全部都抽完")
+      $(".modal-body-result .list-no-data").show();
       return;
     }
     do {
       r = getRandom(csvObjectArray.length) - 1; //取得亂數
-    } while (csvObjectArray[r]["isDrawn"] == true);
+    } while (csvObjectArray[r]["itemIsDrawn"] == true);
   }
   console.log(csvObjectArray, r)
 
-
-  csvObjectArray[r]["isDrawn"] = true; //更新項目抽獎狀態 true: 已抽獎, false: 未抽獎
+  // 計數器
+  csvObjectArray[r]["itemCount"] = csvObjectArray[r]["itemCount"] + 1;
+  //更新項目抽獎狀態 true: 已抽獎, false: 未抽獎
+  csvObjectArray[r]["itemIsDrawn"] = true; 
   printGachaList(); // 列印匯入扭蛋項目
 
   csvObjectKey = csvList[0]                 // 取得物件標題
@@ -346,13 +348,14 @@ function printResultText() {
     itemTitle = csvObjectKey[i] // 標題 ( 作為 csvObjectArray[r] 的 Key )
     itemInfo = csvObjectArray[r][itemTitle] // 內容 ( 取第 r 個元素標題為 itemTitle 的項目  )
 
+
     if (itemTitle == "地址") {
-      $(".modal-body").append("<p>" + itemTitle + "：" + "<a href='https://www.google.com/maps/place/" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
+      resultContent.append("<p>" + itemTitle + "：" + "<a href='https://www.google.com/maps/place/" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
     }
 
     else if (itemTitle == "圖片") {
       resultImg = 1;
-      $(".modal-body").append("<img src='" + itemInfo + "' class='result-img'>")
+      resultContent.append("<img src='" + itemInfo + "' class='result-img'>")
     }
 
     else {
@@ -361,19 +364,19 @@ function printResultText() {
       if (isURL(itemInfo)) {
         // 圖片連結
         if (isImageURL(itemInfo)) {
-          $(".modal-body").append("<p>" + itemTitle + "</p>")
-          $(".modal-body").append("<img src='" + itemInfo + "' class='result-img'>")
+          resultContent.append("<p>" + itemTitle + "</p>")
+          resultContent.append("<img src='" + itemInfo + "' class='result-img'>")
         }
         // 文字連結
         else {
-          $(".modal-body").append("<p>" + itemTitle + "：" + "<a href='" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
+          resultContent.append("<p>" + itemTitle + "：" + "<a href='" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
         }
 
       }
 
       // 一般文字
       else {
-        $(".modal-body").append("<p>" + itemTitle + "：" + itemInfo + "</p>")
+        resultContent.append("<p>" + itemTitle + "：" + itemInfo + "</p>")
       }
 
     }
@@ -386,6 +389,7 @@ function printResultText() {
 // --------------
 // 顯示視窗
 function showModal(id) {
+  $(".modal").modal('hide');
   $(id).modal('show');
   closeMenu();
   modalState = 1;
@@ -393,6 +397,7 @@ function showModal(id) {
 // 關閉視窗
 function closeModal() {
   $(".modal").modal('hide');
+  $(".hint-text .text").text("按住螢幕滑動");
   modalState = 0;
 }
 

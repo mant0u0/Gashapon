@@ -39,6 +39,7 @@
       }
     }
     .modal-body,
+    .modal-body-result,
     .modal-body-import,
     .modal-body-about,
     .modal-body-instruction,
@@ -72,7 +73,6 @@
     .modal-body-display {
       display: flex;
       flex-direction: column;
-      // height: 180px
       p {
         font-size: 2.0rem;
         font-family: FakePearl-Regular;
@@ -258,6 +258,15 @@
       font-family: FakePearl-Regular;
       font-weight: 700;
     }
+    .modal-body-result{
+      .result-content{
+        width: 100%;
+        height: 100%;
+      }
+      .list-no-data{
+        display: none;
+      }
+    }
     .modal-footer-x {
       border: none;
       position: absolute;
@@ -295,19 +304,27 @@
           transform: scale(1);
         }
       }
-      .cancel-btn {
+
+      // 次要按鈕
+      .secondary-btn {
         background: #fff;
         color: #633b4b;
         &:focus {
           background: #fcdddc;
-        }
+        } 
       }
+
+
+
     }
   }
   h5,
   .modal-body {
     font-family: FakePearl-Regular;
     font-weight: 700;
+    p{
+      color: #633b4b;
+    }
   }
 }
 @media screen and (max-width: 992px) {

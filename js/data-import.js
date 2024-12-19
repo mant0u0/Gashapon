@@ -104,9 +104,6 @@ function importSuccess(data) {
   csvList = $.csv.toArrays(data + "\n");
   csvObjectArray = convertListToObjectArray(csvList)
 
-  // console.log(csvList);
-  // console.log(convertListToObjectArray(csvList)[1]["食物"]);
-
   importState = 1;
   $(".hint-text .text").text("匯入成功");
   $('#import-modal').modal('hide');
@@ -145,14 +142,18 @@ function convertListToObjectArray(list) {
   const headers = list[0];
 
   // 創建物件陣列，跳過標題行
-  const result = list.slice(1).map(item => {
+  const result = list.slice(1).map((item, index) => {
     const obj = {};
     // 對每一項目進行迴圈，將標題與值對應起來
-    headers.forEach((header, index) => {
-      obj[header] = item[index];
+    headers.forEach((header, i) => {
+      obj[header] = item[i];
     });
-    // 新增一個屬性，表示該項目是否被抽出
-    obj["isDrawn"] = false;
+    // 新增 itemIsDrawn 屬性：表示該項目是否被抽出
+    obj["itemIsDrawn"] = false;
+    // 新增 itemId 屬性：表示該項目的 id
+    obj["itemId"] = `gacha-item-${index}`;
+    // 新增 itemCount 屬性：表示該項目的抽出次數
+    obj["itemCount"] = 0;
     return obj;
   });
 
@@ -203,24 +204,26 @@ function printGachaList() {
   if (csvObjectArray == null) {
     $("ul.gacha-list").empty();
     $("ul.gacha-list").hide();
-    $(".list-no-data").show();
+    $(".modal-body-display .list-no-data").show();
   }
   else {
     $("ul.gacha-list").show();
-    $(".list-no-data").hide();
+    $(".modal-body-display .list-no-data").hide();
 
     console.log(csvObjectArray);
     $("ul.gacha-list").empty();
     csvObjectArray.forEach(item => {
       const key = Object.keys(item)[0];
-      const li = $("<li class='item'>" + item[key] + "</li>");
-      if (item["isDrawn"]) {
+      const li = $("<li class='item' id='" + item["itemId"] + "'><p class='item-name'>" + item[key] + "</p><p class='item-count'>" + item["itemCount"] + "</p>"+"</li>");
+      if (item["itemIsDrawn"]) {
         li.addClass("is-drawn");
       }
       $("ul.gacha-list").append(li);
     });
   }
 
+  // 設定 GachaList 按鈕
+  setGachaListBtnClickEvent();
 }
 
 repeatDraw();
@@ -231,9 +234,48 @@ function repeatDraw() {
     console.log("重複抽獎");
     repeatDrawState = 1;
     $(".repeat-draw").addClass("checked");
+    $("ul.gacha-list").addClass("repeat-draw-list");
+    $("ul.gacha-list").removeClass("no-repeat-draw-list");
   } else {
     console.log("不重複抽獎");
     repeatDrawState = 0;
     $(".repeat-draw").removeClass("checked");
+    $("ul.gacha-list").removeClass("repeat-draw-list");
+    $("ul.gacha-list").addClass("no-repeat-draw-list");
   }
+
+}
+
+// 設定 GachaList 按鈕
+function setGachaListBtnClickEvent() {
+
+  $(".gacha-list .item").click(function () {
+    // 取得 this id 屬性的值
+    const id = $(this).attr("id");
+    console.log(id);
+
+    // 如果是不重複抽獎才執行
+    if (repeatDrawState == 0) {
+      if ($(this).hasClass("is-drawn")) {
+        $(this).removeClass("is-drawn");
+        // 清除該項目的 itemIsDrawn 狀態
+        csvObjectArray.forEach(item => {
+          if (item["itemId"] == id) {
+            item["itemIsDrawn"] = false;
+          }
+        });
+
+      }else{
+        $(this).addClass("is-drawn");
+        // 更新該項目的 itemIsDrawn 狀態
+        csvObjectArray.forEach(item => {
+          if (item["itemId"] == id) {
+            item["itemIsDrawn"] = true;
+          }
+        });
+      }
+    }
+  });
+
+
 }

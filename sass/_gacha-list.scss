@@ -43,7 +43,7 @@
 
 }
 
-
+// 重複抽獎開關
 label.repeat-draw{
   display: flex;
   background: #ffe0e0;
@@ -53,6 +53,10 @@ label.repeat-draw{
   justify-content: start;
   gap: 12px;
   cursor: pointer;
+  margin-bottom: 12px;
+  &:hover{
+    background: #ffcfcf;
+  }
   p{
     color: #633b4b;
     margin-bottom: 0;
@@ -80,4 +84,69 @@ label.repeat-draw{
       }
     }
   } 
+}
+
+// 清單
+ul.gacha-list{
+  list-style: none;
+  padding: 0;
+  margin-bottom: 80px;
+  overflow: hidden;
+  border-radius: 8px;
+  flex: none;
+  li.item{
+    background: #fff;
+    padding: 12px 16px;
+    color: #633b4b;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p{
+      margin-bottom: 0;
+    }
+    p.item-name{
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: 0.5s;
+    }
+    &:nth-child(2n){
+      background: #fff4f4;
+    }
+
+    &:hover{
+      background: #ffcfcf;
+      opacity: 1;
+    }
+  }
+
+  // 不重複抽獎清單
+  &.no-repeat-draw-list{
+    li.item{
+      cursor: pointer;
+      p.item-count{
+        opacity: 0;
+        transition: 0.5s;
+      }
+      &.is-drawn{
+        p.item-name{
+          color: #633b4b78;
+          text-decoration: line-through #633b4b;
+        }
+      }
+    }
+  }
+
+  // 重複抽獎清單
+  &.repeat-draw-list{
+    li.item{
+      cursor: default;
+      p.item-count{
+        opacity: 1;
+        transition: 0.5s;
+      }
+    }
+  }
 }
