@@ -126,7 +126,7 @@ function importCsvSuccess(data) {
 
   // 讀取 csv 資料
   csvList = $.csv.toArrays(data + "\n");
-  console.log(csvList);
+  // console.log(csvList);
   dataObjectArray = convertListToObjectArray(csvList)
 
   importState = 1;
@@ -162,7 +162,7 @@ function importText() {
   $("#import-text-btn").click(function () {
     $(this).text("匯入中");
     textList = $("#importText").val();
-    console.log(textList);
+    // console.log(textList);
 
     // 去除 textList 所有 \n \r 與空白
     textListTmp = textList.replace(/\n/g, "").replace(/\r/g, "").replace(/ /g, "");
@@ -192,7 +192,7 @@ function importTextSuccess(textList) {
   csvList = csvList.filter(item => item[0] != "" && item[0] != "\n" && item[0] != " " && item[0] != " \n");
 
   // 轉成 Array
-  console.log(csvList);
+  // console.log(csvList);
   dataObjectArray = convertListToObjectArray(csvList)
 
   $(".hint-text .text").text("匯入成功");
@@ -238,8 +238,14 @@ function convertListToObjectArray(list) {
 // 產生分享連結
 function exportCsvUrl() {
   port = ""
+  hostname = ""
   if (location.port != "") {
     port = ":" + location.port
+  }
+  if (location.hostname == "127.0.0.1") {
+    hostname = location.hostname
+  }else{
+    hostname = "https://" + location.hostname
   }
 
   if (csvUrl.indexOf("https://docs.google.com/spreadsheets/d/e/") != -1) {
@@ -247,16 +253,22 @@ function exportCsvUrl() {
     googleUrl = csvUrl.replace("https://docs.google.com/spreadsheets/d/e/", "");
     googleUrl = googleUrl.split("/")[0];
 
-    $(".share-url").val("https://" + location.hostname + port + location.pathname + "?google=" + googleUrl);
+    $(".share-url").val(hostname + port + location.pathname + "?google=" + googleUrl);
   } else {
-    $(".share-url").val("https://" + location.hostname + port + location.pathname + "?csv=" + csvUrl);
+    $(".share-url").val(hostname + port + location.pathname + "?csv=" + csvUrl);
   }
 
 }
 function exportTextUrl() {
   port = ""
+  hostname = ""
   if (location.port != "") {
     port = ":" + location.port
+  }
+  if (location.hostname == "127.0.0.1") {
+    hostname = location.hostname
+  }else{
+    hostname = "https://" + location.hostname
   }
 
   itemText = $("#importText").val();
@@ -264,9 +276,8 @@ function exportTextUrl() {
   itemText = itemText.replace(/\n/g, "__");
 
 
-  $(".share-url").val("https://" + location.hostname + port + location.pathname + "?item=" + itemText);
+  $(".share-url").val(hostname + port + location.pathname + "?item=" + itemText);
 }
-
 
 //---------------------------------------------------------------------
 // 複製網址
@@ -300,7 +311,7 @@ function printGachaList() {
     $(".modal-body-display .modal-no-data").hide();
     $("#display-modal-reset").css("display", "flex");
     
-    console.log(dataObjectArray);
+    // console.log(dataObjectArray);
     $("ul.gacha-list").empty();
     dataObjectArray.forEach(item => {
       const key = Object.keys(item)[0];

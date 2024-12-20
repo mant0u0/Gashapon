@@ -142,6 +142,14 @@ ul.gacha-list, ul.history-list{
           text-decoration: line-through #633b4b;
         }
       }
+      &.active.is-drawn{
+        p.item-name{
+          color: #f7524b78;
+          text-decoration: line-through #f7524b78;
+        }
+      }
+
+
     }
   }
 

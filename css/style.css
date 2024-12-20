@@ -3244,6 +3244,14 @@
 .modal .modal-dialog .modal-body-result .modal-no-data {
   display: none;
 }
+.modal .modal-dialog .modal-body-result .text-lg {
+  padding-top: 36px;
+  padding-bottom: 48px;
+  font-size: 4rem;
+}
+.modal .modal-dialog .modal-body-result .text-center {
+  text-align: center;
+}
 .modal .modal-dialog .modal-body-display {
   overflow-y: scroll;
 }
@@ -3737,6 +3745,11 @@ ul.gacha-list.no-repeat-draw-list li.item.is-drawn p.item-name, ul.history-list.
   -webkit-text-decoration: line-through #633b4b;
           text-decoration: line-through #633b4b;
 }
+ul.gacha-list.no-repeat-draw-list li.item.active.is-drawn p.item-name, ul.history-list.no-repeat-draw-list li.item.active.is-drawn p.item-name {
+  color: rgba(247, 82, 75, 0.4705882353);
+  -webkit-text-decoration: line-through rgba(247, 82, 75, 0.4705882353);
+          text-decoration: line-through rgba(247, 82, 75, 0.4705882353);
+}
 ul.gacha-list.repeat-draw-list li.item, ul.history-list.repeat-draw-list li.item {
   cursor: default;
 }
@@ -3839,6 +3852,22 @@ body {
     font-size: 8px;
   }
 }
+* {
+  cursor: none !important;
+}
+
+.curzr {
+  -webkit-transition: 0.1s !important;
+  transition: 0.1s !important;
+  pointer-events: none;
+}
+.curzr .outer {
+  fill: #fcf0f0;
+}
+.curzr .inner {
+  fill: #633b4b;
+}
+
 .full-screen-click-area {
   position: fixed;
   top: 0;

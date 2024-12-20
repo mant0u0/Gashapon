@@ -57,19 +57,19 @@ body {
 }
 
 // 游標
-// * {
-//   cursor: none !important;
-// }
-// .curzr {
-//   // transition: .1s !important;
-//   pointer-events: none;
-//   .outer {
-//     fill: #fcf0f0;
-//   }
-//   .inner {
-//     fill: #633b4b;
-//   }
-// }
+* {
+  cursor: none !important;
+}
+.curzr {
+  transition: .1s !important;
+  pointer-events: none;
+  .outer {
+    fill: #fcf0f0;
+  }
+  .inner {
+    fill: #633b4b;
+  }
+}
 
 //- 全螢幕點擊區（未匯入檔案時的點擊區域）
 .full-screen-click-area {

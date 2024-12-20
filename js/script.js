@@ -284,8 +284,6 @@ function mouseUp(e) {
 // 顯示結果視窗
 function showResultModal() {
 
-  console.log("XXXXXXXXXXXXXXXXXXXXXX"+dataObjectArray);
-  console.log("XXXXXXXXXXXXXXXXXXXXXX"+importState);
 
   setTimeout(function () {
     // 判斷是否有資料匯入（無資料：開啟匯入視窗；有資料：顯示結果）
@@ -348,7 +346,6 @@ function printResultText() {
 
   
   // 加入歷史紀錄：第 0 個 key
-  console.log(dataObjectArray);
   historyList.push(dataObjectArray[r][csvList[0][0]]);
   printHistoryList();
 
@@ -361,44 +358,46 @@ function printResultText() {
   csvObjectKey = csvList[0]                 // 取得物件標題
   csvObjectKeyLength = csvObjectKey.length  // 取得物件標題數量
 
-  console.log(csvObjectKeyLength)
-
   for (i = 0; i < csvObjectKeyLength; i++) {
     itemTitle = csvObjectKey[i] // 標題 ( 作為 dataObjectArray[r] 的 Key )
     itemInfo = dataObjectArray[r][itemTitle] // 內容 ( 取第 r 個元素標題為 itemTitle 的項目  )
 
+    if (csvObjectKeyLength > 1 || itemTitle == "地址" || itemTitle == "圖片") {
 
-
-    if (itemTitle == "地址") {
-      resultContent.append("<p>" + itemTitle + "：" + "<a href='https://www.google.com/maps/place/" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
-    }
-
-    else if (itemTitle == "圖片") {
-      resultImg = 1;
-      resultContent.append("<img src='" + itemInfo + "' class='result-img'>")
-    }
-
-    else {
-
-      // 內容為連結
-      if (isURL(itemInfo)) {
-        // 圖片連結
-        if (isImageURL(itemInfo)) {
-          resultContent.append("<p>" + itemTitle + "</p>")
-          resultContent.append("<img src='" + itemInfo + "' class='result-img'>")
-        }
-        // 文字連結
-        else {
-          resultContent.append("<p>" + itemTitle + "：" + "<a href='" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
-        }
-
+      if (itemTitle == "地址") {
+        resultContent.append("<p>" + itemTitle + "：" + "<a href='https://www.google.com/maps/place/" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
       }
 
-      // 一般文字
+      else if (itemTitle == "圖片") {
+        resultImg = 1;
+        resultContent.append("<img src='" + itemInfo + "' class='result-img'>")
+      }
+
       else {
-        resultContent.append("<p>" + itemTitle + "：" + itemInfo + "</p>")
+
+        // 內容為連結
+        if (isURL(itemInfo)) {
+          // 圖片連結
+          if (isImageURL(itemInfo)) {
+            resultContent.append("<p>" + itemTitle + "</p>")
+            resultContent.append("<img src='" + itemInfo + "' class='result-img'>")
+          }
+          // 文字連結
+          else {
+            resultContent.append("<p>" + itemTitle + "：" + "<a href='" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
+          }
+
+        }
+
+        // 一般文字
+        else {
+          resultContent.append("<p>" + itemTitle + "：" + itemInfo + "</p>")
+        }
+
       }
 
+    }else {
+      resultContent.append("<p class='text-lg text-center'>" + itemInfo + "</p>")
     }
 
   }
