@@ -151,36 +151,37 @@ function importText() {
       $(this).text("確認");
     }
     else {
-
-      textList = "項目\n"+ textList; // 第一行為項目類別
-    
-      // textList: "項目1\n項目2\n項目3" -> csvList: [["項目1"], ["項目2"], ["項目3"]]
-      csvList = textList.split('\n').map(item => [item]);
-      // 去除[""] & ["\n"] & [" "] & [" \n"]
-      csvList = csvList.filter(item => item[0] != "" && item[0] != "\n" && item[0] != " " && item[0] != " \n");
-
-      // 轉成 Array
-      console.log(csvList);
-      dataObjectArray = convertListToObjectArray(csvList)
-
-      importState = 1;
-      modalState = 0;
-      closeModal();
-      $(".hint-text .text").text("匯入成功");
-      $("#importText").parent().removeClass("warning");
-      $("#importTextWarning").text("");
-      $("#importTextWarning").css("display", "none");
-      $("#import-text-btn").text("確認");
-      $(".no-data-text").hide();
-
-      // 產生分享連結
-      exportTextUrl();
-
-      // 列印匯入扭蛋項目
-      printGachaList();
-
+      importTextSuccess(textList);
     }
   });
+}
+function importTextSuccess(textList) {
+  textList = "項目\n"+ textList; // 第一行為項目類別
+    
+  // textList: "項目1\n項目2\n項目3" -> csvList: [["項目1"], ["項目2"], ["項目3"]]
+  csvList = textList.split('\n').map(item => [item]);
+  // 去除[""] & ["\n"] & [" "] & [" \n"]
+  csvList = csvList.filter(item => item[0] != "" && item[0] != "\n" && item[0] != " " && item[0] != " \n");
+
+  // 轉成 Array
+  console.log(csvList);
+  dataObjectArray = convertListToObjectArray(csvList)
+
+  importState = 1;
+  modalState = 0;
+  closeModal();
+  $(".hint-text .text").text("匯入成功");
+  $("#importText").parent().removeClass("warning");
+  $("#importTextWarning").text("");
+  $("#importTextWarning").css("display", "none");
+  $("#import-text-btn").text("確認");
+  $(".no-data-text").hide();
+
+  // 產生分享連結
+  exportTextUrl();
+
+  // 列印匯入扭蛋項目
+  printGachaList();
 }
 //---------------------------------------------------------------------
 
