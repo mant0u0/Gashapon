@@ -2963,11 +2963,6 @@
   font-weight: 900;
   color: #633b4b;
 }
-.modal .modal-dialog .modal-body-import p.no-data-text,
-.modal .modal-dialog .modal-body-share p.no-data-text,
-.modal .modal-dialog .modal-body-display p.no-data-text {
-  color: #f7524b;
-}
 .modal .modal-dialog .modal-body-import input.form[type=text],
 .modal .modal-dialog .modal-body-share input.form[type=text],
 .modal .modal-dialog .modal-body-display input.form[type=text] {
@@ -2984,75 +2979,6 @@
 .modal .modal-dialog .modal-body-display input.form[type=text].warning {
   background: rgba(247, 81, 75, 0.1529411765);
   border-color: #f7524b;
-  color: #3e1411;
-}
-.modal .modal-dialog .modal-body-import label.form,
-.modal .modal-dialog .modal-body-share label.form,
-.modal .modal-dialog .modal-body-display label.form {
-  padding: 0;
-  border-radius: 15px;
-  border: 5px solid rgba(99, 59, 75, 0.4039215686);
-  background: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  overflow: hidden;
-}
-.modal .modal-dialog .modal-body-import label.form input[type=text],
-.modal .modal-dialog .modal-body-share label.form input[type=text],
-.modal .modal-dialog .modal-body-display label.form input[type=text] {
-  font-family: FakePearl-Regular;
-  font-weight: 900;
-  color: #3d242e;
-  background: transparent;
-  width: 100%;
-  padding: 10px;
-  padding-right: 0;
-  border: none;
-  outline: none;
-}
-.modal .modal-dialog .modal-body-import label.form button.form-clear-btn,
-.modal .modal-dialog .modal-body-share label.form button.form-clear-btn,
-.modal .modal-dialog .modal-body-display label.form button.form-clear-btn {
-  height: 100%;
-  aspect-ratio: 1/1;
-  padding: 10px 12px;
-  border: none;
-  background: transparent;
-  color: rgba(99, 59, 75, 0.4039215686);
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.modal .modal-dialog .modal-body-import label.form button.form-clear-btn:hover,
-.modal .modal-dialog .modal-body-share label.form button.form-clear-btn:hover,
-.modal .modal-dialog .modal-body-display label.form button.form-clear-btn:hover {
-  color: rgba(99, 59, 75, 0.8705882353);
-}
-.modal .modal-dialog .modal-body-import label.form.warning,
-.modal .modal-dialog .modal-body-share label.form.warning,
-.modal .modal-dialog .modal-body-display label.form.warning {
-  background: rgba(247, 81, 75, 0.1529411765);
-  border-color: #f7524b;
-  color: #3e1411;
-}
-.modal .modal-dialog .modal-body-import label.form.warning input[type=text],
-.modal .modal-dialog .modal-body-share label.form.warning input[type=text],
-.modal .modal-dialog .modal-body-display label.form.warning input[type=text] {
   color: #3e1411;
 }
 .modal .modal-dialog .modal-body-import .warning-text,
@@ -3097,6 +3023,100 @@
 .modal .modal-dialog .modal-body-share .input-btn-group input[type=text].form,
 .modal .modal-dialog .modal-body-display .input-btn-group input[type=text].form {
   width: 100%;
+}
+.modal .modal-dialog .modal-body-import .no-data-text {
+  color: #f7524b;
+  background: #ffe0e0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  gap: 8px;
+  margin-top: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.modal .modal-dialog .modal-body-import .no-data-text p {
+  margin-bottom: 0;
+}
+.modal .modal-dialog .modal-body-import .no-data-text i {
+  font-size: 2rem;
+}
+.modal .modal-dialog .modal-body-import .form-group p {
+  margin-bottom: 4px;
+}
+.modal .modal-dialog .modal-body-import label.form {
+  padding: 0;
+  border-radius: 15px;
+  border: 5px solid rgba(99, 59, 75, 0.4039215686);
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+.modal .modal-dialog .modal-body-import label.form input[type=text] {
+  font-family: FakePearl-Regular;
+  font-weight: 900;
+  color: #3d242e;
+  background: transparent;
+  width: 100%;
+  padding: 10px;
+  padding-right: 0;
+  border: none;
+  outline: none;
+}
+.modal .modal-dialog .modal-body-import label.form textarea {
+  width: 100%;
+  height: 300px;
+  font-family: FakePearl-Regular;
+  font-weight: 900;
+  color: #3d242e;
+  background: transparent;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+.modal .modal-dialog .modal-body-import label.form button.form-clear-btn {
+  height: 100%;
+  aspect-ratio: 1/1;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  color: rgba(99, 59, 75, 0.4039215686);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.modal .modal-dialog .modal-body-import label.form button.form-clear-btn:hover {
+  color: rgba(99, 59, 75, 0.8705882353);
+}
+.modal .modal-dialog .modal-body-import label.form.warning {
+  background: rgba(247, 81, 75, 0.1529411765);
+  border-color: #f7524b;
+  color: #3e1411;
+}
+.modal .modal-dialog .modal-body-import label.form.warning input[type=text] {
+  color: #3e1411;
 }
 .modal .modal-dialog .modal-body-about {
   -webkit-box-orient: vertical;
@@ -3221,6 +3241,35 @@
 }
 .modal .modal-dialog .modal-body-display .display-list-group {
   min-height: 600px;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+}
+.modal .modal-dialog .modal-body-reset {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 16px;
+  padding-top: 36px;
+}
+.modal .modal-dialog .modal-body-reset i {
+  font-size: 8rem;
+  color: #f7524b;
+}
+.modal .modal-dialog .modal-body-reset p {
+  font-size: 2rem;
+  font-family: FakePearl-Regular;
+  font-weight: 900;
 }
 .modal .modal-dialog .modal-footer {
   border: none;

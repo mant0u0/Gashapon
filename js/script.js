@@ -286,7 +286,7 @@ function mouseUp(e) {
 function showResultModal() {
   setTimeout(function () {
     // 判斷是否有資料匯入（無資料：開啟匯入視窗；有資料：顯示結果）
-    if (csvUrl == undefined || importState == 0) {
+    if (dataObjectArray == undefined || importState == 0) {
       $('#import-modal').modal('show');
       $("#import-modal-cancel").click(function () {
         modalState = 0;
@@ -315,11 +315,11 @@ function printResultText() {
 
   if (repeatDrawState == 1) { // 重複抽獎
     console.log("重複抽獎")
-    r = getRandom(csvObjectArray.length) - 1; //取得亂數
+    r = getRandom(dataObjectArray.length) - 1; //取得亂數
   }else if (repeatDrawState == 0) { // 不重複抽獎
     console.log("不重複抽獎")
     var allDrawn = true;
-    csvObjectArray.forEach(item => {
+    dataObjectArray.forEach(item => {
       if (item["itemIsDrawn"] == false) {
         allDrawn = false;
       }
@@ -330,36 +330,40 @@ function printResultText() {
       return;
     }
     do {
-      r = getRandom(csvObjectArray.length) - 1; //取得亂數
-    } while (csvObjectArray[r]["itemIsDrawn"] == true);
+      r = getRandom(dataObjectArray.length) - 1; //取得亂數
+    } while (dataObjectArray[r]["itemIsDrawn"] == true);
   }
-  console.log(csvObjectArray, r)
+  console.log(dataObjectArray, r)
 
   // 計數器
-  csvObjectArray[r]["itemCount"] = csvObjectArray[r]["itemCount"] + 1;
+  dataObjectArray[r]["itemCount"] = dataObjectArray[r]["itemCount"] + 1;
   if (repeatDrawState == 0) { // 不重複抽獎
     //更新項目抽獎狀態 true: 已抽獎, false: 未抽獎
-    csvObjectArray[r]["itemIsDrawn"] = true; 
+    dataObjectArray[r]["itemIsDrawn"] = true; 
   }
   printGachaList(); // 列印匯入扭蛋項目
 
   
   // 加入歷史紀錄：第 0 個 key
-  historyList.push(csvObjectArray[r][csvList[0][0]]);
+  console.log(dataObjectArray);
+  historyList.push(dataObjectArray[r][csvList[0][0]]);
   printHistoryList();
 
 
   // GachaListItem 新增 active  
   $(".gacha-list .item").removeClass("active");
-  $(".gacha-list #" + csvObjectArray[r]["itemId"]).addClass("active");
+  $(".gacha-list #" + dataObjectArray[r]["itemId"]).addClass("active");
 
 
   csvObjectKey = csvList[0]                 // 取得物件標題
   csvObjectKeyLength = csvObjectKey.length  // 取得物件標題數量
 
+  console.log(csvObjectKeyLength)
+
   for (i = 0; i < csvObjectKeyLength; i++) {
-    itemTitle = csvObjectKey[i] // 標題 ( 作為 csvObjectArray[r] 的 Key )
-    itemInfo = csvObjectArray[r][itemTitle] // 內容 ( 取第 r 個元素標題為 itemTitle 的項目  )
+    itemTitle = csvObjectKey[i] // 標題 ( 作為 dataObjectArray[r] 的 Key )
+    itemInfo = dataObjectArray[r][itemTitle] // 內容 ( 取第 r 個元素標題為 itemTitle 的項目  )
+
 
 
     if (itemTitle == "地址") {

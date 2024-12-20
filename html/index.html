@@ -46,24 +46,46 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="import-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+    <div class="modal fade" id="import-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">匯入連結</h5>
+            <h5 class="modal-title">匯入資料</h5>
           </div>
           <div class="modal-body modal-body-import">
-            <p class="no-data-text"><i class="fas fa-exclamation-circle maR-8"></i>扭蛋機目前沒有匯入抽獎項目～</p>
-            <p>輸入 CSV 網址，匯入抽獎項目。\( °ω° )/</p>
-            <label class="form">
-              <input class="import-url" id="importUrl" type="text" placeholder="請輸入 CSV 連結" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv">
-              <button class="form-clear-btn" onclick="document.getElementById('importUrl').value = '';"><i class="fas fa-times-circle"></i></button>
-            </label>
-            <div class="warning-text">此欄位不可空白。</div>
+            <div class="import-group">
+              <div class="tab-list"> 
+                <button class="tab active" data-tab-page-id="#import-csv">CSV 匯入</button>
+                <button class="tab" data-tab-page-id="#import-text">文字匯入</button>
+              </div>
+              <div class="tab-page active" id="import-csv">
+                <div class="form-group">
+                  <p>CSV 網址</p>
+                  <label class="form">
+                    <input class="import-url" id="importUrl" type="text" placeholder="請輸入 CSV 連結" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv">
+                    <button class="form-clear-btn" onclick="document.getElementById('importUrl').value = '';"><i class="fas fa-times-circle"></i></button>
+                  </label>
+                  <div class="warning-text" id="importCsvWarning">此欄位不可空白。</div>
+                </div>
+              </div>
+              <div class="tab-page" id="import-text">
+                <div class="form-group">
+                  <p>扭蛋項目（項目使用換行隔開）</p>
+                  <label class="form">
+                    <textarea id="importText" placeholder="請輸入扭蛋項目"></textarea>
+                  </label>
+                  <div class="warning-text" id="importTextWarning">此欄位不可空白。</div>
+                </div>
+              </div>
+              <div class="no-data-text"><i class="fas fa-exclamation-circle maR-8"></i>
+                <p>扭蛋機目前沒有匯入抽獎項目～</p>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button class="btn modal-footer-btn secondary-btn" id="import-modal-cancel" type="button" onclick="closeModal()">取消</button>
-            <button class="btn modal-footer-btn import-btn" type="button">確認</button>
+            <button class="btn modal-footer-btn" id="import-csv-btn" type="button">確認</button>
+            <button class="btn modal-footer-btn" id="import-text-btn" type="button">確認</button>
           </div>
         </div>
       </div>
@@ -84,12 +106,16 @@
                 <button class="tab active" data-tab-page-id="#gacha-list">扭蛋清單</button>
                 <button class="tab" data-tab-page-id="#history-list">扭蛋紀錄</button>
               </div>
-              <ul class="gacha-list tab-page active" id="gacha-list">
-                <li class="item">項目</li>
-              </ul>
-              <ul class="history-list tab-page" id="history-list">
-                <li class="item">暫無紀錄</li>
-              </ul>
+              <div class="tab-page active" id="gacha-list">
+                <ul class="gacha-list">
+                  <li class="item">項目</li>
+                </ul>
+              </div>
+              <div class="tab-page" id="history-list">
+                <ul class="history-list">
+                  <li class="item">暫無紀錄</li>
+                </ul>
+              </div>
             </div>
             <div class="modal-no-data">
               <div class="no-data-content" onclick="showModal(&quot;#import-modal&quot;)">
@@ -105,7 +131,7 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="share-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+    <div class="modal fade" id="share-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -124,7 +150,7 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="about-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+    <div class="modal fade" id="about-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -153,7 +179,7 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="instruction-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+    <div class="modal fade" id="instruction-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -211,17 +237,17 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="reset-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+    <div class="modal fade" id="reset-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">重置紀錄</h5>
           </div>
-          <div class="modal-body modal-body-reset">
+          <div class="modal-body modal-body-reset"><i class="fas fa-exclamation-circle"></i>
             <p>確定要重置扭蛋紀錄？</p>
           </div>
           <div class="modal-footer">
-            <button class="btn modal-footer-btn" type="button" onclick="resetCsvObjectArray()">重置</button>
+            <button class="btn modal-footer-btn" type="button" onclick="resetDataObjectArray()">重置</button>
             <button class="btn modal-footer-btn secondary-btn" type="button" onclick="showModal(&quot;#display-modal&quot;)">取消</button>
           </div>
         </div>

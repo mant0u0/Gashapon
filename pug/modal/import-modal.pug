@@ -1,23 +1,43 @@
 //- 匯入
-.modal.fade#import-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' )
+.modal.fade#import-modal(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'  )
   .modal-dialog.modal-dialog-centered
     .modal-content
       .modal-header
-        h5.modal-title 匯入連結
+        h5.modal-title 匯入資料
         //- button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
       .modal-body.modal-body-import
-        p.no-data-text
-          i.fas.fa-exclamation-circle.maR-8
-          | 扭蛋機目前沒有匯入抽獎項目～
-        p 輸入 CSV 網址，匯入抽獎項目。\( °ω° )/
-        //- input.form.import-url(type="text" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv")
-        label.form
-          input.import-url#importUrl(type="text" placeholder="請輸入 CSV 連結" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv")
-          button.form-clear-btn(onclick="document.getElementById('importUrl').value = '';")
-            i.fas.fa-times-circle
-        
-        .warning-text 此欄位不可空白。
+
+        .import-group
+
+          
+          .tab-list 
+            button.tab.active(data-tab-page-id="#import-csv") CSV 匯入
+            button.tab(data-tab-page-id="#import-text") 文字匯入
+          
+          
+          .tab-page.active#import-csv
+            .form-group
+              p CSV 網址
+              label.form
+                input.import-url#importUrl(type="text" placeholder="請輸入 CSV 連結" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv")
+                button.form-clear-btn(onclick="document.getElementById('importUrl').value = '';")
+                  i.fas.fa-times-circle
+              .warning-text#importCsvWarning 此欄位不可空白。
+          
+          .tab-page#import-text
+            .form-group
+              p 扭蛋項目（項目使用換行隔開）
+              label.form
+                textarea#importText(placeholder="請輸入扭蛋項目")
+              .warning-text#importTextWarning 此欄位不可空白。
+
+          .no-data-text
+            i.fas.fa-exclamation-circle.maR-8
+            p 扭蛋機目前沒有匯入抽獎項目～
+
+
 
       .modal-footer
         button.btn.modal-footer-btn.secondary-btn#import-modal-cancel(type='button' onclick='closeModal()') 取消
-        button.btn.modal-footer-btn.import-btn(type='button') 確認
+        button.btn.modal-footer-btn#import-csv-btn(type='button') 確認
+        button.btn.modal-footer-btn#import-text-btn(type='button') 確認

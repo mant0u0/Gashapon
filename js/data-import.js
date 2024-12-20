@@ -1,4 +1,12 @@
+var csvUrl;  // CSV 連結
+var csvList; // 放 CSV 資料的陣列
+var dataObjectArray; // 放 CSV 資料的物件
+var historyList=[]; // 歷史紀錄
+var repeatDrawState = 0; // 重複抽獎狀態 0:不重複抽獎 1:重複抽獎
+var importModel = "csv";
+
 // 網址分析
+analyzeUrl();
 function analyzeUrl() {
   var webUrl = location.search
   var webUrlData = {
@@ -23,12 +31,12 @@ function analyzeUrl() {
       $.ajax({
         url: csvUrl,
         success: function (data) {
-          importSuccess(data);
+          importCsvSuccess(data);
           $(".btn-import, .btn-display, .btn-instruction, .btn-about, .btn-share").css("opacity", "0");
         },
         error: function () {
           undefined
-          importError();
+          importCsvError();
         },
       });
     }
@@ -42,12 +50,12 @@ function analyzeUrl() {
       $.ajax({
         url: csvUrl,
         success: function (data) {
-          importSuccess(data);
+          importCsvSuccess(data);
           $(".btn-import, .btn-display, .btn-instruction, .btn-about, .btn-share").css("opacity", "0");
         },
         error: function () {
           undefined
-          importError();
+          importCsvError();
         },
       });
     }
@@ -56,85 +64,124 @@ function analyzeUrl() {
     if (t != -1) {
       webUrlData.title = decodeURI(webUrl[i].replace("title=", ""));
     }
-
   }
-
-
-
 }
-analyzeUrl();
 
 
 //---------------------------------------------------------------------
-var csvUrl;  // CSV 連結
-var csvList; // 放 CSV 資料的陣列
-var csvObjectArray; // 放 CSV 資料的物件
-var historyList=[]; // 歷史紀錄
-var repeatDrawState = 0; // 重複抽獎狀態 0:不重複抽獎 1:重複抽獎
+
 
 // 匯入 CSV
+importCsv();
 function importCsv() {
-  $(".import-btn").click(function () {
+  $("#import-csv-btn").click(function () {
     $(this).text("匯入中");
     csvUrl = $("#importUrl").val();
     if (csvUrl == "") {
       $("#importUrl").parent().addClass("warning");
-      $(".warning-text").text("此欄位不可空白。");
-      $(".warning-text").css("display", "block");
+      $("#importCsvWarning").text("此欄位不可空白。");
+      $("#importCsvWarning").css("display", "block");
       $(this).text("確認");
     }
     else {
       $.ajax({
         url: csvUrl,
         success: function (data) {
-          importSuccess(data);
+          importCsvSuccess(data);
           closeMenu();
           modalState = 0;
         },
         error: function () {
           undefined
-          importError();
+          importCsvError();
         },
       });
     }
   });
 }
 // 匯入成功
-function importSuccess(data) {
+function importCsvSuccess(data) {
   // 讀取 csv 資料
   csvList = $.csv.toArrays(data + "\n");
-  csvObjectArray = convertListToObjectArray(csvList)
+  console.log(csvList);
+  dataObjectArray = convertListToObjectArray(csvList)
 
   importState = 1;
+  closeModal();
   $(".hint-text .text").text("匯入成功");
-  $('#import-modal').modal('hide');
   $("#importUrl").parent().removeClass("warning");
-  $(".warning-text").text("");
-  $(".warning-text").css("display", "none");
-  $(".btn-about").css("display", "flex");
-  $(".import-btn").text("確認");
+  $("#importCsvWarning").text("");
+  $("#importCsvWarning").css("display", "none");
+  $("#import-csv-btn").text("確認");
   $(".no-data-text").hide();
 
   // 產生分享連結
-  exportUrl();
+  exportCsvUrl();
 
   // 列印匯入扭蛋項目
   printGachaList();
 
 }
 // 匯入失敗
-function importError() {
+function importCsvError() {
   importState = 0;
   $("#importUrl").parent().addClass("warning");
-  $(".import-btn").text("確認");
+  $("#import-csv-btn").text("確認");
   $(".hint-text .text").text("匯入錯誤");
-  $(".warning-text").text("網址匯入錯誤。");
-  $(".warning-text").css("display", "block");
+  $("#importCsvWarning").text("網址匯入錯誤。");
+  $("#importCsvWarning").css("display", "block");
   $(".no-data-text").show();
 }
-importCsv();
+//---------------------------------------------------------------------
+// 匯入 Text
+importText();
+function importText() {
+  $("#import-text-btn").click(function () {
+    $(this).text("匯入中");
+    textList = $("#importText").val();
+    console.log(textList);
 
+    // 去除 textList 所有 \n \r 與空白
+    textListTmp = textList.replace(/\n/g, "").replace(/\r/g, "").replace(/ /g, "");
 
+    if (textListTmp == "") {
+      $("#importText").parent().addClass("warning");
+      $("#importTextWarning").text("此欄位不可空白。");
+      $("#importTextWarning").css("display", "block");
+      $(this).text("確認");
+    }
+    else {
+
+      textList = "項目\n"+ textList; // 第一行為項目類別
+    
+      // textList: "項目1\n項目2\n項目3" -> csvList: [["項目1"], ["項目2"], ["項目3"]]
+      csvList = textList.split('\n').map(item => [item]);
+      // 去除[""] & ["\n"] & [" "] & [" \n"]
+      csvList = csvList.filter(item => item[0] != "" && item[0] != "\n" && item[0] != " " && item[0] != " \n");
+
+      // 轉成 Array
+      console.log(csvList);
+      dataObjectArray = convertListToObjectArray(csvList)
+
+      importState = 1;
+      modalState = 0;
+      closeModal();
+      $(".hint-text .text").text("匯入成功");
+      $("#importText").parent().removeClass("warning");
+      $("#importTextWarning").text("");
+      $("#importTextWarning").css("display", "none");
+      $("#import-text-btn").text("確認");
+      $(".no-data-text").hide();
+
+      // 產生分享連結
+      exportTextUrl();
+
+      // 列印匯入扭蛋項目
+      printGachaList();
+
+    }
+  });
+}
 //---------------------------------------------------------------------
 
 // 列表轉換
@@ -163,7 +210,7 @@ function convertListToObjectArray(list) {
 
 //---------------------------------------------------------------------
 // 產生分享連結
-function exportUrl() {
+function exportCsvUrl() {
   port = ""
   if (location.port != "") {
     port = ":" + location.port
@@ -171,15 +218,29 @@ function exportUrl() {
 
   if (csvUrl.indexOf("https://docs.google.com/spreadsheets/d/e/") != -1) {
     // 將 google csv 去頭去尾
-    x = csvUrl.replace("https://docs.google.com/spreadsheets/d/e/", "");
-    x = x.split("/")[0];
+    googleUrl = csvUrl.replace("https://docs.google.com/spreadsheets/d/e/", "");
+    googleUrl = googleUrl.split("/")[0];
 
-    $(".share-url").val("https://" + location.hostname + port + location.pathname + "?google=" + x);
+    $(".share-url").val("https://" + location.hostname + port + location.pathname + "?google=" + googleUrl);
   } else {
     $(".share-url").val("https://" + location.hostname + port + location.pathname + "?csv=" + csvUrl);
   }
 
 }
+function exportTextUrl() {
+  port = ""
+  if (location.port != "") {
+    port = ":" + location.port
+  }
+
+  itemText = $("#importText").val();
+  // itemText : 1\n2\n3 -> itemText : 1__2__3
+  itemText = itemText.replace(/\n/g, "__");
+
+
+  $(".share-url").val("https://" + location.hostname + port + location.pathname + "?item=" + itemText);
+}
+
 
 //---------------------------------------------------------------------
 // 複製網址
@@ -202,7 +263,7 @@ printGachaList();
 // 列印匯入扭蛋項目清單
 function printGachaList() {
 
-  if (csvObjectArray == null) {
+  if (dataObjectArray == null) {
     $("ul.gacha-list").empty();
     $(".display-list-group").hide();
     $(".modal-body-display .modal-no-data").show();
@@ -213,9 +274,9 @@ function printGachaList() {
     $(".modal-body-display .modal-no-data").hide();
     $("#display-modal-reset").css("display", "flex");
     
-    console.log(csvObjectArray);
+    console.log(dataObjectArray);
     $("ul.gacha-list").empty();
-    csvObjectArray.forEach(item => {
+    dataObjectArray.forEach(item => {
       const key = Object.keys(item)[0];
       const li = $("<li class='item' id='" + item["itemId"] + "'><p class='item-name'>" + item[key] + "</p><p class='item-count'>" + item["itemCount"] + "</p>"+"</li>");
       if (item["itemIsDrawn"] && repeatDrawState == 0) {
@@ -275,7 +336,7 @@ function setGachaListBtnClickEvent() {
       if ($(this).hasClass("is-drawn")) {
         $(this).removeClass("is-drawn");
         // 清除該項目的 itemIsDrawn 狀態
-        csvObjectArray.forEach(item => {
+        dataObjectArray.forEach(item => {
           if (item["itemId"] == id) {
             item["itemIsDrawn"] = false;
           }
@@ -284,7 +345,7 @@ function setGachaListBtnClickEvent() {
       }else{
         $(this).addClass("is-drawn");
         // 更新該項目的 itemIsDrawn 狀態
-        csvObjectArray.forEach(item => {
+        dataObjectArray.forEach(item => {
           if (item["itemId"] == id) {
             item["itemIsDrawn"] = true;
           }
@@ -297,13 +358,13 @@ function setGachaListBtnClickEvent() {
 }
 
 // 重置按鈕
-function resetCsvObjectArray() {
+function resetDataObjectArray() {
 
   // 清除 active 樣式
   $(".gacha-list .item").removeClass("active");
   $(".gacha-list .item").removeClass("is-drawn");
 
-  csvObjectArray.forEach(item => {
+  dataObjectArray.forEach(item => {
     item["itemIsDrawn"] = false;
     item["itemCount"] = 0;
   });
@@ -317,22 +378,54 @@ function resetCsvObjectArray() {
   showModal("#display-modal")
 }
 
-// 頁籤按鈕
-tabClickEvent();
-function tabClickEvent() {
-
-  $(".tab-list .tab").click(function () {
-    $(".tab").removeClass("active");
+// display 頁籤按鈕
+displayTabClickEvent();
+function displayTabClickEvent() {
+  $("#display-modal .tab-list .tab").click(function () {
+    $(this).siblings(".tab").removeClass("active");
     $(this).addClass("active");
 
     const id = $(this).attr("data-tab-page-id");
-    $(".tab-page").removeClass("active");
+    $("#display-modal .tab-page").removeClass("active");
     $(id).addClass("active");
+  })
+}
+
+// import 頁籤按鈕
+importTabClickEvent();
+function importTabClickEvent() {
+
+  $("#import-modal .tab-list .tab").click(function () {
+    $(this).siblings(".tab").removeClass("active");
+    $(this).addClass("active");
+
+    const id = $(this).attr("data-tab-page-id");
+    $("#import-modal .tab-page").removeClass("active");
+    $(id).addClass("active");
+
+    if (id == "#import-csv") {
+      importModel = "csv";
+      importBtnShowHide();
+    }
+
+    if (id == "#import-text") {
+      importModel = "text";
+      importBtnShowHide();
+    }
 
 
   })
+}
 
-  // $(".tab-page").removeClass("active");
-  // $(id).addClass("active");
-
+// 顯示匯入按鈕
+importBtnShowHide()
+function importBtnShowHide() {
+  if (importModel == "csv") {
+    $("#import-csv-btn").css("display", "flex");
+    $("#import-text-btn").css("display", "none");
+  }
+  if (importModel == "text") {
+    $("#import-csv-btn").css("display", "none");
+    $("#import-text-btn").css("display", "flex");
+  }
 }
