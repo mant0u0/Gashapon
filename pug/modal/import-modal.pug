@@ -11,11 +11,17 @@
 
           
           .tab-list 
-            button.tab.active(data-tab-page-id="#import-csv") CSV 匯入
-            button.tab(data-tab-page-id="#import-text") 文字匯入
+            button.tab.active(data-tab-page-id="#import-text") 文字匯入
+            button.tab(data-tab-page-id="#import-csv") CSV 匯入
           
+          .tab-page.active#import-text
+            .form-group
+              p 扭蛋項目（項目使用換行隔開）
+              label.form
+                textarea#importText(placeholder="請輸入扭蛋項目")
+              .warning-text#importTextWarning 此欄位不可空白。
           
-          .tab-page.active#import-csv
+          .tab-page#import-csv
             .form-group
               p CSV 網址
               label.form
@@ -24,12 +30,7 @@
                   i.fas.fa-times-circle
               .warning-text#importCsvWarning 此欄位不可空白。
           
-          .tab-page#import-text
-            .form-group
-              p 扭蛋項目（項目使用換行隔開）
-              label.form
-                textarea#importText(placeholder="請輸入扭蛋項目")
-              .warning-text#importTextWarning 此欄位不可空白。
+
 
           .no-data-text
             i.fas.fa-exclamation-circle.maR-8

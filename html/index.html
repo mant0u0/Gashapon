@@ -55,10 +55,19 @@
           <div class="modal-body modal-body-import">
             <div class="import-group">
               <div class="tab-list"> 
-                <button class="tab active" data-tab-page-id="#import-csv">CSV 匯入</button>
-                <button class="tab" data-tab-page-id="#import-text">文字匯入</button>
+                <button class="tab active" data-tab-page-id="#import-text">文字匯入</button>
+                <button class="tab" data-tab-page-id="#import-csv">CSV 匯入</button>
               </div>
-              <div class="tab-page active" id="import-csv">
+              <div class="tab-page active" id="import-text">
+                <div class="form-group">
+                  <p>扭蛋項目（項目使用換行隔開）</p>
+                  <label class="form">
+                    <textarea id="importText" placeholder="請輸入扭蛋項目"></textarea>
+                  </label>
+                  <div class="warning-text" id="importTextWarning">此欄位不可空白。</div>
+                </div>
+              </div>
+              <div class="tab-page" id="import-csv">
                 <div class="form-group">
                   <p>CSV 網址</p>
                   <label class="form">
@@ -66,15 +75,6 @@
                     <button class="form-clear-btn" onclick="document.getElementById('importUrl').value = '';"><i class="fas fa-times-circle"></i></button>
                   </label>
                   <div class="warning-text" id="importCsvWarning">此欄位不可空白。</div>
-                </div>
-              </div>
-              <div class="tab-page" id="import-text">
-                <div class="form-group">
-                  <p>扭蛋項目（項目使用換行隔開）</p>
-                  <label class="form">
-                    <textarea id="importText" placeholder="請輸入扭蛋項目"></textarea>
-                  </label>
-                  <div class="warning-text" id="importTextWarning">此欄位不可空白。</div>
                 </div>
               </div>
               <div class="no-data-text"><i class="fas fa-exclamation-circle maR-8"></i>

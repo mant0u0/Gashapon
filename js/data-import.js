@@ -3,7 +3,7 @@ var csvList; // 放 CSV 資料的陣列
 var dataObjectArray; // 放 CSV 資料的物件
 var historyList=[]; // 歷史紀錄
 var repeatDrawState = 0; // 重複抽獎狀態 0:不重複抽獎 1:重複抽獎
-var importModel = "csv";
+var importModel = "text"; // 匯入模式: text / csv
 
 // 網址分析
 analyzeUrl();
