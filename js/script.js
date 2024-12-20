@@ -10,7 +10,6 @@ var mouseState = 0;
 // 視窗狀況值
 var modalState = 0;
 
-var importState = 0;
 
 // 扭蛋機縮放值
 var gashaponScale_X = 0;
@@ -284,6 +283,10 @@ function mouseUp(e) {
 // ------------------------------------------------------------- //
 // 顯示結果視窗
 function showResultModal() {
+
+  console.log("XXXXXXXXXXXXXXXXXXXXXX"+dataObjectArray);
+  console.log("XXXXXXXXXXXXXXXXXXXXXX"+importState);
+
   setTimeout(function () {
     // 判斷是否有資料匯入（無資料：開啟匯入視窗；有資料：顯示結果）
     if (dataObjectArray == undefined || importState == 0) {

@@ -4,15 +4,17 @@ var dataObjectArray; // 放 CSV 資料的物件
 var historyList=[]; // 歷史紀錄
 var repeatDrawState = 0; // 重複抽獎狀態 0:不重複抽獎 1:重複抽獎
 var importModel = "text"; // 匯入模式: text / csv
+var importState = 0; // 匯入狀況值
 
-// 網址分析
 analyzeUrl();
+// 網址分析
 function analyzeUrl() {
   var webUrl = location.search
   var webUrlData = {
     "csv": "",
     "google": "",
     "title": "",
+    "item": ""
   }
 
   // 網址文字分段
@@ -22,8 +24,8 @@ function analyzeUrl() {
   // 將文字丟入 webUrlData 物件中
   for (i = 0; i < webUrl.length; i++) {
     // 單純 CSV 網址
-    c = webUrl[i].indexOf("csv=")
-    if (c != -1) {
+    indexOfCsv = webUrl[i].indexOf("csv=")
+    if (indexOfCsv != -1) {
       $(".hint-text .text").text("讀取中...");
       webUrlData.csv = webUrl[i].replace("csv=", "");
       $("#importUrl").val(webUrlData.csv);
@@ -40,9 +42,10 @@ function analyzeUrl() {
         },
       });
     }
+
     // GOOGLE CSV 網址
-    g = webUrl[i].indexOf("google=")
-    if (g != -1) {
+    indexOfGoogle = webUrl[i].indexOf("google=")
+    if (indexOfGoogle != -1) {
       $(".hint-text .text").text("讀取中...");
       webUrlData.google = webUrl[i].replace("google=", "");
       $("#importUrl").val("https://docs.google.com/spreadsheets/d/e/" + webUrlData.google + "/pub?output=csv");
@@ -59,14 +62,31 @@ function analyzeUrl() {
         },
       });
     }
+
     // 標題
-    t = webUrl[i].indexOf("title=")
-    if (t != -1) {
+    indexOfTitle = webUrl[i].indexOf("title=")
+    if (indexOfTitle != -1) {
       webUrlData.title = decodeURI(webUrl[i].replace("title=", ""));
     }
+
+    // 項目
+    indexOfItem = webUrl[i].indexOf("item=")
+    if (indexOfItem != -1 && indexOfGoogle == -1 && indexOfCsv == -1) {
+      webUrlData.item = decodeURI(webUrl[i].replace("item=", ""));
+
+      // 1__2__3 -> 1\n2\n3
+      webUrlData.item = webUrlData.item.replace(/__/g, "\n");
+      $("#importText").val(webUrlData.item);
+      textList = $("#importText").val();
+
+      importState = 1;
+      importTextSuccess(textList);
+      $(".btn-import, .btn-display, .btn-instruction, .btn-about, .btn-share").css("opacity", "0");
+
+    }
+
   }
 }
-
 
 //---------------------------------------------------------------------
 
@@ -101,6 +121,9 @@ function importCsv() {
 }
 // 匯入成功
 function importCsvSuccess(data) {
+
+  importModel = "csv";
+
   // 讀取 csv 資料
   csvList = $.csv.toArrays(data + "\n");
   console.log(csvList);
@@ -151,11 +174,16 @@ function importText() {
       $(this).text("確認");
     }
     else {
+      modalState = 0;
+      closeModal();
       importTextSuccess(textList);
     }
   });
 }
 function importTextSuccess(textList) {
+  importModel = "text";
+  importState = 1;
+
   textList = "項目\n"+ textList; // 第一行為項目類別
     
   // textList: "項目1\n項目2\n項目3" -> csvList: [["項目1"], ["項目2"], ["項目3"]]
@@ -167,9 +195,6 @@ function importTextSuccess(textList) {
   console.log(csvList);
   dataObjectArray = convertListToObjectArray(csvList)
 
-  importState = 1;
-  modalState = 0;
-  closeModal();
   $(".hint-text .text").text("匯入成功");
   $("#importText").parent().removeClass("warning");
   $("#importTextWarning").text("");
