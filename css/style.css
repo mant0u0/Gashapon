@@ -3857,8 +3857,6 @@ body {
 }
 
 .curzr {
-  -webkit-transition: 0.1s !important;
-  transition: 0.1s !important;
   pointer-events: none;
 }
 .curzr .outer {
