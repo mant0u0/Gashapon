@@ -1,7 +1,7 @@
 var csvUrl;  // CSV 連結
 var csvList; // 放 CSV 資料的陣列
 var dataObjectArray; // 放 CSV 資料的物件
-var historyList=[]; // 歷史紀錄
+var historyList = []; // 歷史紀錄
 var repeatDrawState = 0; // 重複抽獎狀態 0:不重複抽獎 1:重複抽獎
 var importModel = "text"; // 匯入模式: text / csv
 var importState = 0; // 匯入狀況值
@@ -184,8 +184,8 @@ function importTextSuccess(textList) {
   importModel = "text";
   importState = 1;
 
-  textList = "項目\n"+ textList; // 第一行為項目類別
-    
+  textList = "項目\n" + textList; // 第一行為項目類別
+
   // textList: "項目1\n項目2\n項目3" -> csvList: [["項目1"], ["項目2"], ["項目3"]]
   csvList = textList.split('\n').map(item => [item]);
   // 去除[""] & ["\n"] & [" "] & [" \n"]
@@ -244,7 +244,7 @@ function exportCsvUrl() {
   }
   if (location.hostname == "127.0.0.1") {
     hostname = location.hostname
-  }else{
+  } else {
     hostname = "https://" + location.hostname
   }
 
@@ -267,7 +267,7 @@ function exportTextUrl() {
   }
   if (location.hostname == "127.0.0.1") {
     hostname = location.hostname
-  }else{
+  } else {
     hostname = "https://" + location.hostname
   }
 
@@ -310,12 +310,12 @@ function printGachaList() {
     $(".display-list-group").show();
     $(".modal-body-display .modal-no-data").hide();
     $("#display-modal-reset").css("display", "flex");
-    
+
     // console.log(dataObjectArray);
     $("ul.gacha-list").empty();
     dataObjectArray.forEach(item => {
       const key = Object.keys(item)[0];
-      const li = $("<li class='item' id='" + item["itemId"] + "'><p class='item-name'>" + item[key] + "</p><p class='item-count'>" + item["itemCount"] + "</p>"+"</li>");
+      const li = $("<li class='item' id='" + item["itemId"] + "'><p class='item-name'>" + item[key] + "</p><p class='item-count'>" + item["itemCount"] + "</p>" + "</li>");
       if (item["itemIsDrawn"] && repeatDrawState == 0) {
         li.addClass("is-drawn");
       }
@@ -333,7 +333,7 @@ function printHistoryList() {
   $("ul.history-list").empty();
 
   historyList.forEach((item, index) => {
-    const li = $("<li class='item'><p class='item-name'>" + (index+1) + ". " + item + "</p></li>");
+    const li = $("<li class='item'><p class='item-name'>" + (index + 1) + ". " + item + "</p></li>");
     $("ul.history-list").append(li);
   });
 
@@ -379,7 +379,7 @@ function setGachaListBtnClickEvent() {
           }
         });
 
-      }else{
+      } else {
         $(this).addClass("is-drawn");
         // 更新該項目的 itemIsDrawn 狀態
         dataObjectArray.forEach(item => {
@@ -407,8 +407,8 @@ function resetDataObjectArray() {
   });
 
   printGachaList();
-  
-  historyList=[];
+
+  historyList = [];
   $(".history-list").empty();
   $(".history-list").html("<li class='item'>暫無紀錄</li>");
 

@@ -10,7 +10,6 @@ var mouseState = 0;
 // 視窗狀況值
 var modalState = 0;
 
-
 // 扭蛋機縮放值
 var gashaponScale_X = 0;
 var gashaponScale_Y = 0;
@@ -317,7 +316,7 @@ function printResultText() {
   if (repeatDrawState == 1) { // 重複抽獎
     console.log("重複抽獎")
     r = getRandom(dataObjectArray.length) - 1; //取得亂數
-  }else if (repeatDrawState == 0) { // 不重複抽獎
+  } else if (repeatDrawState == 0) { // 不重複抽獎
     console.log("不重複抽獎")
     var allDrawn = true;
     dataObjectArray.forEach(item => {
@@ -340,11 +339,11 @@ function printResultText() {
   dataObjectArray[r]["itemCount"] = dataObjectArray[r]["itemCount"] + 1;
   if (repeatDrawState == 0) { // 不重複抽獎
     //更新項目抽獎狀態 true: 已抽獎, false: 未抽獎
-    dataObjectArray[r]["itemIsDrawn"] = true; 
+    dataObjectArray[r]["itemIsDrawn"] = true;
   }
   printGachaList(); // 列印匯入扭蛋項目
 
-  
+
   // 加入歷史紀錄：第 0 個 key
   historyList.push(dataObjectArray[r][csvList[0][0]]);
   printHistoryList();
@@ -396,7 +395,7 @@ function printResultText() {
 
       }
 
-    }else {
+    } else {
       resultContent.append("<p class='text-lg text-center'>" + itemInfo + "</p>")
     }
 
