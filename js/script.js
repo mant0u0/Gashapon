@@ -1,26 +1,26 @@
 // 抓取哪一項元素
-var rangeWrapper = document.querySelector('body');
+const rangeWrapper = document.querySelector('body');
 
 // 滑鼠座標值
-var mouseClick_Y = 0;
-var mouseMove_Y = 0;
+let mouseClick_Y = 0;
+let mouseMove_Y = 0;
 
 // 滑鼠狀況值
-var mouseState = 0;
+let mouseState = 0;
 // 視窗狀況值
-var modalState = 0;
+let modalState = 0;
 
 // 扭蛋機縮放值
-var gashaponScale_X = 0;
-var gashaponScale_Y = 0;
+let gashaponScale_X = 0;
+let gashaponScale_Y = 0;
 
 // 視窗高度 與 觸發高度
-var windowsHeight = document.body.clientHeight;
-var triggerHeight = windowsHeight / 4;
+let windowsHeight = document.body.clientHeight;
+let triggerHeight = windowsHeight / 4;
 
 
 // 扭蛋機ID
-var itemId = [
+let itemId = [
   "#e0dj51prVt431_to", "#e0dj51prVt432_to", "#e0dj51prVt433_to", "#e0dj51prVt434_to",
   // ------------------------------------------------------------------------- //
   // 旋鈕
@@ -37,102 +37,107 @@ var itemId = [
   "#e0dj51prVt479_to", "#e0dj51prVt479_tr", "#e0dj51prVt482_to", "#e0dj51prVt482_tr",
   "#e0dj51prVt485_to", "#e0dj51prVt485_tr", "#e0dj51prVt488_to", "#e0dj51prVt488_tr",
 ]
-var dropGashaponId = [
+let dropGashaponId = [
   // 掉出來的扭蛋
   "#e0dj51prVt428_to", "#e0dj51prVt428_tr", "#e0dj51prVt428_ts", "#e0dj51prVt428",
   "#XXX_to", "#XXX_tr", "#XXX_ts", "#XXX",
 
 ]
-var dropGashaponColor = [
+let dropGashaponColor = [
   "#ff8271", "#ca8ff7", "#ffd278", "#b7dd87", "#9db1ef"
 ]
-var modalBackground = [
+let modalBackground = [
   "#f7524b", "#a159d9", "#f5ad56", "#accf4e", "#6685e3"
 ]
+
 // 扭蛋機動畫
 function gashaponAnimation(state) {
-  if (state == "play") {
-    // 播放動畫
-    document.documentElement.style.setProperty('--play-number', "1");
-    document.documentElement.style.setProperty('--play-state', "running");
-    for (i = 0; i < itemId.length; i++) {
-      $(itemId[i]).css("animation-name", "");
-    }
-  } else if (state == "stop") {
-    // 暫停動畫定重置   
-    document.documentElement.style.setProperty('--play-number', "0");
-    document.documentElement.style.setProperty('--play-state', "paused");
-    for (i = 0; i < itemId.length; i++) {
-      $(itemId[i]).css("animation-name", "unset");
-    }
-  } else if (state == "drop") {
-    getRandomGashapon();
-    // 播放動畫
-    document.documentElement.style.setProperty('--play-number-drop', "1");
-    document.documentElement.style.setProperty('--play-state-drop', "running");
-    for (i = 0; i < itemId.length; i++) {
-      $(dropGashaponId[i]).css("animation-name", "");
-    }
-    setTimeout(function () {
-      document.documentElement.style.setProperty('--play-number-drop', "0");
-      document.documentElement.style.setProperty('--play-state-drop', "paused");
-      for (i = 0; i < itemId.length; i++) {
-        $(dropGashaponId[i]).css("animation-name", "unset");
-      }
-    }, 3 * 1000);
+  const rootStyle = document.documentElement.style;
 
+  if (state === "play") {
+    // 播放動畫
+    rootStyle.setProperty('--play-number', "1");
+    rootStyle.setProperty('--play-state', "running");
+    itemId.forEach(id => {
+      document.querySelector(id).style.animationName = "";
+    });
+  } else if (state === "stop") {
+    // 暫停動畫並重置
+    rootStyle.setProperty('--play-number', "0");
+    rootStyle.setProperty('--play-state', "paused");
+    itemId.forEach(id => {
+      document.querySelector(id).style.animationName = "unset";
+    });
+  } else if (state === "drop") {
+    getRandomGashapon();
+    // 播放掉落動畫
+    rootStyle.setProperty('--play-number-drop', "1");
+    rootStyle.setProperty('--play-state-drop', "running");
+    dropGashaponId.forEach(id => {
+      document.querySelector(id).style.animationName = "";
+    });
+
+    setTimeout(() => {
+      rootStyle.setProperty('--play-number-drop', "0");
+      rootStyle.setProperty('--play-state-drop', "paused");
+      dropGashaponId.forEach(id => {
+        document.querySelector(id).style.animationName = "unset";
+      });
+    }, 3000);
   }
 }
+
 
 // 扭蛋機變形
 function gashaponScale(state) {
+  const gashaponMain = document.querySelector('.gashapon-main');
+  const energyBar = document.querySelector('.energy-bar');
+
   // 「變形」與「變形時間」重置
-  if (state == "reset") {
-    $(".gashapon-main").css("transition", "");
-    $(".gashapon-main").css("transform", "");
+  if (state === "reset") {
+    gashaponMain.style.transition = "";
+    gashaponMain.style.transform = "";
   }
 
   // 「回彈動畫（變矮後回彈）」
-  if (state == "rebound-short") {
-    // 回彈一秒
-    $(".gashapon-main").css("transition", "1s");
-    $(".gashapon-main").css("transform", "scale(1.05, 0.95)");
-    // 一秒後重置時間
-    setTimeout(function () {
-      $(".gashapon-main").css("transform", "");
-      $(".energy-bar").css("transition", "");
-      $(".gashapon-main").addClass("default-animation");
-    }, 1 * 1000);
+  if (state === "rebound-short") {
+    gashaponMain.style.transition = "1s";
+    gashaponMain.style.transform = "scale(1.05, 0.95)";
+    setTimeout(() => {
+      gashaponMain.style.transform = "";
+      energyBar.style.transition = "";
+      gashaponMain.classList.add("default-animation");
+    }, 1000);
   }
 
   // 「回彈動畫（變高後回彈）」
-  if (state == "rebound-high") {
-    // 回彈一秒
-    $(".gashapon-main").css("transition", "1s");
-    $(".gashapon-main").css("transform", "scale(0.95, 1.05)");
-    // 一秒後重置時間
-    setTimeout(function () {
-      $(".gashapon-main").css("transform", "");
-      $(".energy-bar").css("transition", "");
-      $(".gashapon-main").addClass("default-animation");
-    }, 1 * 1000);
+  if (state === "rebound-high") {
+    gashaponMain.style.transition = "1s";
+    gashaponMain.style.transform = "scale(0.95, 1.05)";
+    setTimeout(() => {
+      gashaponMain.style.transform = "";
+      energyBar.style.transition = "";
+      gashaponMain.classList.add("default-animation");
+    }, 1000);
   }
 
   // 還原
-  if (state == "reduction") {
-    $(".gashapon-main").css("transition", "1s");
-    $(".gashapon-main").css("transform", "");
-    $(".gashapon-main").addClass("default-animation");
+  if (state === "reduction") {
+    gashaponMain.style.transition = "1s";
+    gashaponMain.style.transform = "";
+    gashaponMain.classList.add("default-animation");
   }
-
 }
 
 function getRandomGashapon() {
-  r = getRandom(dropGashaponColor.length) - 1;
-  $("#drop-gashapon").css({ fill: dropGashaponColor[r] });
-  $("#drop-gashapon-m").css({ fill: dropGashaponColor[r] });
-  $(".modal-header").css("background", modalBackground[r]);
+  const r = getRandom(dropGashaponColor.length) - 1;
+  
+  // 更新顏色
+  document.querySelector("#drop-gashapon").style.fill = dropGashaponColor[r];
+  document.querySelector("#drop-gashapon-m").style.fill = dropGashaponColor[r];
+  document.querySelector(".modal-header").style.background = modalBackground[r];
 }
+
 
 // ------------------------------------------------------------- //
 // 觸發高度（拖曳距離要達觸發高度，才會觸發扭蛋）
@@ -148,16 +153,16 @@ function getTriggerHeight() {
 function mouseDown(e) {
 
   // 游標變色
-  $(".curzr .outer").css("fill", "#f6c0bb");
+  document.querySelector(".curzr .outer").style.fill = "#f6c0bb";
 
   // 視窗狀況是否有被開啟   
   if (modalState == 0) {
 
     // 獲取觸發高度
-    getTriggerHeight()
+    getTriggerHeight();
 
-    // $(".gashapon-main").removeClass("default-animation");
-    $(".energy-bar").css("transition", "0s");
+    // document.querySelector(".gashapon-main").classList.remove("default-animation");
+    document.querySelector(".energy-bar").style.transition = "0s";
 
     // 「變形」與「變形時間」重置
     gashaponScale("reset");
@@ -167,14 +172,15 @@ function mouseDown(e) {
 
     // 滑鼠點擊時的 Y 座標
     mouseClick_Y = e.pageY;
-    if (e.pageY == undefined) {
-      mouseClick_Y = e.touches[0].pageY
+    if (e.pageY === undefined) {
+      mouseClick_Y = e.touches[0].pageY;
     }
 
     // 狀態更新
     mouseState = 1;
   }
 }
+
 
 // 游標一進入視窗就會一直執行。   
 function mouseMove(e) {
@@ -232,11 +238,11 @@ function mouseMove(e) {
 function mouseUp(e) {
 
   // 游標變回原色
-  $(".curzr .outer").css("fill", "");
+  document.querySelector(".curzr .outer").style.fill = "";
 
-  // $(".hint-text .text").text("游標放開");
-  $(".energy-bar").css("transition", "1s");
-  $(".energy-bar").css("transform", "scaleY(0)");
+  // document.querySelector(".hint-text .text").textContent = "游標放開";
+  document.querySelector(".energy-bar").style.transition = "1s";
+  document.querySelector(".energy-bar").style.transform = "scaleY(0)";
 
   if (mouseState == 1) {
 
@@ -244,32 +250,29 @@ function mouseUp(e) {
     // mouseMove_Y（負值向下拉，往上回彈變高）
     if (mouseMove_Y <= 0 && mouseMove_Y < -100) {
       gashaponScale("rebound-high");
-      $(".hint-text .text").text("按住螢幕滑動");
+      document.querySelector(".hint-text .text").textContent = "按住螢幕滑動";
 
     }
     // mouseMove_Y（正值向上拉，往下回彈變矮）
     else if (mouseMove_Y > 0 && mouseMove_Y > 100) {
       gashaponScale("rebound-short");
-      $(".hint-text .text").text("按住螢幕滑動");
+      document.querySelector(".hint-text .text").textContent = "按住螢幕滑動";
 
     }
     // 其他還原不回彈     
     else {
       gashaponScale("reduction");
-      $(".hint-text .text").text("按住螢幕滑動");
-
+      document.querySelector(".hint-text .text").textContent = "按住螢幕滑動";
     }
 
-    // console.log(mouseMove_Y);
-
-    // 播放動畫（負值向下拉，滑鼠位移植小於 -1 * triggerHeight 才會出發動畫）
+    // 播放動畫（負值向下拉，滑鼠位移值小於 -1 * triggerHeight 才會出發動畫）
     if (mouseMove_Y < -1 * triggerHeight || mouseMove_Y > triggerHeight) {
       modalState = 1;
       gashaponAnimation("play");
       setTimeout(function () {
         gashaponAnimation("drop");
       }, 1.25 * 1000);
-      $(".hint-text .text").text("顯示結果");
+      document.querySelector(".hint-text .text").textContent = "顯示結果";
       showResultModal();
     }
   }
@@ -279,23 +282,29 @@ function mouseUp(e) {
   mouseMove_Y = 0;
 }
 
+
 // ------------------------------------------------------------- //
 // 顯示結果視窗
 function showResultModal() {
 
-
   setTimeout(function () {
     // 判斷是否有資料匯入（無資料：開啟匯入視窗；有資料：顯示結果）
-    if (dataObjectArray == undefined || importState == 0) {
+    if (dataObjectArray === undefined || importState === 0) {
+      // TODO: check modal usage
       $('#import-modal').modal('show');
-      $("#import-modal-cancel").click(function () {
-        modalState = 0;
-        if (importState == 0) {
-          $(".hint-text .text").text("資料尚未匯入");
-        } else {
-          $(".hint-text .text").text("按住螢幕滑動");
-        }
-      });
+
+      const cancelButton = document.getElementById('import-modal-cancel');
+      if (cancelButton) {
+        cancelButton.addEventListener('click', function () {
+          modalState = 0;
+          const hintTextElement = document.querySelector(".hint-text .text");
+          if (importState === 0) {
+            hintTextElement.textContent = "資料尚未匯入";
+          } else {
+            hintTextElement.textContent = "按住螢幕滑動";
+          }
+        });
+      }
     } else {
       printResultText();
       $('#result-modal').modal('show');
@@ -415,7 +424,12 @@ function showModal(id) {
 // 關閉視窗
 function closeModal() {
   $(".modal").modal('hide');
-  $(".hint-text .text").text("按住螢幕滑動");
+
+  const hintTextElement = document.querySelector(".hint-text .text");
+  if (hintTextElement) {
+    hintTextElement.textContent = "按住螢幕滑動";
+  }
+  
   modalState = 0;
 }
 
@@ -431,7 +445,7 @@ function isURL(str) {
 // 判斷字串為圖片連結
 function isImageURL(str) {
   // 定義一個正則表達式來匹配合法的圖片URL格式
-  const imageRegex = /\.(jpeg|jpg|gif|png|wbep)$/i;
+  const imageRegex = /\.(jpeg|jpg|gif|png|webp)$/i;
 
   // 使用正則表達式的 test 方法來檢查字串是否符合格式
   return imageRegex.test(str);
@@ -441,7 +455,8 @@ function isImageURL(str) {
 // 亂數（1~x）的隨機整數
 function getRandom(x) {
   return Math.floor(Math.random() * x) + 1;
-};
+}
+
 // --------------
 // 各種游標事件
 rangeWrapper.addEventListener('mousedown', mouseDown);
