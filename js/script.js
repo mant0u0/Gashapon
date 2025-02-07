@@ -321,6 +321,7 @@ function printResultText() {
 
   resultContent.html(""); // 內容清空
   $(".modal-body-result .modal-no-data").hide();
+  // console.log("dataObjectArray", dataObjectArray);
 
   if (repeatDrawState == 1) { // 重複抽獎
     console.log("重複抽獎")
@@ -354,6 +355,7 @@ function printResultText() {
 
 
   // 加入歷史紀錄：第 0 個 key
+  // BUG: 如果只有一項品相要抽 會出現錯誤
   historyList.push(dataObjectArray[r][csvList[0][0]]);
   printHistoryList();
 
