@@ -131,7 +131,7 @@ function gashaponScale(state) {
 
 function getRandomGashapon() {
   const r = getRandom(dropGashaponColor.length) - 1;
-  
+
   // 更新顏色
   document.querySelector("#drop-gashapon").style.fill = dropGashaponColor[r];
   document.querySelector("#drop-gashapon-m").style.fill = dropGashaponColor[r];
@@ -188,49 +188,52 @@ function mouseMove(e) {
   if (mouseState == 1 && modalState == 0) {
 
     // $(".gashapon-main").css("transition","0.2s");
-    $(".gashapon-main").removeClass("default-animation");
+    const gashaponMain = document.querySelector(".gashapon-main");
+    gashaponMain.classList.remove("default-animation");
 
     // 修復手機版本會抓不到 e.pageY 這個數值。
-    Y = e.pageY;
-    if (Y == undefined) {
-      Y = e.touches[0].pageY
+    let Y = e.pageY;
+    if (Y === undefined) {
+      Y = e.touches[0].pageY;
     }
     // 游標位移量（負值向下、正值向上）
     mouseMove_Y = mouseClick_Y - Y;
 
     gashaponScale_X = -(mouseMove_Y * 0.0005 - 1);
     gashaponScale_Y = mouseMove_Y * 0.001 + 1;
-    gashaponScale_CSS = "scale(" + gashaponScale_X + "," + gashaponScale_Y + ")";
+    const gashaponScale_CSS = `scale(${gashaponScale_X},${gashaponScale_Y})`;
 
-    $(".gashapon-main").css("transform", gashaponScale_CSS);
+    gashaponMain.style.transform = gashaponScale_CSS;
 
     if (mouseMove_Y < -30 || mouseMove_Y > 30) {
       closeMenu();
     }
 
+    const energyBar = document.querySelector(".energy-bar");
+    const hintEnergy = document.querySelector(".hint-text .energy");
+    const hintText = document.querySelector(".hint-text .text");
 
-    // 向下
     if (mouseMove_Y < 0) {
-      // console.log(mouseMove_Y)
-      $(".energy-bar").css("transform", "scaleY(" + (mouseMove_Y) / (-1 * triggerHeight) + ")");
-      $(".hint-text .energy").css("transform", "scaleX(" + (mouseMove_Y) / (-1 * triggerHeight) + ")");
-      if (mouseMove_Y < -1 * triggerHeight) {
-        $(".hint-text .text").text("可放開扭蛋機");
-      }
-    }
-    // 向上
-    else if (mouseMove_Y > 0) {
-      // console.log(mouseMove_Y)
-      $(".energy-bar").css("transform", "scaleY(" + (mouseMove_Y) / triggerHeight + ")");
-      $(".hint-text .energy").css("transform", "scaleX(" + (mouseMove_Y) / triggerHeight + ")");
-      if (mouseMove_Y > triggerHeight) {
-        $(".hint-text .text").text("可放開扭蛋機");
-      }
-    }
-    else {
-      $(".hint-text .text").text("請持續滑動");
-    }
+      // 向下
 
+      energyBar.style.transform = `scaleY(${mouseMove_Y / (-1 * triggerHeight)})`;
+      hintEnergy.style.transform = `scaleX(${mouseMove_Y / (-1 * triggerHeight)})`;
+      if (mouseMove_Y < -triggerHeight) {
+        hintText.textContent = "可放開扭蛋機";
+      }
+
+    } else if (mouseMove_Y > 0) {
+      // 向上
+
+      energyBar.style.transform = `scaleY(${mouseMove_Y / triggerHeight})`;
+      hintEnergy.style.transform = `scaleX(${mouseMove_Y / triggerHeight})`;
+      if (mouseMove_Y > triggerHeight) {
+        hintText.textContent = "可放開扭蛋機";
+      }
+
+    } else {
+      hintText.textContent = "請持續滑動";
+    }
   }
 }
 
@@ -290,8 +293,10 @@ function showResultModal() {
   setTimeout(function () {
     // 判斷是否有資料匯入（無資料：開啟匯入視窗；有資料：顯示結果）
     if (dataObjectArray === undefined || importState === 0) {
-      // TODO: check modal usage
-      $('#import-modal').modal('show');
+
+      let importModal = new bootstrap.Modal(document.getElementById('import-modal'));
+      importModal.show();
+      // console.log("123123");
 
       const cancelButton = document.getElementById('import-modal-cancel');
       if (cancelButton) {
@@ -307,7 +312,9 @@ function showResultModal() {
       }
     } else {
       printResultText();
-      $('#result-modal').modal('show');
+
+      let resultModal = new bootstrap.Modal(document.getElementById('result-modal'));
+      resultModal.show();
     }
 
   }, 3 * 1000);
@@ -317,121 +324,108 @@ function showResultModal() {
 // 列印結果
 function printResultText() {
 
-  resultContent = $(".modal-body .result-content");
+  const resultContent = document.querySelector(".modal-body .result-content");
+  resultContent.innerHTML = ""; // 內容清空
 
-  resultContent.html(""); // 內容清空
-  $(".modal-body-result .modal-no-data").hide();
-  // console.log("dataObjectArray", dataObjectArray);
+  document.querySelector(".modal-body-result .modal-no-data").style.display = 'none';
 
-  if (repeatDrawState == 1) { // 重複抽獎
-    console.log("重複抽獎")
+  let r;
+
+  if (repeatDrawState === 1) { // 重複抽獎
+    console.log("重複抽獎");
     r = getRandom(dataObjectArray.length) - 1; //取得亂數
-  } else if (repeatDrawState == 0) { // 不重複抽獎
-    console.log("不重複抽獎")
-    var allDrawn = true;
-    dataObjectArray.forEach(item => {
-      if (item["itemIsDrawn"] == false) {
-        allDrawn = false;
-      }
-    });
+
+  } else if (repeatDrawState === 0) { // 不重複抽獎
+    console.log("不重複抽獎");
+
+    const allDrawn = dataObjectArray.every(item => item["itemIsDrawn"]);
+
     if (allDrawn) {
-      console.log("全部都抽完")
-      $(".modal-body-result .modal-no-data").show();
+      console.log("全部都抽完");
+
+      document.querySelector(".modal-body-result .modal-no-data").style.display = 'block';
+
       return;
     }
     do {
-      r = getRandom(dataObjectArray.length) - 1; //取得亂數
-    } while (dataObjectArray[r]["itemIsDrawn"] == true);
+      r = getRandom(dataObjectArray.length) - 1;
+    } while (dataObjectArray[r]["itemIsDrawn"]);
   }
+
   console.log(dataObjectArray, r)
 
   // 計數器
-  dataObjectArray[r]["itemCount"] = dataObjectArray[r]["itemCount"] + 1;
-  if (repeatDrawState == 0) { // 不重複抽獎
-    //更新項目抽獎狀態 true: 已抽獎, false: 未抽獎
+  dataObjectArray[r]["itemCount"]++;
+  if (repeatDrawState === 0) {
     dataObjectArray[r]["itemIsDrawn"] = true;
   }
   printGachaList(); // 列印匯入扭蛋項目
 
 
   // 加入歷史紀錄：第 0 個 key
-  // BUG: 如果只有一項品相要抽 會出現錯誤
   historyList.push(dataObjectArray[r][csvList[0][0]]);
   printHistoryList();
 
-
   // GachaListItem 新增 active  
-  $(".gacha-list .item").removeClass("active");
-  $(".gacha-list #" + dataObjectArray[r]["itemId"]).addClass("active");
+  document.querySelectorAll(".gacha-list .item").forEach(item => item.classList.remove("active"));
+  document.getElementById(dataObjectArray[r]["itemId"]).classList.add("active");
 
+  const csvObjectKey = csvList[0];
+  const csvObjectKeyLength = csvObjectKey.length;
 
-  csvObjectKey = csvList[0]                 // 取得物件標題
-  csvObjectKeyLength = csvObjectKey.length  // 取得物件標題數量
+  csvObjectKey.forEach(itemTitle => {
+    const itemInfo = dataObjectArray[r][itemTitle];
 
-  for (i = 0; i < csvObjectKeyLength; i++) {
-    itemTitle = csvObjectKey[i] // 標題 ( 作為 dataObjectArray[r] 的 Key )
-    itemInfo = dataObjectArray[r][itemTitle] // 內容 ( 取第 r 個元素標題為 itemTitle 的項目  )
-
-    if (csvObjectKeyLength > 1 || itemTitle == "地址" || itemTitle == "圖片") {
-
-      if (itemTitle == "地址") {
-        resultContent.append("<p>" + itemTitle + "：" + "<a href='https://www.google.com/maps/place/" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
-      }
-
-      else if (itemTitle == "圖片") {
-        resultImg = 1;
-        resultContent.append("<img src='" + itemInfo + "' class='result-img'>")
-      }
-
-      else {
-
-        // 內容為連結
-        if (isURL(itemInfo)) {
-          // 圖片連結
-          if (isImageURL(itemInfo)) {
-            resultContent.append("<p>" + itemTitle + "</p>")
-            resultContent.append("<img src='" + itemInfo + "' class='result-img'>")
-          }
-          // 文字連結
-          else {
-            resultContent.append("<p>" + itemTitle + "：" + "<a href='" + itemInfo + "' target='_blank'>" + itemInfo + "</a></p>")
-          }
-
+    if (csvObjectKeyLength > 1 || itemTitle === "地址" || itemTitle === "圖片") {
+      if (itemTitle === "地址") {
+        resultContent.innerHTML += `<p>${itemTitle}：<a href='https://www.google.com/maps/place/${itemInfo}' target='_blank'>${itemInfo}</a></p>`;
+      } else if (itemTitle === "圖片") {
+        resultContent.innerHTML += `<img src='${itemInfo}' class='result-img'>`;
+      } else if (isURL(itemInfo)) {
+        if (isImageURL(itemInfo)) {
+          resultContent.innerHTML += `<p>${itemTitle}</p><img src='${itemInfo}' class='result-img'>`;
+        } else {
+          resultContent.innerHTML += `<p>${itemTitle}：<a href='${itemInfo}' target='_blank'>${itemInfo}</a></p>`;
         }
-
-        // 一般文字
-        else {
-          resultContent.append("<p>" + itemTitle + "：" + itemInfo + "</p>")
-        }
-
+      } else {
+        resultContent.innerHTML += `<p>${itemTitle}：${itemInfo}</p>`;
       }
-
     } else {
-      resultContent.append("<p class='text-lg text-center'>" + itemInfo + "</p>")
+      resultContent.innerHTML += `<p class='text-lg text-center'>${itemInfo}</p>`;
     }
-
-  }
-
+  });
 }
 
 
 // --------------
 // 顯示視窗
 function showModal(id) {
-  $(".modal").modal('hide');
-  $(id).modal('show');
+
+  closeModal();
+  const idModal = new bootstrap.Modal(id);
+  idModal.show();
+
   closeMenu();
   modalState = 1;
 }
-// 關閉視窗
+
+// 關閉所有其他視窗
 function closeModal() {
-  $(".modal").modal('hide');
+
+  let allModal = document.querySelectorAll('.modal');
+  allModal.forEach(m => {
+    let myModal = bootstrap.Modal.getInstance(m);
+    // console.log("Close modal function: ", myModal);
+    if (myModal) {
+      myModal.hide();
+    }
+  });
 
   const hintTextElement = document.querySelector(".hint-text .text");
   if (hintTextElement) {
     hintTextElement.textContent = "按住螢幕滑動";
   }
-  
+
   modalState = 0;
 }
 
@@ -470,6 +464,4 @@ rangeWrapper.addEventListener('touchmove', mouseMove);
 rangeWrapper.addEventListener('mouseup', mouseUp);
 rangeWrapper.addEventListener('mouseleave', mouseUp);
 rangeWrapper.addEventListener('touchend', mouseUp);
-// ----------------
-
-
+// --------------

@@ -115,11 +115,19 @@ function importCsvSuccess(data) {
 
   importModel = "csv";
 
-  // 讀取 csv 資料
-  csvList = $.csv.toArrays(data + "\n");
+  console.log("data: ", data);
 
-  // TODO: dataObjectArray has script.js read variable, how to cross?
+
+  // 讀取 csv 資料
+  csvList = data.split('\n');
+
+  for (let i = 0; i < csvList.length; i++) {
+    csvList[i] = csvList[i].trim().split(',');
+  }
+
   dataObjectArray = convertListToObjectArray(csvList);
+
+  console.log("dataObjectArray: ", dataObjectArray);
 
   importState = 1;
   closeModal();
@@ -205,7 +213,7 @@ function importTextSuccess(textList) {
   textList = "項目\n" + textList;
 
   // 將 textList 分割成 csvList，去除空白與無效項目
-  let csvList = textList.split('\n').map(item => [item]);
+  csvList = textList.split('\n').map(item => [item]);
   csvList = csvList.filter(item => item[0] !== "" && item[0] !== "\n" && item[0] !== " " && item[0] !== " \n");
 
   // 將 csvList 轉換成物件陣列
@@ -236,6 +244,7 @@ function importTextSuccess(textList) {
 
 // 列表轉換
 function convertListToObjectArray(list) {
+
   // 獲取標題行
   const headers = list[0];
 
@@ -263,7 +272,7 @@ function exportCsvUrl() {
   let hostname = location.hostname === "127.0.0.1" ? location.hostname : "https://" + location.hostname;
 
   let shareUrlInput = document.querySelector(".share-url");
-  
+
   if (csvUrl.indexOf("https://docs.google.com/spreadsheets/d/e/") !== -1) {
     // 將 Google CSV 去頭去尾
     let googleUrl = csvUrl.replace("https://docs.google.com/spreadsheets/d/e/", "").split("/")[0];
@@ -316,7 +325,7 @@ function printGachaList() {
     displayListGroup.style.display = "block";
     modalNoData.style.display = "none";
     displayModalReset.style.display = "flex";
-    
+
     gachaList.innerHTML = ""; // 清空列表
     dataObjectArray.forEach(item => {
       const key = Object.keys(item)[0];
@@ -437,6 +446,7 @@ function resetDataObjectArray() {
 
 
 // display 頁籤按鈕
+displayTabClickEvent();
 function displayTabClickEvent() {
   const tabs = document.querySelectorAll("#display-modal .tab-list .tab");
   const tabPages = document.querySelectorAll("#display-modal .tab-page");
