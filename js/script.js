@@ -246,6 +246,8 @@ function mouseUp(e) {
   // document.querySelector(".hint-text .text").textContent = "游標放開";
   document.querySelector(".energy-bar").style.transition = "1s";
   document.querySelector(".energy-bar").style.transform = "scaleY(0)";
+  document.querySelector(".hint-text .energy").style.transition = "0.2s";
+  document.querySelector(".hint-text .energy").style.transform = "scaleX(0)";
 
   if (mouseState == 1) {
 
@@ -296,7 +298,6 @@ function showResultModal() {
 
       let importModal = new bootstrap.Modal(document.getElementById('import-modal'));
       importModal.show();
-      // console.log("123123");
 
       const cancelButton = document.getElementById('import-modal-cancel');
       if (cancelButton) {

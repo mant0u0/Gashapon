@@ -115,9 +115,6 @@ function importCsvSuccess(data) {
 
   importModel = "csv";
 
-  console.log("data: ", data);
-
-
   // 讀取 csv 資料
   csvList = data.split('\n');
 
@@ -147,7 +144,7 @@ function importCsvSuccess(data) {
   document.querySelector(".no-data-text").style.display = "none";
 
   // 產生分享連結
-  exportCsvUrl();
+  exportUrl('csv');
 
   // 列印匯入的扭蛋項目
   printGachaList();
@@ -234,7 +231,7 @@ function importTextSuccess(textList) {
   document.querySelector(".no-data-text").style.display = "none";
 
   // 產生分享連結
-  exportTextUrl();
+  exportUrl("text");
 
   // 列印匯入的扭蛋項目
   printGachaList();
@@ -267,31 +264,19 @@ function convertListToObjectArray(list) {
 
 //---------------------------------------------------------------------
 // 產生分享連結
-function exportCsvUrl() {
-  let port = location.port ? ":" + location.port : "";
-  let hostname = location.hostname === "127.0.0.1" ? location.hostname : "https://" + location.hostname;
-
+function exportUrl(type) {
   let shareUrlInput = document.querySelector(".share-url");
+  let hostname = location.href.replace(location.search, "");
 
-  if (csvUrl.indexOf("https://docs.google.com/spreadsheets/d/e/") !== -1) {
-    // 將 Google CSV 去頭去尾
-    let googleUrl = csvUrl.replace("https://docs.google.com/spreadsheets/d/e/", "").split("/")[0];
-    shareUrlInput.value = `${hostname}${port}${location.pathname}?google=${googleUrl}`;
-  } else {
-    shareUrlInput.value = `${hostname}${port}${location.pathname}?csv=${csvUrl}`;
+  if (type === 'csv') {
+    let urlParam = csvUrl.indexOf("https://docs.google.com/spreadsheets/d/e/") !== -1
+      ? `google=${csvUrl.replace("https://docs.google.com/spreadsheets/d/e/", "").split("/")[0]}`
+      : `csv=${csvUrl}`;
+    shareUrlInput.value = `${hostname}?${urlParam}`;
+  } else if (type === 'text') {
+    let itemText = document.querySelector("#importText").value.replace(/\n/g, "__");
+    shareUrlInput.value = `${hostname}?item=${itemText}`;
   }
-}
-
-function exportTextUrl() {
-  let port = location.port ? ":" + location.port : "";
-  let hostname = location.hostname === "127.0.0.1" ? location.hostname : "https://" + location.hostname;
-
-  let itemText = document.querySelector("#importText").value;
-  // itemText : 1\n2\n3 -> itemText : 1__2__3
-  itemText = itemText.replace(/\n/g, "__");
-
-  let shareUrlInput = document.querySelector(".share-url");
-  shareUrlInput.value = `${hostname}${port}${location.pathname}?item=${itemText}`;
 }
 
 
