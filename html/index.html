@@ -1,655 +1,513 @@
-<!DOCTYPE html>
+
 <html lang="zh-TW">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>扭蛋機</title>
-  <meta name="author" content="@Mant0uStudio">
-  <meta name="description" content="我是一台扭蛋機呦 (｡･ω･｡)">
-  <meta name="keywords" content="扭蛋機,抽獎,抽獎機,抽獎器,抽獎程式,抽獎系統,抽獎工具,抽獎軟體,抽獎網站,抽獎遊戲,抽獎活動">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <meta property="og:title" content="扭蛋機" />
-  <meta property="og:description" content="我是一台扭蛋機呦 (｡･ω･｡)" />
-  <meta property="og:image" content="../img/og-image.png" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@Mant0uStudio" />
-  <meta name="twitter:title" content="扭蛋機" />
-  <meta name="twitter:description" content="我是一台扭蛋機呦 (｡･ω･｡)" />
-  <meta name="twitter:image" content="../img/og-image.png" />
-
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" >
-  <link rel="preconnect" href="https://pro.fontawesome.com" crossorigin="anonymous" >
-  <link rel="manifest" href="../json/manifest.json" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-  <!-- <link rel="stylesheet" href="../css/style.css" /> -->
-  <link rel="stylesheet" href="../css/style.min.css" />
-</head>
-
-<body>
-  <div class="curzr" hidden="">
-    <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="outer"
-        d="M28.7343 38C28.2946 37.9724 27.8584 37.9011 27.4316 37.7871L27.1926 37.6995L18.3968 33.3422C18.2677 33.2724 18.1238 33.2379 17.9785 33.2421C17.8425 33.2408 17.7079 33.2707 17.5841 33.3297L8.70464 37.424C8.62927 37.4622 8.54859 37.4876 8.46562 37.4992C8.07407 37.6025 7.6738 37.6654 7.27054 37.687C6.56327 37.6815 5.86819 37.4934 5.24684 37.1394C4.6255 36.7854 4.09704 36.2763 3.70826 35.6573C3.31948 35.0382 3.08236 34.3283 3.01791 33.5904C2.95345 32.8524 3.06363 32.1092 3.33871 31.4265L14.0108 5.69616C14.3448 4.89477 14.8947 4.21286 15.5931 3.73396C16.2915 3.25507 17.108 3 17.9426 3C18.7773 3 19.5938 3.25507 20.2922 3.73396C20.9906 4.21286 21.5405 4.89477 21.8745 5.69616L32.6302 31.6644C32.9196 32.3477 33.0423 33.0957 32.9871 33.841C32.932 34.5863 32.7008 35.3055 32.3144 35.9339C31.9279 36.5623 31.3984 37.0802 30.7735 37.4408C30.1485 37.8015 29.4477 37.9936 28.7343 38Z"
-        fill="#FCF0F0"></path>
-      <path class="inner" fill-rule="evenodd" clip-rule="evenodd"
-        d="M14.1416 1.15747C13.005 1.91687 12.1155 2.99911 11.5848 4.26821L0.582388 29.8864L0.581346 29.8888C0.1223 30.9484 -0.069717 32.1066 0.0225225 33.2598C0.114832 34.4137 0.488939 35.5265 1.11126 36.4981C1.73359 37.4697 2.58466 38.2698 3.58807 38.8265C4.59149 39.3833 5.71585 39.6792 6.86023 39.6878L6.88946 39.6881L6.91866 39.6869C7.49914 39.664 8.07592 39.5828 8.64048 39.4445C8.89207 39.3905 9.13718 39.3092 9.37152 39.202L17.9583 35.3581L26.4175 39.3964C26.6456 39.5121 26.8862 39.6005 27.1344 39.6598C27.7388 39.8363 28.3596 39.9492 28.987 39.9964L29.0343 40L29.0817 40C30.2286 39.999 31.3574 39.7098 32.3666 39.1584C33.3758 38.6069 34.2337 37.8105 34.8634 36.8406C35.493 35.8707 35.8747 34.7578 35.974 33.6018C36.0733 32.4458 35.8872 31.2829 35.4324 30.2177L24.3295 4.32066C23.8052 3.0548 22.9268 1.97143 21.802 1.20383C20.6747 0.434512 19.3494 0.0160587 17.9897 0.000140043L17.9852 8.69517e-05L17.9806 6.68904e-05C16.6161 -0.00597004 15.2803 0.396748 14.1416 1.15747ZM29.9934 34.7095C29.728 34.8578 29.4321 34.9408 29.1296 34.9522C28.899 34.9278 28.6701 34.8884 28.4445 34.8343L19.4588 30.5419L19.4543 30.5398C18.9922 30.3236 18.4894 30.211 17.9803 30.2098C17.4866 30.2068 16.9983 30.3144 16.5506 30.5248L7.55077 34.5974C7.3429 34.6396 7.13295 34.6708 6.9218 34.6906C6.61835 34.6819 6.3209 34.6012 6.05362 34.4546C5.77178 34.3 5.5323 34.0771 5.35669 33.8057C5.18109 33.5344 5.07485 33.2231 5.04753 32.9C5.0202 32.5768 5.07264 32.2519 5.20014 31.9543L16.175 6.26402L16.1794 6.25321C16.3249 5.89467 16.573 5.58827 16.8917 5.37328C17.2078 5.16011 17.5791 5.04644 17.9588 5.04648C18.3316 5.05618 18.6937 5.1746 19.0016 5.38759C19.3122 5.60245 19.5542 5.90422 19.6979 6.25601L19.7021 6.26628L30.8161 32.1766L30.8204 32.1862C30.9537 32.4834 31.0115 32.8096 30.9884 33.1351C30.9654 33.4606 30.8623 33.7752 30.6885 34.0501C30.5148 34.3251 30.2758 34.5518 29.9934 34.7095Z"
-        fill="#633B4B"></path>
-    </svg>
-  </div>
-  <div class="modal fade" id="result-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">扭蛋結果</h5>
-        </div>
-        <div class="modal-body modal-body-result">
-          <div class="result-content"></div>
-          <div class="modal-no-data">
-            <div class="no-data-content">
-              <div class="gacha-icon"></div>
-              <p>已經沒有扭蛋了！</p>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn modal-footer-btn secondary-btn" type="button"
-            onclick="showModal(&quot;#display-modal&quot;)">檢視</button>
-          <button class="btn modal-footer-btn" type="button" onclick="closeModal()">確認</button>
-        </div>
-      </div>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>扭蛋機</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta property="og:title" content="扭蛋機"/>
+    <meta property="og:description" content="我是一台扭蛋機呦 (｡･ω･｡)"/>
+    <meta property="og:image" content="../img/og-image.png"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@Mant0uStudio"/>
+    <meta name="twitter:title" content="扭蛋機"/>
+    <meta name="twitter:description" content="我是一台扭蛋機呦 (｡･ω･｡)"/>
+    <meta name="twitter:image" content="../img/og-image.png"/>
+    <link rel="manifest" href="../json/manifest.json"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+  </head>
+  <body>
+    <div class="curzr" hidden="">
+      <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="outer" d="M28.7343 38C28.2946 37.9724 27.8584 37.9011 27.4316 37.7871L27.1926 37.6995L18.3968 33.3422C18.2677 33.2724 18.1238 33.2379 17.9785 33.2421C17.8425 33.2408 17.7079 33.2707 17.5841 33.3297L8.70464 37.424C8.62927 37.4622 8.54859 37.4876 8.46562 37.4992C8.07407 37.6025 7.6738 37.6654 7.27054 37.687C6.56327 37.6815 5.86819 37.4934 5.24684 37.1394C4.6255 36.7854 4.09704 36.2763 3.70826 35.6573C3.31948 35.0382 3.08236 34.3283 3.01791 33.5904C2.95345 32.8524 3.06363 32.1092 3.33871 31.4265L14.0108 5.69616C14.3448 4.89477 14.8947 4.21286 15.5931 3.73396C16.2915 3.25507 17.108 3 17.9426 3C18.7773 3 19.5938 3.25507 20.2922 3.73396C20.9906 4.21286 21.5405 4.89477 21.8745 5.69616L32.6302 31.6644C32.9196 32.3477 33.0423 33.0957 32.9871 33.841C32.932 34.5863 32.7008 35.3055 32.3144 35.9339C31.9279 36.5623 31.3984 37.0802 30.7735 37.4408C30.1485 37.8015 29.4477 37.9936 28.7343 38Z" fill="#FCF0F0"></path>
+        <path class="inner" fill-rule="evenodd" clip-rule="evenodd" d="M14.1416 1.15747C13.005 1.91687 12.1155 2.99911 11.5848 4.26821L0.582388 29.8864L0.581346 29.8888C0.1223 30.9484 -0.069717 32.1066 0.0225225 33.2598C0.114832 34.4137 0.488939 35.5265 1.11126 36.4981C1.73359 37.4697 2.58466 38.2698 3.58807 38.8265C4.59149 39.3833 5.71585 39.6792 6.86023 39.6878L6.88946 39.6881L6.91866 39.6869C7.49914 39.664 8.07592 39.5828 8.64048 39.4445C8.89207 39.3905 9.13718 39.3092 9.37152 39.202L17.9583 35.3581L26.4175 39.3964C26.6456 39.5121 26.8862 39.6005 27.1344 39.6598C27.7388 39.8363 28.3596 39.9492 28.987 39.9964L29.0343 40L29.0817 40C30.2286 39.999 31.3574 39.7098 32.3666 39.1584C33.3758 38.6069 34.2337 37.8105 34.8634 36.8406C35.493 35.8707 35.8747 34.7578 35.974 33.6018C36.0733 32.4458 35.8872 31.2829 35.4324 30.2177L24.3295 4.32066C23.8052 3.0548 22.9268 1.97143 21.802 1.20383C20.6747 0.434512 19.3494 0.0160587 17.9897 0.000140043L17.9852 8.69517e-05L17.9806 6.68904e-05C16.6161 -0.00597004 15.2803 0.396748 14.1416 1.15747ZM29.9934 34.7095C29.728 34.8578 29.4321 34.9408 29.1296 34.9522C28.899 34.9278 28.6701 34.8884 28.4445 34.8343L19.4588 30.5419L19.4543 30.5398C18.9922 30.3236 18.4894 30.211 17.9803 30.2098C17.4866 30.2068 16.9983 30.3144 16.5506 30.5248L7.55077 34.5974C7.3429 34.6396 7.13295 34.6708 6.9218 34.6906C6.61835 34.6819 6.3209 34.6012 6.05362 34.4546C5.77178 34.3 5.5323 34.0771 5.35669 33.8057C5.18109 33.5344 5.07485 33.2231 5.04753 32.9C5.0202 32.5768 5.07264 32.2519 5.20014 31.9543L16.175 6.26402L16.1794 6.25321C16.3249 5.89467 16.573 5.58827 16.8917 5.37328C17.2078 5.16011 17.5791 5.04644 17.9588 5.04648C18.3316 5.05618 18.6937 5.1746 19.0016 5.38759C19.3122 5.60245 19.5542 5.90422 19.6979 6.25601L19.7021 6.26628L30.8161 32.1766L30.8204 32.1862C30.9537 32.4834 31.0115 32.8096 30.9884 33.1351C30.9654 33.4606 30.8623 33.7752 30.6885 34.0501C30.5148 34.3251 30.2758 34.5518 29.9934 34.7095Z" fill="#633B4B"></path>
+      </svg>
     </div>
-  </div>
-  <div class="modal fade" id="import-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">匯入資料</h5>
-        </div>
-        <div class="modal-body modal-body-import">
-          <div class="import-group">
-            <div class="tab-list">
-              <button class="tab active" data-tab-page-id="#import-text">文字匯入</button>
-              <button class="tab" data-tab-page-id="#import-csv">CSV 匯入</button>
-            </div>
-            <div class="tab-page active" id="import-text">
-              <div class="form-group">
-                <p>扭蛋項目（項目使用換行隔開）</p>
-                <label class="form">
-                  <textarea id="importText" placeholder="請輸入扭蛋項目"></textarea>
-                </label>
-                <div class="warning-text" id="importTextWarning">此欄位不可空白。</div>
+    <div class="modal fade" id="result-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">扭蛋結果</h5>
+          </div>
+          <div class="modal-body modal-body-result">
+            <div class="result-content"></div>
+            <div class="modal-no-data">
+              <div class="no-data-content">
+                <div class="gacha-icon"></div>
+                <p>已經沒有扭蛋了！</p>
               </div>
             </div>
-            <div class="tab-page" id="import-csv">
-              <div class="form-group">
-                <p>CSV 網址</p>
-                <label class="form">
-                  <input class="import-url" id="importUrl" type="text" placeholder="請輸入 CSV 連結"
-                    value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv" />
-                  <button class="form-clear-btn" onclick="document.getElementById('importUrl').value = '';"><i
-                      class="fas fa-times-circle"></i></button>
-                </label>
-                <div class="warning-text" id="importCsvWarning">此欄位不可空白。</div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="showModal(&quot;#display-modal&quot;)">檢視</button>
+            <button class="btn modal-footer-btn" type="button" onclick="closeModal()">確認</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="import-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">匯入資料</h5>
+          </div>
+          <div class="modal-body modal-body-import">
+            <div class="import-group">
+              <div class="tab-list"> 
+                <button class="tab active" data-tab-page-id="#import-text">文字匯入</button>
+                <button class="tab" data-tab-page-id="#import-csv">CSV 匯入</button>
+              </div>
+              <div class="tab-page active" id="import-text">
+                <div class="form-group">
+                  <p>扭蛋項目（項目使用換行隔開）</p>
+                  <label class="form">
+                    <textarea id="importText" placeholder="請輸入扭蛋項目"></textarea>
+                  </label>
+                  <div class="warning-text" id="importTextWarning">此欄位不可空白。</div>
+                </div>
+              </div>
+              <div class="tab-page" id="import-csv">
+                <div class="form-group">
+                  <p>CSV 網址</p>
+                  <label class="form">
+                    <input class="import-url" id="importUrl" type="text" placeholder="請輸入 CSV 連結" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOQfCGnMmPhaDC9iZrrf9az33x1KX43bICyWKSaYSMOejOdXK5KYc0f3PAh6BGAsPq1bzUNClRZYQ/pub?output=csv"/>
+                    <button class="form-clear-btn" onclick="document.getElementById('importUrl').value = '';"><i class="fas fa-times-circle"></i></button>
+                  </label>
+                  <div class="warning-text" id="importCsvWarning">此欄位不可空白。</div>
+                </div>
+              </div>
+              <div class="no-data-text"><i class="fas fa-exclamation-circle maR-8"></i>
+                <p>扭蛋機目前沒有匯入抽獎項目～</p>
               </div>
             </div>
-            <div class="no-data-text"><i class="fas fa-exclamation-circle maR-8"></i>
-              <p>扭蛋機目前沒有匯入抽獎項目～</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn secondary-btn" id="import-modal-cancel" type="button" onclick="closeModal()">取消</button>
+            <button class="btn modal-footer-btn" id="import-csv-btn" type="button">確認</button>
+            <button class="btn modal-footer-btn" id="import-text-btn" type="button">確認</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="display-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">檢視項目</h5>
+          </div>
+          <div class="modal-body modal-body-display">
+            <label class="repeat-draw">
+              <input id="repeat-draw" type="checkbox" name="" checked="checked" onclick="repeatDraw()"/>
+              <p>重複抽獎</p>
+            </label>
+            <div class="display-list-group">
+              <div class="tab-list"> 
+                <button class="tab active" data-tab-page-id="#gacha-list">扭蛋清單</button>
+                <button class="tab" data-tab-page-id="#history-list">扭蛋紀錄</button>
+              </div>
+              <div class="tab-page active" id="gacha-list">
+                <ul class="gacha-list">
+                  <li class="item">項目</li>
+                </ul>
+              </div>
+              <div class="tab-page" id="history-list">
+                <ul class="history-list">
+                  <li class="item">暫無紀錄</li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-no-data">
+              <div class="no-data-content" onclick="showModal(&quot;#import-modal&quot;)">
+                <div class="gacha-icon"></div>
+                <p>目前尚未匯入，點擊匯入</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn modal-footer-btn secondary-btn" id="import-modal-cancel" type="button"
-            onclick="closeModal()">取消</button>
-          <button class="btn modal-footer-btn" id="import-csv-btn" type="button">確認</button>
-          <button class="btn modal-footer-btn" id="import-text-btn" type="button">確認</button>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn secondary-btn" id="display-modal-reset" type="button" onclick="showModal(&quot;#reset-modal&quot;)">重置</button>
+            <button class="btn modal-footer-btn" type="button" onclick="closeModal()">確認</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="display-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">檢視項目</h5>
-        </div>
-        <div class="modal-body modal-body-display">
-          <label class="repeat-draw">
-            <input id="repeat-draw" type="checkbox" name="" checked="checked" onclick="repeatDraw()" />
-            <p>重複抽獎</p>
-          </label>
-          <div class="display-list-group">
-            <div class="tab-list">
-              <button class="tab active" data-tab-page-id="#gacha-list">扭蛋清單</button>
-              <button class="tab" data-tab-page-id="#history-list">扭蛋紀錄</button>
-            </div>
-            <div class="tab-page active" id="gacha-list">
-              <ul class="gacha-list">
-                <li class="item">項目</li>
-              </ul>
-            </div>
-            <div class="tab-page" id="history-list">
-              <ul class="history-list">
-                <li class="item">暫無紀錄</li>
-              </ul>
+    <div class="modal fade" id="share-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">分享連結</h5>
+          </div>
+          <div class="modal-body modal-body-share">
+            <p>複製以下連結，可將已匯入資料的扭蛋機分享給朋友一起遊玩！</p>
+            <div class="input-btn-group">
+              <input class="form share-url" type="text" value="目前無資料匯入"/>
+              <button class="share-url-copy" type="button">複製網址</button>
             </div>
           </div>
-          <div class="modal-no-data">
-            <div class="no-data-content" onclick="showModal(&quot;#import-modal&quot;)">
-              <div class="gacha-icon"></div>
-              <p>目前尚未匯入，點擊匯入</p>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="about-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">關於</h5>
+          </div>
+          <div class="modal-body modal-body-about">
+            <div class="item">
+              <p>作者：饅頭 / Mant0u</p>
+            </div>
+            <div class="item">
+              <p><i class="fab fa-facebook-square maR-8"></i>Facebook：</p><a class="link" href="http://FB.me/mant0u.net" target="_blank"> fb.me/mant0u.net</a>
+            </div>
+            <div class="item">
+              <p> <i class="fab fa-twitter maR-8"></i>Twitter：</p><a class="link" href="https://twitter.com/Mant0uStudio" target="_blank">twitter.com/Mant0uStudio</a>
+            </div>
+            <div class="item maB-12">
+              <p><i class="fab fa-github maR-8"></i>Github：</p><a class="link" href="https://github.com/mant0u0" target="_blank">github.com/mant0u0</a>
+            </div>
+            <div class="item">
+              <p>協作：<a class="link" href="https://github.com/ADSFAaron" target="_blank">ADSFAaron</a></p>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn modal-footer-btn secondary-btn" id="display-modal-reset" type="button"
-            onclick="showModal(&quot;#reset-modal&quot;)">重置</button>
-          <button class="btn modal-footer-btn" type="button" onclick="closeModal()">確認</button>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="share-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">分享連結</h5>
-        </div>
-        <div class="modal-body modal-body-share">
-          <p>複製以下連結，可將已匯入資料的扭蛋機分享給朋友一起遊玩！</p>
-          <div class="input-btn-group">
-            <input class="form share-url" type="text" value="目前無資料匯入" />
-            <button class="share-url-copy" type="button">複製網址</button>
+    <div class="modal fade" id="instruction-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">說明</h5>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
+          <div class="modal-body modal-body-instruction">
+            <div class="item">
+              <p>這是一個抽獎專用的扭蛋機網站，可以使用自己的資料匯入這個網頁當中進行抽獎。</p>
+              <p>本網站匯入的資料格式，已 CSV 檔為主。以下將會介紹如何使用 Google Excel 雲端表單，匯出 CSV 格式後再匯入此網站。</p>
+            </div>
+            <div class="item">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                  <p>開啟 Google Excel 雲端表單 ，並建立一個新的試算表。</p>
+                </div>
+              </div><img src="../img/step01.gif" alt=""/>
+            </div>
+            <div class="item">
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                  <p>於試算表每欄的第 1 列，輸入該欄的「標題」；抽獎項目會由該欄第 2 列開始匯入。如果有其他資訊，可新增在第 2、3 欄。</p>
+                </div>
+              </div><img src="../img/step02.gif" alt=""/>
+            </div>
+            <div class="item">
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                  <p>試算表編輯完成後，點選上面功能列「檔案/共用/發佈到網路」。</p>
+                </div>
+              </div><img src="../img/step03.gif" alt=""/>
+            </div>
+            <div class="item">
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-text">
+                  <p>點選「整份文件」、「逗號分隔值(.csv)」，點選「發佈」即可產生表單的 CSV 網址！</p>
+                </div>
+              </div><img src="../img/step04.gif" alt=""/>
+            </div>
+            <div class="item">
+              <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-text">
+                  <p>將 CSV 網址複製下來貼進網站當中，就可以匯入扭蛋項目囉～</p>
+                </div>
+              </div><img src="../img/step05.gif" alt=""/>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="about-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">關於</h5>
-        </div>
-        <div class="modal-body modal-body-about">
-          <div class="item">
-            <p>作者：饅頭 / Mant0u</p>
+    <div class="modal fade" id="reset-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">重置紀錄</h5>
           </div>
-          <div class="item">
-            <p><i class="fab fa-facebook-square maR-8"></i>Facebook：</p><a href="http://FB.me/mant0u.net"
-              target="_blank"> fb.me/mant0u.net</a>
+          <div class="modal-body modal-body-reset"><i class="fas fa-exclamation-circle"></i>
+            <p>確定要重置扭蛋紀錄？</p>
           </div>
-          <div class="item">
-            <p> <i class="fab fa-twitter maR-8"></i>Twitter：</p><a href="https://twitter.com/Mant0uStudio"
-              target="_blank">twitter.com/Mant0uStudio</a>
+          <div class="modal-footer">
+            <button class="btn modal-footer-btn secondary-btn" type="button" onclick="showModal(&quot;#display-modal&quot;)">取消</button>
+            <button class="btn modal-footer-btn" type="button" onclick="resetDataObjectArray()">重置</button>
           </div>
-          <div class="item">
-            <p><i class="fab fa-github maR-8"></i>Github：</p><a href="https://github.com/mant0u0"
-              target="_blank">github.com/mant0u0</a>
-          </div>
-          <div class="item">
-            <p>版本：2.1</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="instruction-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">說明</h5>
+    <div class="hint-text"> 
+      <div class="text">按住螢幕滑動</div>
+      <div class="energy"> </div>
+    </div>
+    <div class="energy-bar"></div>
+    <div class="function-menu">
+      <div class="menu-box default">
+        <div class="btn btn-menu">
+          <p>選單</p><i class="fas fa-angle-down btn-menu-icon"></i>
         </div>
-        <div class="modal-body modal-body-instruction">
-          <div class="item">
-            <p>這是一個抽獎專用的扭蛋機網站，可以使用自己的資料匯入這個網頁當中進行抽獎。</p>
-            <p>本網站匯入的資料格式，以 CSV 檔為主。以下將會介紹如何使用 Google Excel 雲端表單，匯出 CSV 格式後再匯入此網站。</p>
-          </div>
-          <div class="item">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div class="step-text">
-                <p>開啟 Google Excel 雲端表單 ，並建立一個新的試算表。</p>
-              </div>
-            </div><img src="../img/step01.gif" alt="開啟 Google Excel 雲端表單 ，並建立一個新的試算表。" loading="lazy"/>
-          </div>
-          <div class="item">
-            <div class="step">
-              <div class="step-num">2</div>
-              <div class="step-text">
-                <p>於試算表每欄的第 1 列，輸入該欄的「標題」；抽獎項目會由該欄第 2 列開始匯入。如果有其他資訊，可新增在第 2、3 欄。</p>
-              </div>
-            </div><img src="../img/step02.gif" alt="於試算表每欄的第 1 列，輸入該欄的「標題」；抽獎項目會由該欄第 2 列開始匯入。如果有其他資訊，可新增在第 2、3 欄。" loading="lazy" />
-          </div>
-          <div class="item">
-            <div class="step">
-              <div class="step-num">3</div>
-              <div class="step-text">
-                <p>試算表編輯完成後，點選上面功能列「檔案/共用/發佈到網路」。</p>
-              </div>
-            </div><img src="../img/step03.gif" alt="試算表編輯完成後，點選上面功能列「檔案/共用/發佈到網路」。" loading="lazy" />
-          </div>
-          <div class="item">
-            <div class="step">
-              <div class="step-num">4</div>
-              <div class="step-text">
-                <p>點選「整份文件」、「逗號分隔值(.csv)」，點選「發佈」即可產生表單的 CSV 網址！</p>
-              </div>
-            </div><img src="../img/step04.gif" alt="點選「整份文件」、「逗號分隔值(.csv)」，點選「發佈」即可產生表單的 CSV 網址！" loading="lazy" />
-          </div>
-          <div class="item">
-            <div class="step">
-              <div class="step-num">5</div>
-              <div class="step-text">
-                <p>將 CSV 網址複製下來貼進網站當中，就可以匯入扭蛋項目囉～</p>
-              </div>
-            </div><img src="../img/step05.gif" alt="將 CSV 網址複製下來貼進網站當中，就可以匯入扭蛋項目囉～" loading="lazy" />
-          </div>
+        <div class="btn btn-import" type="button" onclick="showModal(&quot;#import-modal&quot;)">
+          <p>匯入</p><i class="fas fa-file-import"></i>
         </div>
-        <div class="modal-footer">
-          <button class="btn modal-footer-btn secondary-btn" type="button" onclick="closeModal()">關閉</button>
+        <div class="btn btn-display" type="button" onclick="showModal(&quot;#display-modal&quot;)">
+          <p>檢視</p><i class="fas fa-th-list"></i>
+        </div>
+        <div class="btn btn-share" type="button" onclick="showModal(&quot;#share-modal&quot;)"> 
+          <p>分享</p><i class="fas fa-share"></i>
+        </div>
+        <div class="btn btn-instruction" type="button" onclick="showModal(&quot;#instruction-modal&quot;)"> 
+          <p>說明</p><i class="fas fa-question-circle"></i>
+        </div>
+        <div class="btn btn-about" type="button" onclick="showModal(&quot;#about-modal&quot;)"> 
+          <p>關於</p><i class="fas fa-info-circle"></i>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="reset-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">重置紀錄</h5>
-        </div>
-        <div class="modal-body modal-body-reset"><i class="fas fa-exclamation-circle"></i>
-          <p>確定要重置扭蛋紀錄？</p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn modal-footer-btn secondary-btn" type="button"
-            onclick="showModal(&quot;#display-modal&quot;)">取消</button>
-          <button class="btn modal-footer-btn" type="button" onclick="resetDataObjectArray()">重置</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="hint-text">
-    <div class="text">按住螢幕滑動</div>
-    <div class="energy"> </div>
-  </div>
-  <div class="energy-bar"></div>
-  <div class="function-menu">
-    <div class="menu-box default">
-      <div class="btn btn-menu">
-        <p>選單</p><i class="fas fa-angle-down btn-menu-icon"></i>
-      </div>
-      <div class="btn btn-import" type="button" onclick="showModal(&quot;#import-modal&quot;)">
-        <p>匯入</p><i class="fas fa-file-import"></i>
-      </div>
-      <div class="btn btn-display" type="button" onclick="showModal(&quot;#display-modal&quot;)">
-        <p>檢視</p><i class="fas fa-th-list"></i>
-      </div>
-      <div class="btn btn-share" type="button" onclick="showModal(&quot;#share-modal&quot;)">
-        <p>分享</p><i class="fas fa-share"></i>
-      </div>
-      <div class="btn btn-instruction" type="button" onclick="showModal(&quot;#instruction-modal&quot;)">
-        <p>說明</p><i class="fas fa-question-circle"></i>
-      </div>
-      <div class="btn btn-about" type="button" onclick="showModal(&quot;#about-modal&quot;)">
-        <p>關於</p><i class="fas fa-info-circle"></i>
-      </div>
-    </div>
-  </div>
-  <div class="gashapon">
-    <svg class="gashapon-main default-animation" id="e0dj51prVt41" xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 853.69 1073.79" shape-rendering="geometricPrecision"
-      text-rendering="geometricPrecision">
-      <g>
-        <g transform="translate(0-.000065)">
-          <g>
+    <div class="gashapon">
+      <svg class="gashapon-main default-animation" id="e0dj51prVt41" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 853.69 1073.79" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+        <g>
+          <g transform="translate(0-.000065)">
             <g>
-              <path
-                d="M797.49,49.34c-238.898622-18.814577-478.894951-19.115475-717.84-.9-11.23.87-21.19,9.9-21.29,20.14-.159295,15.561861,1.149838,31.104048,3.91,46.42c1.79,9.9,12.4,17.58,23.1,17.64q1.68,26.75,3.38,53.49c-5,3.17-63.24,44.58-52.41,181.93c10.71,135.44,69.25,180.62,75.44,185.17h-.64C73.75,579.61,63.23,682.12,92.47,744.41h.11q-3.28,18.38-6.51,36.73c-8.75.9-16.4,7.36-18.28,15.87-16.11,73.22-22.71,147.33-18.6,220.21.66,11.34,11.75,21.57,23,21.57h708.38c11.22,0,22.31-10.23,23-21.57c4.11-72.88-2.49-147-18.6-220.21-2-9.1-10.63-15.87-20.12-16l-7.47-.09q-3.3-18.56-6.66-37.12v0q6.43-94.86,12.88-189.71h-.34l28.53-420.63c10.57-.21,21-7.79,22.81-17.57c2.835386-15.298506,4.214883-30.83125,4.12-46.39-.09-10.21-10-19.27-21.23-20.16Z"
-                fill="#fffdff" stroke="#633b4b" stroke-miterlimit="10" stroke-width="70"></path>
-              <path
-                d="M728.46,809.89q-291.4-2.8-582.85-.2c-9.62.09-17.94-8.13-18.91-23.37Q105.42,449.67,84.12,113c-.33-5.19,8.12-13.79,19.19-14.14Q438.55,88.2,774,99.7c11.08.39,19.49,9,18.79,19.2q-22.82,336.33-45.62,672.68c-.74,10.2-9.1,18.42-18.71,18.31Z"
-                fill="#fcf0f0"></path>
-              <path
-                d="M790.58,133.49q-352.08-12.38-704.4-.81c-11,.34-22.08-7.5-23.91-17.66-2.761416-15.322521-4.070554-30.871464-3.91-46.44.1-10.24,10.06-19.27,21.29-20.14c238.945049-18.215475,478.941378-17.914577,717.84.9c11.23.89,21.14,9.95,21.2,20.18.094883,15.55875-1.284614,31.091494-4.12,46.39-1.88,10.14-13.02,17.95-23.99,17.58Z"
-                fill="#f7524b"></path>
-              <path
-                d="M786.81,122.42q-94.08-3.8-188.34-5.61c-3.383807-.032351-6.60109-1.473279-8.878333-3.97635s-3.408457-5.841862-3.121667-9.21365c.87-13.74,1.3-27.55,1.27-41.31-.047434-3.411268,1.313817-6.691148,3.762804-9.066324s5.768976-3.635449,9.177196-3.483676Q696.24,53,791.85,59.85c7.24.53,13.36,6.36,13.3,13-.123679,12.779427-1.203359,25.531689-3.23,38.15-1.06,6.61-7.99,11.69-15.11,11.42Z"
-                fill="#b5394e" opacity="0.63"></path>
-              <path
-                d="M111.14,553.27C73.75,579.61,63.23,682.12,92.47,744.41q329.05-4.38,658.19-.12q6.45-95.09,12.91-190.18-326.13-6.89-652.43-.84Z"
-                fill="#fcf0f0"></path>
-              <path
-                d="M780.57,1038.79h-708.41c-11.22,0-22.31-10.23-23-21.57-4.11-72.88,2.49-147,18.6-220.21c2-9.1,10.63-15.87,20.12-16q338.42-4.08,676.91,0c9.49.11,18.11,6.88,20.12,16c16.11,73.22,22.71,147.33,18.6,220.21-.63,11.34-11.72,21.56-22.94,21.57Z"
-                fill="#f7524b"></path>
-              <path
-                d="M763,1021.36q-88.34-.09-176.68-.12c-9.76,0-17.19-7.76-17.06-17.72.91-63.07-1.13-126.89-5.83-190-.358114-5.222078,1.497132-10.353907,5.111771-14.139766s8.655177-5.876455,13.888229-5.760234q83.81.45,167.6,1.36c9.58.1,18.12,7,19.89,16.15c12.09,62.79,17.51,126.15,15.53,188.73-.33,11.34-11.14,21.51-22.45,21.5Z"
-                fill="#b5394e" opacity="0.63"></path>
-              <path
-                d="M648,183q-127.36-2.62-254.76-2.23l2.28,370q118.6-.23,237.21,1.26c10.770454.077111,21.147371-4.044243,28.93-11.49q23.52-22.31,47.45-44.48c8.00573-7.361031,12.862976-17.52686,13.56-28.38l11.52-196.76c.634739-10.736924-3.286334-21.243946-10.8-28.94q-22.5-23.3-45.39-46.49c-7.995697-7.905552-18.756422-12.385601-30-12.49Z"
-                fill="#f6c0bb"></path>
-              <path
-                d="M572.1,551.3q-229.89-2-459.78,2.35c.14-.06-64.66-42.38-76-185.57s52.68-182.18,52.77-182.14q246.82-7.71,493.79-4.13c-.11-.07-67.47,36-69.46,180.61s58.82,188.86,58.68,188.88Z"
-                fill="#fae2da"></path>
-              <path d="M757.37,781.06q-335.62-3.94-671.31.11q3.27-18.6,6.6-37.23q329-4.4,658-.12q3.41,18.63,6.71,37.24Z"
-                fill="#fcf0f0"></path>
-            </g>
-            <g transform="translate(.000001 0.000001)">
-              <path
-                d="M316.63,723.82c-17.2-63-1.13-150.4,33.95-173.94q-84.79.39-169.58,1.66c-35.79,24.88-48.46,118.71-25.36,181.64c2.015461,5.804598,7.455843,9.720873,13.6,9.79q67.26-.69,134.54-1c8.96-.06,15.31-8.97,12.85-18.15Z"
-                fill="#cd424d"></path>
-              <path
-                d="M308.92,723.86c-17.29-63-1.36-150.39,33.68-173.94q-84.8.44-169.58,1.74c-35.75,24.9-48.27,118.7-25.07,181.61c2.028777,5.801922,7.473977,9.711912,13.62,9.78q67.26-.7,134.53-1.06c8.97.01,15.31-8.99,12.82-18.13Z"
-                fill="#f7524b"></path>
-              <path
-                d="M271.19,655.38c.91,30.66-22.07,55.67-51.34,55.93s-54.37-24.25-56.08-54.81s21.28-55.71,51.34-56.08s55.17,24.3,56.08,54.96Z"
-                fill="#fcf0f0"></path>
-            </g>
-            <g transform="translate(.000001 0.000001)">
-              <path
-                d="M486.31,613.43q-51.1-.16-102.19,0c-6.759541.063775-12.521302,4.919097-13.73,11.57-7.24,38.48-5.47,83.19,8,116.66q63.79-.12,127.59.08c-12-31.92-13.06-74-6-111.13c1.67-8.89-4.82-17.15-13.67-17.18Z"
-                fill="#fae2da"></path>
-              <g clip-path="url(#e0dj51prVt426)">
-                <g>
-                  <path d="M383,742.14v0c31.821975-33.681941,49.550666-78.263068,49.55-124.6v-16.67h-66.95v141.37Z"
-                    fill="#f6c0bb"></path>
-                </g>
-                <clippath id="e0dj51prVt426">
-                  <path
-                    d="M486.31,613.43q-51.1-.16-102.19,0c-6.759541.063775-12.521302,4.919097-13.73,11.57-7.24,38.48-5.47,83.19,8,116.66q63.79-.12,127.59.08c-12-31.92-13.06-74-6-111.13c1.67-8.89-4.82-17.15-13.67-17.18Z"
-                    fill="#fae2da"></path>
-                </clippath>
+              <g>
+                <path d="M797.49,49.34c-238.898622-18.814577-478.894951-19.115475-717.84-.9-11.23.87-21.19,9.9-21.29,20.14-.159295,15.561861,1.149838,31.104048,3.91,46.42c1.79,9.9,12.4,17.58,23.1,17.64q1.68,26.75,3.38,53.49c-5,3.17-63.24,44.58-52.41,181.93c10.71,135.44,69.25,180.62,75.44,185.17h-.64C73.75,579.61,63.23,682.12,92.47,744.41h.11q-3.28,18.38-6.51,36.73c-8.75.9-16.4,7.36-18.28,15.87-16.11,73.22-22.71,147.33-18.6,220.21.66,11.34,11.75,21.57,23,21.57h708.38c11.22,0,22.31-10.23,23-21.57c4.11-72.88-2.49-147-18.6-220.21-2-9.1-10.63-15.87-20.12-16l-7.47-.09q-3.3-18.56-6.66-37.12v0q6.43-94.86,12.88-189.71h-.34l28.53-420.63c10.57-.21,21-7.79,22.81-17.57c2.835386-15.298506,4.214883-30.83125,4.12-46.39-.09-10.21-10-19.27-21.23-20.16Z" fill="#fffdff" stroke="#633b4b" stroke-miterlimit="10" stroke-width="70"></path>
+                <path d="M728.46,809.89q-291.4-2.8-582.85-.2c-9.62.09-17.94-8.13-18.91-23.37Q105.42,449.67,84.12,113c-.33-5.19,8.12-13.79,19.19-14.14Q438.55,88.2,774,99.7c11.08.39,19.49,9,18.79,19.2q-22.82,336.33-45.62,672.68c-.74,10.2-9.1,18.42-18.71,18.31Z" fill="#fcf0f0"></path>
+                <path d="M790.58,133.49q-352.08-12.38-704.4-.81c-11,.34-22.08-7.5-23.91-17.66-2.761416-15.322521-4.070554-30.871464-3.91-46.44.1-10.24,10.06-19.27,21.29-20.14c238.945049-18.215475,478.941378-17.914577,717.84.9c11.23.89,21.14,9.95,21.2,20.18.094883,15.55875-1.284614,31.091494-4.12,46.39-1.88,10.14-13.02,17.95-23.99,17.58Z" fill="#f7524b"></path>
+                <path d="M786.81,122.42q-94.08-3.8-188.34-5.61c-3.383807-.032351-6.60109-1.473279-8.878333-3.97635s-3.408457-5.841862-3.121667-9.21365c.87-13.74,1.3-27.55,1.27-41.31-.047434-3.411268,1.313817-6.691148,3.762804-9.066324s5.768976-3.635449,9.177196-3.483676Q696.24,53,791.85,59.85c7.24.53,13.36,6.36,13.3,13-.123679,12.779427-1.203359,25.531689-3.23,38.15-1.06,6.61-7.99,11.69-15.11,11.42Z" fill="#b5394e" opacity="0.63"></path>
+                <path d="M111.14,553.27C73.75,579.61,63.23,682.12,92.47,744.41q329.05-4.38,658.19-.12q6.45-95.09,12.91-190.18-326.13-6.89-652.43-.84Z" fill="#fcf0f0"></path>
+                <path d="M780.57,1038.79h-708.41c-11.22,0-22.31-10.23-23-21.57-4.11-72.88,2.49-147,18.6-220.21c2-9.1,10.63-15.87,20.12-16q338.42-4.08,676.91,0c9.49.11,18.11,6.88,20.12,16c16.11,73.22,22.71,147.33,18.6,220.21-.63,11.34-11.72,21.56-22.94,21.57Z" fill="#f7524b"></path>
+                <path d="M763,1021.36q-88.34-.09-176.68-.12c-9.76,0-17.19-7.76-17.06-17.72.91-63.07-1.13-126.89-5.83-190-.358114-5.222078,1.497132-10.353907,5.111771-14.139766s8.655177-5.876455,13.888229-5.760234q83.81.45,167.6,1.36c9.58.1,18.12,7,19.89,16.15c12.09,62.79,17.51,126.15,15.53,188.73-.33,11.34-11.14,21.51-22.45,21.5Z" fill="#b5394e" opacity="0.63"></path>
+                <path d="M648,183q-127.36-2.62-254.76-2.23l2.28,370q118.6-.23,237.21,1.26c10.770454.077111,21.147371-4.044243,28.93-11.49q23.52-22.31,47.45-44.48c8.00573-7.361031,12.862976-17.52686,13.56-28.38l11.52-196.76c.634739-10.736924-3.286334-21.243946-10.8-28.94q-22.5-23.3-45.39-46.49c-7.995697-7.905552-18.756422-12.385601-30-12.49Z" fill="#f6c0bb"></path>
+                <path d="M572.1,551.3q-229.89-2-459.78,2.35c.14-.06-64.66-42.38-76-185.57s52.68-182.18,52.77-182.14q246.82-7.71,493.79-4.13c-.11-.07-67.47,36-69.46,180.61s58.82,188.86,58.68,188.88Z" fill="#fae2da"></path>
+                <path d="M757.37,781.06q-335.62-3.94-671.31.11q3.27-18.6,6.6-37.23q329-4.4,658-.12q3.41,18.63,6.71,37.24Z" fill="#fcf0f0"></path>
               </g>
-            </g>
-          </g>
-          <g id="e0dj51prVt428_to"
-            style="offset-path:path('M443.029083,628.903834L443.029083,628.903834C441.063368,788.295103,423.618762,983.513758,265.070958,1008.799545');offset-rotate:0deg">
-            <g id="e0dj51prVt428_tr" transform="rotate(190)">
-              <g id="e0dj51prVt428_ts" transform="scale(0.623166,0.623166)">
-                <g id="e0dj51prVt428" opacity="0" transform="translate(-229.998314,-485.659576)">
-                  <path
-                    d="M246.1,538.51c29.318416-8.944383,45.837761-39.959564,36.9-69.28L176.82,501.62c4.295087,14.079081,14.007202,25.875274,26.999751,32.793507s28.201231,8.391787,42.280249,4.096493Z"
-                    fill="#fcf0f0"></path>
-                  <path id="drop-gashapon"
-                    d="M213.86,432.82c-29.302321,8.961553-45.800905,39.971372-36.86,69.28l106.17-32.39c-4.292454-14.08752-14.008916-25.890902-27.009156-32.810233s-28.21784-8.387015-42.300844-4.079767Z"
-                    fill="#ca8ff7"></path>
+              <g transform="translate(.000001 0.000001)">
+                <path d="M316.63,723.82c-17.2-63-1.13-150.4,33.95-173.94q-84.79.39-169.58,1.66c-35.79,24.88-48.46,118.71-25.36,181.64c2.015461,5.804598,7.455843,9.720873,13.6,9.79q67.26-.69,134.54-1c8.96-.06,15.31-8.97,12.85-18.15Z" fill="#cd424d"></path>
+                <path d="M308.92,723.86c-17.29-63-1.36-150.39,33.68-173.94q-84.8.44-169.58,1.74c-35.75,24.9-48.27,118.7-25.07,181.61c2.028777,5.801922,7.473977,9.711912,13.62,9.78q67.26-.7,134.53-1.06c8.97.01,15.31-8.99,12.82-18.13Z" fill="#f7524b"></path>
+                <path d="M271.19,655.38c.91,30.66-22.07,55.67-51.34,55.93s-54.37-24.25-56.08-54.81s21.28-55.71,51.34-56.08s55.17,24.3,56.08,54.96Z" fill="#fcf0f0"></path>
+              </g>
+              <g transform="translate(.000001 0.000001)">
+                <path d="M486.31,613.43q-51.1-.16-102.19,0c-6.759541.063775-12.521302,4.919097-13.73,11.57-7.24,38.48-5.47,83.19,8,116.66q63.79-.12,127.59.08c-12-31.92-13.06-74-6-111.13c1.67-8.89-4.82-17.15-13.67-17.18Z" fill="#fae2da"></path>
+                <g clip-path="url(#e0dj51prVt426)">
+                  <g>
+                    <path d="M383,742.14v0c31.821975-33.681941,49.550666-78.263068,49.55-124.6v-16.67h-66.95v141.37Z" fill="#f6c0bb"></path>
+                  </g>
+                  <clippath id="e0dj51prVt426">
+                    <path d="M486.31,613.43q-51.1-.16-102.19,0c-6.759541.063775-12.521302,4.919097-13.73,11.57-7.24,38.48-5.47,83.19,8,116.66q63.79-.12,127.59.08c-12-31.92-13.06-74-6-111.13c1.67-8.89-4.82-17.15-13.67-17.18Z" fill="#fae2da"></path>
+                  </clippath>
                 </g>
               </g>
             </g>
-          </g>
-          <g id="XXX_to" transform="translate(443.029083,628.903834)">
-            <g id="XXX_tr" transform="rotate(190)">
-              <g id="XXX_ts" transform="scale(0.623166,0.623166)">
-                <g id="XXX" opacity="0" transform="translate(-229.998314,-485.659576)">
-                  <path
-                    d="M246.1,538.51c29.318416-8.944383,45.837761-39.959564,36.9-69.28L176.82,501.62c4.295087,14.079081,14.007202,25.875274,26.999751,32.793507s28.201231,8.391787,42.280249,4.096493Z"
-                    fill="#fcf0f0"></path>
-                  <path id="drop-gashapon-m"
-                    d="M213.86,432.82c-29.302321,8.961553-45.800905,39.971372-36.86,69.28l106.17-32.39c-4.292454-14.08752-14.008916-25.890902-27.009156-32.810233s-28.21784-8.387015-42.300844-4.079767Z"
-                    fill="#ca8ff7"></path>
+            <g id="e0dj51prVt428_to" style="offset-path:path('M443.029083,628.903834L443.029083,628.903834C441.063368,788.295103,423.618762,983.513758,265.070958,1008.799545');offset-rotate:0deg">
+              <g id="e0dj51prVt428_tr" transform="rotate(190)">
+                <g id="e0dj51prVt428_ts" transform="scale(0.623166,0.623166)">
+                  <g id="e0dj51prVt428" opacity="0" transform="translate(-229.998314,-485.659576)">
+                    <path d="M246.1,538.51c29.318416-8.944383,45.837761-39.959564,36.9-69.28L176.82,501.62c4.295087,14.079081,14.007202,25.875274,26.999751,32.793507s28.201231,8.391787,42.280249,4.096493Z" fill="#fcf0f0"></path>
+                    <path id="drop-gashapon" d="M213.86,432.82c-29.302321,8.961553-45.800905,39.971372-36.86,69.28l106.17-32.39c-4.292454-14.08752-14.008916-25.890902-27.009156-32.810233s-28.21784-8.387015-42.300844-4.079767Z" fill="#ca8ff7"></path>
+                  </g>
                 </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt431_to" transform="translate(260.217438,347.316422)">
-            <path
-              d="M305.34,379.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0l-.14.21c0,.07-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z"
-              fill="#cd424d" opacity="0.17" transform="translate(-260.217438,-347.316422)"></path>
-          </g>
-          <g id="e0dj51prVt432_to" transform="translate(399.075688,372.407262)">
-            <path
-              d="M401.34,462.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0c0,.07-.09.14-.14.21s-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z"
-              fill="#cd424d" opacity="0.17" transform="translate(-356.217209,-430.316727)"></path>
-          </g>
-          <g id="e0dj51prVt433_to" transform="translate(131.216187,419.318176)">
-            <path
-              d="M176.34,451.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0l-.14.21c0,.07-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z"
-              fill="#cd424d" opacity="0.17" transform="translate(-131.216187,-419.318176)"></path>
-          </g>
-          <g id="e0dj51prVt434_to" transform="translate(506.218063,350.315506)">
-            <path
-              d="M551.34,382.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0c0,.07-.09.14-.14.21s-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z"
-              fill="#cd424d" opacity="0.17" transform="translate(-506.218063,-350.315506)"></path>
-          </g>
-          <g id="e0dj51prVt435_to" transform="translate(653.216156,390.318253)">
-            <path
-              d="M698.34,422.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0c0,.07-.09.14-.14.21s-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z"
-              fill="#cd424d" opacity="0.17" transform="translate(-653.216156,-390.318253)"></path>
-          </g>
-          <g transform="translate(-3.825825-2.54611)">
-            <g>
-              <g id="e0dj51prVt438_tr" transform="translate(217.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt439_tr" transform="translate(215.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt440_tr" transform="translate(213.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt441_tr" transform="translate(211.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt442_tr" transform="translate(209.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt443_tr" transform="translate(207.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt444_tr" transform="translate(205.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt445_tr" transform="translate(203.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt446_tr" transform="translate(201.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt447_tr" transform="translate(199.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt448_tr" transform="translate(197.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt449_tr" transform="translate(195.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt450_tr" transform="translate(193.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
-              </g>
-              <g id="e0dj51prVt451_tr" transform="translate(191.44842,658.410034) rotate(0)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67"
-                  transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+            <g id="XXX_to" transform="translate(443.029083,628.903834)">
+              <g id="XXX_tr" transform="rotate(190)">
+                <g id="XXX_ts" transform="scale(0.623166,0.623166)">
+                  <g id="XXX" opacity="0" transform="translate(-229.998314,-485.659576)">
+                    <path d="M246.1,538.51c29.318416-8.944383,45.837761-39.959564,36.9-69.28L176.82,501.62c4.295087,14.079081,14.007202,25.875274,26.999751,32.793507s28.201231,8.391787,42.280249,4.096493Z" fill="#fcf0f0"></path>
+                    <path id="drop-gashapon-m" d="M213.86,432.82c-29.302321,8.961553-45.800905,39.971372-36.86,69.28l106.17-32.39c-4.292454-14.08752-14.008916-25.890902-27.009156-32.810233s-28.21784-8.387015-42.300844-4.079767Z" fill="#ca8ff7"></path>
+                  </g>
+                </g>
               </g>
             </g>
-            <g id="e0dj51prVt452_tr" transform="translate(190.480004,658.409973) rotate(0)">
-              <g transform="translate(-190.480003,-658.409973)">
-                <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="matrix(.941504 0 0 1 141.521793 640.91)"
-                  width="104"></rect>
-                <rect fill="#fcf0f0" height="23" rx="5.56" ry="5.56" transform="translate(149.895001 646.91)"
-                  width="81.17"></rect>
+            <g id="e0dj51prVt431_to" transform="translate(260.217438,347.316422)">
+              <path d="M305.34,379.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0l-.14.21c0,.07-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z" fill="#cd424d" opacity="0.17" transform="translate(-260.217438,-347.316422)"></path>
+            </g>
+            <g id="e0dj51prVt432_to" transform="translate(399.075688,372.407262)">
+              <path d="M401.34,462.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0c0,.07-.09.14-.14.21s-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z" fill="#cd424d" opacity="0.17" transform="translate(-356.217209,-430.316727)"></path>
+            </g>
+            <g id="e0dj51prVt433_to" transform="translate(131.216187,419.318176)">
+              <path d="M176.34,451.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0l-.14.21c0,.07-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z" fill="#cd424d" opacity="0.17" transform="translate(-131.216187,-419.318176)"></path>
+            </g>
+            <g id="e0dj51prVt434_to" transform="translate(506.218063,350.315506)">
+              <path d="M551.34,382.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0c0,.07-.09.14-.14.21s-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z" fill="#cd424d" opacity="0.17" transform="translate(-506.218063,-350.315506)"></path>
+            </g>
+            <g id="e0dj51prVt435_to" transform="translate(653.216156,390.318253)">
+              <path d="M698.34,422.62c17.652362-24.974522,11.769528-59.523538-13.153496-77.248536s-59.489019-11.942776-77.286504,12.928536v0c0,.07-.09.14-.14.21s-.1.13-.15.2v0c-17.086061,24.972584-11.015586,59.029786,13.646507,76.561033s58.822702,12.072633,76.793493-12.271033v0l.14-.21.15-.2Z" fill="#cd424d" opacity="0.17" transform="translate(-653.216156,-390.318253)"></path>
+            </g>
+            <g transform="translate(-3.825825-2.54611)">
+              <g>
+                <g id="e0dj51prVt438_tr" transform="translate(217.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt439_tr" transform="translate(215.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt440_tr" transform="translate(213.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt441_tr" transform="translate(211.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt442_tr" transform="translate(209.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt443_tr" transform="translate(207.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt444_tr" transform="translate(205.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt445_tr" transform="translate(203.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt446_tr" transform="translate(201.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt447_tr" transform="translate(199.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt448_tr" transform="translate(197.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt449_tr" transform="translate(195.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt450_tr" transform="translate(193.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+                <g id="e0dj51prVt451_tr" transform="translate(191.44842,658.410034) rotate(0)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="scale(0.941504,1) translate(-52.000011,-17.500034)" width="104"></rect>
+                </g>
+              </g>
+              <g id="e0dj51prVt452_tr" transform="translate(190.480004,658.409973) rotate(0)">
+                <g transform="translate(-190.480003,-658.409973)">
+                  <rect fill="#f6c0bb" height="35" rx="6.67" ry="6.67" transform="matrix(.941504 0 0 1 141.521793 640.91)" width="104"></rect>
+                  <rect fill="#fcf0f0" height="23" rx="5.56" ry="5.56" transform="translate(149.895001 646.91)" width="81.17"></rect>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt455_to" transform="translate(373.622478,400.964547)">
-            <g id="e0dj51prVt455_tr" transform="rotate(-181.452866)">
-              <g transform="translate(-570.992553,-379.665008)">
-                <path
-                  d="M539,424.69c24.98068,17.763336,59.631003,11.916654,77.4-13.06l-90.46-64.34c-17.757514,24.982015-11.911592,59.627831,13.06,77.4Z"
-                  fill="#fcf0f0"></path>
-                <path
-                  d="M603,334.64c-24.98068-17.763336-59.631003-11.916654-77.4,13.06L616.06,412c17.736061-24.973353,11.891499-59.593208-13.06-77.36Z"
-                  fill="#9db1ef"></path>
+            <g id="e0dj51prVt455_to" transform="translate(373.622478,400.964547)">
+              <g id="e0dj51prVt455_tr" transform="rotate(-181.452866)">
+                <g transform="translate(-570.992553,-379.665008)">
+                  <path d="M539,424.69c24.98068,17.763336,59.631003,11.916654,77.4-13.06l-90.46-64.34c-17.757514,24.982015-11.911592,59.627831,13.06,77.4Z" fill="#fcf0f0"></path>
+                  <path d="M603,334.64c-24.98068-17.763336-59.631003-11.916654-77.4,13.06L616.06,412c17.736061-24.973353,11.891499-59.593208-13.06-77.36Z" fill="#9db1ef"></path>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt458_to" transform="translate(180.966931,396.673584)">
-            <g id="e0dj51prVt458_tr" transform="rotate(0)">
-              <g transform="translate(-180.96693,-396.673584)">
-                <path
-                  d="M211.56,442.68c12.260649-8.147943,20.781902-20.833155,23.688792-35.264457s-.038755-29.426286-8.188792-41.685543l-92.44,61.45c16.966918,25.525514,51.413147,32.464902,76.94,15.5Z"
-                  fill="#ffe8dc"></path>
-                <path
-                  d="M150.39,350.65c-12.2731,8.150042-20.802125,20.845472-23.707673,35.288808s.050824,29.44927,8.217673,41.711192l92.43-61.45c-8.138213-12.268112-20.818045-20.799379-35.248274-23.715808s-29.427959.02105-41.691726,8.165808Z"
-                  fill="#b7dd87"></path>
+            <g id="e0dj51prVt458_to" transform="translate(180.966931,396.673584)">
+              <g id="e0dj51prVt458_tr" transform="rotate(0)">
+                <g transform="translate(-180.96693,-396.673584)">
+                  <path d="M211.56,442.68c12.260649-8.147943,20.781902-20.833155,23.688792-35.264457s-.038755-29.426286-8.188792-41.685543l-92.44,61.45c16.966918,25.525514,51.413147,32.464902,76.94,15.5Z" fill="#ffe8dc"></path>
+                  <path d="M150.39,350.65c-12.2731,8.150042-20.802125,20.845472-23.707673,35.288808s.050824,29.44927,8.217673,41.711192l92.43-61.45c-8.138213-12.268112-20.818045-20.799379-35.248274-23.715808s-29.427959.02105-41.691726,8.165808Z" fill="#b7dd87"></path>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt461_to" transform="translate(141.981667,482.672684)">
-            <g id="e0dj51prVt461_tr" transform="rotate(0)">
-              <g transform="translate(-141.981666,-482.672684)">
-                <path
-                  d="M124.55,430.24c-13.968912,4.640807-25.521573,14.641633-32.115644,27.801642s-7.689188,28.400784-3.044356,42.368358l105.33-35c-4.641026-13.969139-14.641327-25.522416-27.800839-32.118113s-28.400216-7.693498-42.369161-3.051887Z"
-                  fill="#fcf0f0"></path>
-                <path
-                  d="M159.41,535.09c29.08129-9.672844,44.817421-41.086907,35.15-70.17l-105.33,35c9.668882,29.090614,41.088509,44.836244,70.18,35.17Z"
-                  fill="#ff7171"></path>
+            <g id="e0dj51prVt461_to" transform="translate(141.981667,482.672684)">
+              <g id="e0dj51prVt461_tr" transform="rotate(0)">
+                <g transform="translate(-141.981666,-482.672684)">
+                  <path d="M124.55,430.24c-13.968912,4.640807-25.521573,14.641633-32.115644,27.801642s-7.689188,28.400784-3.044356,42.368358l105.33-35c-4.641026-13.969139-14.641327-25.522416-27.800839-32.118113s-28.400216-7.693498-42.369161-3.051887Z" fill="#fcf0f0"></path>
+                  <path d="M159.41,535.09c29.08129-9.672844,44.817421-41.086907,35.15-70.17l-105.33,35c9.668882,29.090614,41.088509,44.836244,70.18,35.17Z" fill="#ff7171"></path>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt464_to" transform="translate(277.980438,409.664642)">
-            <g id="e0dj51prVt464_tr" transform="rotate(0)">
-              <g transform="translate(-277.980438,-409.664642)">
-                <path
-                  d="M273.9,464.76c14.678793,1.087763,29.188374-3.701026,40.335924-13.3126s18.01964-23.25836,19.104076-37.9374l-110.69-8.19c-1.087763,14.678793,3.701026,29.188374,13.3126,40.335924s23.25836,18.01964,37.9374,19.104076Z"
-                  fill="#fcf0f0"></path>
-                <path
-                  d="M282.05,354.57c-14.679409-1.09047-29.190464,3.697356-40.338631,13.309461s-18.01952,23.260492-19.101369,37.940539L333.31,414c2.253559-30.565366-20.694996-57.171542-51.26-59.43Z"
-                  fill="#ff7171"></path>
+            <g id="e0dj51prVt464_to" transform="translate(277.980438,409.664642)">
+              <g id="e0dj51prVt464_tr" transform="rotate(0)">
+                <g transform="translate(-277.980438,-409.664642)">
+                  <path d="M273.9,464.76c14.678793,1.087763,29.188374-3.701026,40.335924-13.3126s18.01964-23.25836,19.104076-37.9374l-110.69-8.19c-1.087763,14.678793,3.701026,29.188374,13.3126,40.335924s23.25836,18.01964,37.9374,19.104076Z" fill="#fcf0f0"></path>
+                  <path d="M282.05,354.57c-14.679409-1.09047-29.190464,3.697356-40.338631,13.309461s-18.01952,23.260492-19.101369,37.940539L333.31,414c2.253559-30.565366-20.694996-57.171542-51.26-59.43Z" fill="#ff7171"></path>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt467_to" transform="translate(332.97815,482.658722)">
-            <g id="e0dj51prVt467_tr" transform="rotate(0)">
-              <g transform="translate(-332.978149,-482.658722)">
-                <path
-                  d="M370.28,523.42c10.860622-9.938203,17.327849-23.784182,17.97862-38.491237s-4.568236-29.070138-14.50862-39.928763l-81.88,75c20.71121,22.589667,55.810604,24.120593,78.41,3.42Z"
-                  fill="#ffe8dc"></path>
-                <path
-                  d="M295.67,441.91c-10.858597,9.937834-17.32373,23.782867-17.972636,38.488261s4.571594,29.066079,14.512636,39.921739l81.87-75c-9.944683-10.851597-23.793378-17.307472-38.498646-17.946995s-29.062141,4.589711-39.911354,14.536995Z"
-                  fill="#ffd278"></path>
+            <g id="e0dj51prVt467_to" transform="translate(332.97815,482.658722)">
+              <g id="e0dj51prVt467_tr" transform="rotate(0)">
+                <g transform="translate(-332.978149,-482.658722)">
+                  <path d="M370.28,523.42c10.860622-9.938203,17.327849-23.784182,17.97862-38.491237s-4.568236-29.070138-14.50862-39.928763l-81.88,75c20.71121,22.589667,55.810604,24.120593,78.41,3.42Z" fill="#ffe8dc"></path>
+                  <path d="M295.67,441.91c-10.858597,9.937834-17.32373,23.782867-17.972636,38.488261s4.571594,29.066079,14.512636,39.921739l81.87-75c-9.944683-10.851597-23.793378-17.307472-38.498646-17.946995s-29.062141,4.589711-39.911354,14.536995Z" fill="#ffd278"></path>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt470_to" transform="translate(570.992554,379.665009)">
-            <g id="e0dj51prVt470_tr" transform="rotate(0)">
-              <g transform="translate(-570.992553,-379.665008)">
-                <path
-                  d="M539,424.69c24.98068,17.763336,59.631003,11.916654,77.4-13.06l-90.46-64.34c-17.757514,24.982015-11.911592,59.627831,13.06,77.4Z"
-                  fill="#ffe8dc"></path>
-                <path
-                  d="M603,334.64c-24.98068-17.763336-59.631003-11.916654-77.4,13.06L616.06,412c17.736061-24.973353,11.891499-59.593208-13.06-77.36Z"
-                  fill="#9db1ef"></path>
+            <g id="e0dj51prVt470_to" transform="translate(570.992554,379.665009)">
+              <g id="e0dj51prVt470_tr" transform="rotate(0)">
+                <g transform="translate(-570.992553,-379.665008)">
+                  <path d="M539,424.69c24.98068,17.763336,59.631003,11.916654,77.4-13.06l-90.46-64.34c-17.757514,24.982015-11.911592,59.627831,13.06,77.4Z" fill="#ffe8dc"></path>
+                  <path d="M603,334.64c-24.98068-17.763336-59.631003-11.916654-77.4,13.06L616.06,412c17.736061-24.973353,11.891499-59.593208-13.06-77.36Z" fill="#9db1ef"></path>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt473_to" transform="translate(480.974762,405.664139)">
-            <g id="e0dj51prVt473_tr" transform="rotate(0)">
-              <g transform="translate(-480.974762,-405.664138)">
-                <path
-                  d="M459.11,354.92c-28.147103,12.136466-41.129722,44.78999-29,72.94L532,383.93c-12.132481-28.123116-44.750789-41.105104-72.89-29.01Z"
-                  fill="#fcf0f0"></path>
-                <path
-                  d="M502.84,456.4c28.145812-12.132276,41.129009-44.78278,29-72.93L429.91,427.4c5.824047,13.517976,16.780325,24.168149,30.457866,29.606907s28.955581,5.220443,42.472134-.606907Z"
-                  fill="#ffd278"></path>
+            <g id="e0dj51prVt473_to" transform="translate(480.974762,405.664139)">
+              <g id="e0dj51prVt473_tr" transform="rotate(0)">
+                <g transform="translate(-480.974762,-405.664138)">
+                  <path d="M459.11,354.92c-28.147103,12.136466-41.129722,44.78999-29,72.94L532,383.93c-12.132481-28.123116-44.750789-41.105104-72.89-29.01Z" fill="#fcf0f0"></path>
+                  <path d="M502.84,456.4c28.145812-12.132276,41.129009-44.78278,29-72.93L429.91,427.4c5.824047,13.517976,16.780325,24.168149,30.457866,29.606907s28.955581,5.220443,42.472134-.606907Z" fill="#ffd278"></path>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt476_to" transform="translate(625.974793,467.677628)">
-            <g id="e0dj51prVt476_tr" transform="rotate(0)">
-              <g transform="translate(-625.974792,-467.677627)">
-                <path
-                  d="M573.82,449.43c-4.858502,13.895977-3.997325,29.15291,2.39405,42.413888s17.789303,23.439528,31.68595,28.296112l36.63-104.78c-13.894684-4.858977-29.150512-3.999196-42.411265,2.390195s-23.440139,17.784988-28.298735,31.679805Z"
-                  fill="#fcf0f0"></path>
-                <path
-                  d="M678.13,485.89c4.858183-13.894612,3.996737-29.150173-2.394766-42.409541s-17.789316-23.436013-31.685234-28.290459L607.43,520c13.898492,4.85676,29.157371,3.991129,42.417415-2.406326s23.43418-17.802265,28.282585-31.703674Z"
-                  fill="#ca8ff7"></path>
+            <g id="e0dj51prVt476_to" transform="translate(625.974793,467.677628)">
+              <g id="e0dj51prVt476_tr" transform="rotate(0)">
+                <g transform="translate(-625.974792,-467.677627)">
+                  <path d="M573.82,449.43c-4.858502,13.895977-3.997325,29.15291,2.39405,42.413888s17.789303,23.439528,31.68595,28.296112l36.63-104.78c-13.894684-4.858977-29.150512-3.999196-42.411265,2.390195s-23.440139,17.784988-28.298735,31.679805Z" fill="#fcf0f0"></path>
+                  <path d="M678.13,485.89c4.858183-13.894612,3.996737-29.150173-2.394766-42.409541s-17.789316-23.436013-31.685234-28.290459L607.43,520c13.898492,4.85676,29.157371,3.991129,42.417415-2.406326s23.43418-17.802265,28.282585-31.703674Z" fill="#ca8ff7"></path>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt479_to" transform="translate(527.973084,482.665024)">
-            <g id="e0dj51prVt479_tr" transform="rotate(0)">
-              <g transform="translate(-527.973083,-482.665024)">
-                <path
-                  d="M558.17,436.4c-12.325245-8.047739-27.343085-10.868504-41.748469-7.841517s-27.017786,11.653665-35.061531,23.981517l93,60.67c8.040384-12.332086,10.851733-27.353426,7.815414-41.758595s-11.671512-27.013808-24.005414-35.051405Z"
-                  fill="#ffe8dc"></path>
-                <path
-                  d="M497.78,528.93c12.325245,8.047739,27.343085,10.868504,41.748469,7.841517s27.017786-11.653665,35.061531-23.981517l-93-60.67c-8.043051,12.331318-10.855957,27.353485-7.81947,41.75945s11.673437,27.014733,24.00947,35.05055Z"
-                  fill="#9db1ef"></path>
-                <g id="e0dj51prVt482_to" transform="translate(527.973084,482.665024)">
-                  <g id="e0dj51prVt482_tr" transform="rotate(0)">
-                    <g transform="translate(-527.973083,-482.665024)">
-                      <path
-                        d="M558.17,436.4c-12.325245-8.047739-27.343085-10.868504-41.748469-7.841517s-27.017786,11.653665-35.061531,23.981517l93,60.67c8.040384-12.332086,10.851733-27.353426,7.815414-41.758595s-11.671512-27.013808-24.005414-35.051405Z"
-                        fill="#ffe8dc"></path>
-                      <path
-                        d="M497.78,528.93c12.325245,8.047739,27.343085,10.868504,41.748469,7.841517s27.017786-11.653665,35.061531-23.981517l-93-60.67c-8.043051,12.331318-10.855957,27.353485-7.81947,41.75945s11.673437,27.014733,24.00947,35.05055Z"
-                        fill="#9db1ef"></path>
+            <g id="e0dj51prVt479_to" transform="translate(527.973084,482.665024)">
+              <g id="e0dj51prVt479_tr" transform="rotate(0)">
+                <g transform="translate(-527.973083,-482.665024)">
+                  <path d="M558.17,436.4c-12.325245-8.047739-27.343085-10.868504-41.748469-7.841517s-27.017786,11.653665-35.061531,23.981517l93,60.67c8.040384-12.332086,10.851733-27.353426,7.815414-41.758595s-11.671512-27.013808-24.005414-35.051405Z" fill="#ffe8dc"></path>
+                  <path d="M497.78,528.93c12.325245,8.047739,27.343085,10.868504,41.748469,7.841517s27.017786-11.653665,35.061531-23.981517l-93-60.67c-8.043051,12.331318-10.855957,27.353485-7.81947,41.75945s11.673437,27.014733,24.00947,35.05055Z" fill="#9db1ef"></path>
+                  <g id="e0dj51prVt482_to" transform="translate(527.973084,482.665024)">
+                    <g id="e0dj51prVt482_tr" transform="rotate(0)">
+                      <g transform="translate(-527.973083,-482.665024)">
+                        <path d="M558.17,436.4c-12.325245-8.047739-27.343085-10.868504-41.748469-7.841517s-27.017786,11.653665-35.061531,23.981517l93,60.67c8.040384-12.332086,10.851733-27.353426,7.815414-41.758595s-11.671512-27.013808-24.005414-35.051405Z" fill="#ffe8dc"></path>
+                        <path d="M497.78,528.93c12.325245,8.047739,27.343085,10.868504,41.748469,7.841517s27.017786-11.653665,35.061531-23.981517l-93-60.67c-8.043051,12.331318-10.855957,27.353485-7.81947,41.75945s11.673437,27.014733,24.00947,35.05055Z" fill="#9db1ef"></path>
+                      </g>
                     </g>
                   </g>
                 </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt485_to" transform="translate(426.972717,482.663727)">
-            <g id="e0dj51prVt485_tr" transform="rotate(0)">
-              <g transform="translate(-426.972717,-482.663727)">
-                <path
-                  d="M412.34,429.39c-29.554997,8.122018-46.930504,38.664587-38.81,68.22l107-29.4c-8.11802-29.543997-38.641222-46.920603-68.19-38.82Z"
-                  fill="#fcf0f0"></path>
-                <path
-                  d="M441.61,535.94c14.194695-3.898196,26.259326-13.275811,33.539572-26.06969s9.179686-27.955907,5.280428-42.15031l-107,29.4c8.118156,29.538985,38.634442,46.914201,68.18,38.82Z"
-                  fill="#b7dd87"></path>
+            <g id="e0dj51prVt485_to" transform="translate(426.972717,482.663727)">
+              <g id="e0dj51prVt485_tr" transform="rotate(0)">
+                <g transform="translate(-426.972717,-482.663727)">
+                  <path d="M412.34,429.39c-29.554997,8.122018-46.930504,38.664587-38.81,68.22l107-29.4c-8.11802-29.543997-38.641222-46.920603-68.19-38.82Z" fill="#fcf0f0"></path>
+                  <path d="M441.61,535.94c14.194695-3.898196,26.259326-13.275811,33.539572-26.06969s9.179686-27.955907,5.280428-42.15031l-107,29.4c8.118156,29.538985,38.634442,46.914201,68.18,38.82Z" fill="#b7dd87"></path>
+                </g>
               </g>
             </g>
-          </g>
-          <g id="e0dj51prVt488_to" transform="translate(229.998314,485.659577)">
-            <g id="e0dj51prVt488_tr" transform="rotate(0)">
-              <g transform="translate(-229.998314,-485.659576)">
-                <path
-                  d="M246.1,538.51c29.318416-8.944383,45.837761-39.959564,36.9-69.28L176.82,501.62c4.295087,14.079081,14.007202,25.875274,26.999751,32.793507s28.201231,8.391787,42.280249,4.096493Z"
-                  fill="#fcf0f0"></path>
-                <path
-                  d="M213.86,432.82c-29.302321,8.961553-45.800905,39.971372-36.86,69.28l106.17-32.39c-4.292454-14.08752-14.008916-25.890902-27.009156-32.810233s-28.21784-8.387015-42.300844-4.079767Z"
-                  fill="#ca8ff7"></path>
+            <g id="e0dj51prVt488_to" transform="translate(229.998314,485.659577)">
+              <g id="e0dj51prVt488_tr" transform="rotate(0)">
+                <g transform="translate(-229.998314,-485.659576)">
+                  <path d="M246.1,538.51c29.318416-8.944383,45.837761-39.959564,36.9-69.28L176.82,501.62c4.295087,14.079081,14.007202,25.875274,26.999751,32.793507s28.201231,8.391787,42.280249,4.096493Z" fill="#fcf0f0"></path>
+                  <path d="M213.86,432.82c-29.302321,8.961553-45.800905,39.971372-36.86,69.28l106.17-32.39c-4.292454-14.08752-14.008916-25.890902-27.009156-32.810233s-28.21784-8.387015-42.300844-4.079767Z" fill="#ca8ff7"></path>
+                </g>
               </g>
             </g>
+            <path d="M728.26,743.54q-71.57-.87-143.14-1.32c-6,0-10.76-5.22-10.57-11.56l17.79-577.61c.19-6.35,5.85-11.41,12.64-11.29q80.52,1.38,161,4c6.79.22,12,5.52,11.54,11.84q-18.81,287.32-37.61,574.64c-.4,6.31-5.62,11.37-11.65,11.3Z" fill="#f6c0bb" opacity="0.36"></path>
           </g>
-          <path
-            d="M728.26,743.54q-71.57-.87-143.14-1.32c-6,0-10.76-5.22-10.57-11.56l17.79-577.61c.19-6.35,5.85-11.41,12.64-11.29q80.52,1.38,161,4c6.79.22,12,5.52,11.54,11.84q-18.81,287.32-37.61,574.64c-.4,6.31-5.62,11.37-11.65,11.3Z"
-            fill="#f6c0bb" opacity="0.36"></path>
         </g>
-      </g>
-    </svg>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>  -->
-  <script src="../js/function-menu.js"></script>
-  <!-- <script src="../js/data-import.js"></script> -->
-  <script src="../js/data-import.min.js"></script>
-  <!-- <script src="../js/script.js"></script> -->
-  <script src="../js/script.min.js"></script>
-  <script src="../js/curzr.js"></script>
-</body>
-
+      </svg>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+    <script src="../js/function-menu.js"></script>
+    <script src="../js/data-import.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/curzr.js"></script>
+  </body>
 </html>

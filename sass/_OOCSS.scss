@@ -1,7 +1,17 @@
-
 .maR-4 {
   margin-right: 4px;
 }
 .maR-8 {
   margin-right: 8px;
+}
+
+.maB-12 {
+  margin-bottom: 12px !important;
+}
+
+a.link {
+  color: #99526f;
+  &:hover {
+    color: #bf666d;
+  }
 }

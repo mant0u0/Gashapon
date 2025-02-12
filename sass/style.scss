@@ -1,6 +1,9 @@
 @font-face {
   font-family: FakePearl-Regular;
-  src: url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2) format("woff2"),url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff) format("woff");
+  src: url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2)
+      format("woff2"),
+    url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff)
+      format("woff");
 }
 @import "_OOCSS";
 @import "_gashapon";
@@ -9,10 +12,9 @@
 @import "_gacha-list";
 
 $color_yellow: #fdd98d;
-$color_orange: #FFC68A;
+$color_orange: #ffc68a;
 $color_brown: #7d5348;
 $color_brown2: #bfaba5;
-
 
 html,
 body {
@@ -28,37 +30,31 @@ body {
   animation: bscale 100s infinite linear;
 }
 
-
-@keyframes bscale{
-  0%{
-  background-position: 0px 0px;
-
+@keyframes bscale {
+  0% {
+    background-position: 0px 0px;
   }
-  100%{
-
-  background-position: 100% 100%;
-  }
-
-}
-
-@media screen and (max-width: 992px){
-
-  html, body{
-    font-size: 9px
-
+  100% {
+    background-position: 100% 100%;
   }
 }
-@media screen and (max-width: 576px){
-  html, body{
-    font-size: 8px
 
+@media screen and (max-width: 992px) {
+  html,
+  body {
+    font-size: 9px;
   }
-
+}
+@media screen and (max-width: 576px) {
+  html,
+  body {
+    font-size: 8px;
+  }
 }
 
 // 游標
 * {
-  cursor: none !important;
+  // cursor: none !important;
 }
 .curzr {
   // transition: .1s !important;
@@ -130,11 +126,11 @@ body {
     transform: scaleX(0);
     transform-origin: 0% 100%;
   }
-// @keyframes fade-in
-//   0%
-//     opacity: 0
-//   100%
-//     opacity: 1
+  // @keyframes fade-in
+  //   0%
+  //     opacity: 0
+  //   100%
+  //     opacity: 1
 }
 @media screen and (max-height: 600px) {
   .hint-text {
@@ -145,7 +141,7 @@ body {
   .hint-text {
     height: 20px;
   }
-};
+}
 
 //   .hint-text
 //     border: 6px solid #633b4b
@@ -176,7 +172,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: .5s;
+  transition: 0.5s;
   padding: 10px;
   pointer-events: none;
   svg {
@@ -195,19 +191,19 @@ body {
 }
 @keyframes gashaponAnimation {
   0% {
-    transform: scale(100%,100%);
+    transform: scale(100%, 100%);
   }
   5% {
-    transform: scale(100%,100%);
+    transform: scale(100%, 100%);
   }
   50% {
-    transform: scale(105%,95%);
+    transform: scale(105%, 95%);
   }
   95% {
-    transform: scale(100%,100%);
+    transform: scale(100%, 100%);
   }
   100% {
-    transform: scale(100%,100%);
+    transform: scale(100%, 100%);
   }
 }
 
@@ -215,4 +211,4 @@ body {
   .gashapon {
     top: -20px;
   }
-};
+}
