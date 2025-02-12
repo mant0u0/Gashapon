@@ -12,7 +12,7 @@ class ArrowPointer {
     this.cursorStyle = {
       boxSizing: 'border-box',
       position: 'fixed',
-      top: `${-this.cursorSize / 2}px`,
+      top: `${-this.cursorSize / 2 + 10}px`,
       left: `${-this.cursorSize / 2}px`,
       zIndex: '2147483647',
       width: `${this.cursorSize}px`,
