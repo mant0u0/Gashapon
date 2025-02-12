@@ -8,7 +8,7 @@ class ArrowPointer {
     }
     this.cursorSize = 20 // 在這裡可以設定固定旋轉角度（度數）
     this.rotationAngle = -45  // 您可以修改這個值來改變旋轉角度
-    
+
     this.cursorStyle = {
       boxSizing: 'border-box',
       position: 'fixed',
