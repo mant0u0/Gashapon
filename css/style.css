@@ -3865,6 +3865,10 @@ body {
     font-size: 8px;
   }
 }
+* {
+  cursor: none !important;
+}
+
 .curzr {
   pointer-events: none;
 }
