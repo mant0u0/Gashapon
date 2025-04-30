@@ -151,6 +151,8 @@ function getTriggerHeight() {
 // ------------------------------------------------------------- //
 // 游標按下
 function mouseDown(e) {
+  // 修復手機版本會抓不到 e.pageY 的問題
+  mouseClick_Y = e.pageY || (e.touches && e.touches[0].pageY);
 
   // 游標變色
   document.querySelector(".curzr .outer").style.fill = "#f6c0bb";
@@ -184,6 +186,9 @@ function mouseDown(e) {
 
 // 游標一進入視窗就會一直執行。   
 function mouseMove(e) {
+  // 修復手機版本會抓不到 e.pageY 的問題
+  let Y = e.pageY || (e.touches && e.touches[0].pageY);
+
   // 滑鼠必須有先點下，才會執行。   
   if (mouseState == 1 && modalState == 0) {
 
