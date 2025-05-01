@@ -147,15 +147,23 @@ function getTriggerHeight() {
   console.log(triggerHeight);
 }
 
+function showCoordinates(event) {
+  var x = event.touches[0].clientX;
+  var y = event.touches[0].clientY;
+  document.getElementById("mobiletouch").innerHTML = x + ", " + y;
+}
+
 
 // ------------------------------------------------------------- //
 // 游標按下
 function mouseDown(e) {
-  // 修復手機版本會抓不到 e.pageY 的問題
-  mouseClick_Y = e.pageY || (e.touches && e.touches[0].pageY);
 
-  // 游標變色
-  document.querySelector(".curzr .outer").style.fill = "#f6c0bb";
+  // 避免在手機上 curzr 出現錯誤
+  if (e.touches == null) {
+    // 表示出現在滑鼠上
+    // 游標變色
+    document.querySelector(".curzr .outer").style.fill = "#f6c0bb";
+  }
 
   // 視窗狀況是否有被開啟   
   if (modalState == 0) {
@@ -175,7 +183,7 @@ function mouseDown(e) {
     // 滑鼠點擊時的 Y 座標
     mouseClick_Y = e.pageY;
     if (e.pageY === undefined) {
-      mouseClick_Y = e.touches[0].pageY;
+      mouseClick_Y = e.touches[0].clientY;
     }
 
     // 狀態更新
@@ -186,10 +194,8 @@ function mouseDown(e) {
 
 // 游標一進入視窗就會一直執行。   
 function mouseMove(e) {
-  // 修復手機版本會抓不到 e.pageY 的問題
-  let Y = e.pageY || (e.touches && e.touches[0].pageY);
 
-  // 滑鼠必須有先點下，才會執行。   
+  // 滑鼠必須有先點下，才會執行。
   if (mouseState == 1 && modalState == 0) {
 
     // $(".gashapon-main").css("transition","0.2s");
@@ -199,7 +205,7 @@ function mouseMove(e) {
     // 修復手機版本會抓不到 e.pageY 這個數值。
     let Y = e.pageY;
     if (Y === undefined) {
-      Y = e.touches[0].pageY;
+      Y = e.touches[0].clientY;
     }
     // 游標位移量（負值向下、正值向上）
     mouseMove_Y = mouseClick_Y - Y;
@@ -245,8 +251,11 @@ function mouseMove(e) {
 // 游標放開   
 function mouseUp(e) {
 
-  // 游標變回原色
-  document.querySelector(".curzr .outer").style.fill = "";
+  // 避免在手機上 curzr 出現錯誤
+  if (e.touches == null) {
+    // 游標變回原色
+    document.querySelector(".curzr .outer").style.fill = "";
+  }
 
   // document.querySelector(".hint-text .text").textContent = "游標放開";
   document.querySelector(".energy-bar").style.transition = "1s";
